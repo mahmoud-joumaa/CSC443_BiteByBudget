@@ -1,0 +1,131 @@
+/* ============================================================================================= */
+/* Slideshow */
+/* ============================================================================================= */
+#main #slideshow {
+	height: 100vh;
+	width: 100%;
+	background-image: url('../Images/Slideshow/space.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#main #slideshow #view {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	color:#fff;
+}
+
+/* ============================================================================================= */
+/* Description(s) */
+/* ============================================================================================= */
+#main .description {
+	height: 55vh;
+	width: 100%;
+}
+#main .description:nth-child(2) {
+	background-color: #181a1b;
+}
+#main .description:nth-child(3) {
+	background-color: #303436;
+}
+
+#main .description h1 {
+	text-align: center;
+}
+
+/* ============================================================================================= */
+/* Offers */
+/* ============================================================================================= */
+#main #offers {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 5px;
+	background-color: #7d89b5;
+	color: #181a1b;
+}
+#main #offers .offer {
+	display: inline-block;
+	height: 350px;
+	width: 30%;
+	max-width: 350px;
+	margin: 1%;
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+#main #offers .offer:nth-child(1) {
+	background-image: url('../Images/Recipes/one-direction.png');
+}
+#main #offers .offer:nth-child(2) {
+	background-image: url('../Images/Recipes/indila.jpg');
+}
+#main #offers .offer:nth-child(3) {
+	background-image: url('../Images/Recipes/adele.jpg');
+}
+
+#main #offers .offer .overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transform-origin: center;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+	background-color: rgba(24, 26, 27, 0.5);
+	color:#fff;
+	transition: opacity 0.2s linear;
+}
+#main #offers .offer:hover > .overlay {
+	opacity: 1;
+	pointer-events: auto;
+}
+#main #offers .offer .overlay > a {
+	display: inline-block;
+	padding: 7px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	border: 1px solid #fff;
+	transform: translate(-50%, -50%);
+}
+#main #offers .offer .overlay > a:hover {
+	background-color: rgba(222, 225, 236, 0.9);
+	color: #181a1b;
+}
+
+#main #offers .offer .sticker {
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	padding: 0;
+	margin: 0;
+	border-radius: 50%;
+	position: absolute;
+	bottom: -15px;
+	right: -15px;
+	rotate: -30deg;
+	background-color: #c82121;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	vertical-align: middle;
+}
+
+@media screen and (max-width: 750px) {
+	#main #offers {
+		flex-direction: column;
+	}
+	#main #offers .offer {
+		width: 90%;
+		margin: 15px;
+	}
+}
