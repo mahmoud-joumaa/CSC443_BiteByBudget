@@ -5,26 +5,46 @@
 	position: fixed;
 	z-index: 1;
 	background-color: #0d0cb5;
+	font-size: 18px;
 }
 
 #header a {
 	padding: 5px;
-	border-radius: 1px;
+	border-radius: 2px;
+	background-image: linear-gradient(to right, #0d0cb5 0%,#0d0cb5 50%, #ffffff 50%, #ffffff 100%);
+	background-size: 200% 100%;
+	transition: background-position 0.3s linear,
+							color 0.3s linear;
 }
 #header a:hover,
 #header a:focus {
-	background-color: #fff;
+	background-position: -100%;
 	color: #0d0cb5;
 }
 
 #header > a {
 	display: inline-block;
-	padding: 5px 0px;
 	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
 }
-#header > a:hover,
-#header > a:focus {
-	
+
+#header button {
+	padding: 5px;
+	border: 1px solid #181a1b;
+	border-radius: 2px;
+	background-image: linear-gradient(to right, #303436 0%,#303436 50%, #ffffff 50%, #ffffff 100%);
+	background-size: 200% 100%;
+	transition: background-position 0.3s linear,
+							color 0.3s linear;
+	color: #fff;
+	font-family: inherit;
+	font-size: inherit;
+}
+#header button:hover,
+#header button:focus {
+	background-position: -100%;
+	color: #181a1b;
 }
 
 #header ul li {
