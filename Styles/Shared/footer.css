@@ -16,4 +16,40 @@
 #footer > div > span {
 	display: block;
 	width: 100%;
+	margin-bottom: 5px;
+	text-align: center;
+}
+#footer > div > span::after {
+	content: "";
+	display: block;
+	height: 2px;
+	width: 100%;
+	margin-top: 2px;
+	background-color: #fff;
+}
+
+#footer #social-media {
+	display: inline-block;
+	height: 100%;
+	width: 50%;
+	float: left;
+}
+#footer #contact-info {
+	display: inline-block;
+	height: 100%;
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+@media screen and (max-width: 750px) {
+	#footer {
+		flex-direction: column;
+	}
+	#footer > div {
+		width: 100%;
+	}
+	#footer > div > span {
+		margin-top: 15px;
+	}
 }
