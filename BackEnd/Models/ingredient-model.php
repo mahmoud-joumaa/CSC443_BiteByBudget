@@ -4,6 +4,12 @@
 require_once("../Common/db-connect.php");
 
 
+/**
+ * This function takes the id of the recipe chosen and returns the ingredients which constitute this recipe
+ * 
+ * @param integer $recipe_id
+ * @return array {Image: ..., Quantity: ..., Unit: ..., Ingredient_Name: ...}
+ */
 function Fetch_Ingerdients($recipe_id){
     $db = DBConnect();
     $sql = "SELECT i.Image, c.Quantity, c.Unit, i.Ingredient_Name
@@ -14,6 +20,11 @@ function Fetch_Ingerdients($recipe_id){
     return $result;
 }
 
+/**
+ * This function retrieves 3 random offers from the database and returns them to be displayed on the home page
+ * 
+ * @return array {Ingredient_ID: ..., Image: ..., Status: ...}
+ */
 function Fetch_Ingerdient_Offers(){
     $NUM_OF_INGREDIENTS = 3;
     $db = DBConnect();
