@@ -27,7 +27,8 @@
 					const menu = document.getElementById("burger-menu");
 					const main = document.getElementById("main");
 					menu.classList.toggle("expand");
-					main.classList.toggle("shrink");
+					// COMBAK: Consider another effect
+					// main.classList.toggle("shrink");
 				}
 			</script>
 		<?php
