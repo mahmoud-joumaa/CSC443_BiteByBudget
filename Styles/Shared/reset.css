@@ -56,12 +56,30 @@ li.disc {
 /* Typography */
 /* ============================================================================================= */
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.6rem; }
-h3 { font-size: 1.2rem; }
-h4 { font-size: 1rem; }
-h5 { font-size: 0.8rem; }
-h6 { font-size: 0.5rem; }
+h1 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 2rem;
+}
+h2 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 1.6rem;
+}
+h3 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 1.2rem;
+}
+h4 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 1rem;
+}
+h5 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 0.8rem;
+}
+h6 {
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 0.5rem;
+}
 
 a,
 a:visited {
