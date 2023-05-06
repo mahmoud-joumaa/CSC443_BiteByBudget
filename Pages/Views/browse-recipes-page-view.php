@@ -5,19 +5,21 @@
 function populate_Recipes($recipes){
     $recipes = json_decode($recipes);
     for($i = 0; $i < sizeof($recipes); $i++){
-        $image = "../../" . $recipes[$i]->Image;
+        $image = "../" . $recipes[$i]->Image;
         $recipe_name = $recipes[$i]->Recipe_Name;
         $recipe_id = $recipes[$i] ->Recipe_ID;
         ?>
 
         <div class="recipe" recipe_id = "<?php echo $recipe_id?>"> 
-            <image class="recipe-img" src="<?php echo $image?>">
+            <image width=100 class="recipe-img" src="<?php echo $image?>">
             <span> <?php echo $recipe_name ?></span>
         </div>
 
     <?php
     }
-    
+    ?>
+    <button id="back-button-step-2"> Back </button>
+    <?php
 }
 
 function populate_budget_page(){
@@ -41,17 +43,21 @@ function populate_Ingredients($ingredients){
     for($i = 0; $i < sizeof($ingredients); $i++){
         ?>
         <div class='item-wrapper'>
-            <img class='item-img' src= <?php echo "../../" . $ingredients[$i]->Image ?> >
+            <img width=100 class='item-img' src= <?php echo "../" . $ingredients[$i]->Image ?> >
             <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
             <div class='item-cost'>
-            <button class='item-sell'>-</button>
-            <input class='item-input' type='number' pattern='\d*' value= <?php $ingredients[$i]->Quantity ?> >
-            <button class='item-buy'>+</button>
-             <?php echo $ingredients[$i]->Unit ?>
+                <button class='item-sell'>-</button>
+                <input class='item-input' type='number' pattern='\d*' value= <?php $ingredients[$i]->Quantity ?> >
+                <button class='item-buy'>+</button>
+                <?php echo $ingredients[$i]->Unit ?>
             </div>
             </div>
         <?php
     } 
+
+    ?>
+    <button id="back-button-step-3"> Back </button>
+    <?php
 }
 
 

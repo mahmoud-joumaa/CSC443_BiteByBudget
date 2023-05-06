@@ -44,7 +44,10 @@ require_once "Views/home-page-views.php";
             </script>
 
             <script>  
-                
+                let budget = 0;
+                let recipe_id = -1;
+                let ingredients = null;
+
                 $(document).ready(function(){
                     
                     // Loads step-1 page
@@ -58,15 +61,14 @@ require_once "Views/home-page-views.php";
 
                     });
 
-                    
-                    
-                    
                 });
 
                 // loads step-2 when budget is submitted
                 $(document).on("submit", "#budget-form", function(e){
                     e.preventDefault();
-                        $.ajax({
+                    budget = $("#budget").val();
+                    console.log(budget);
+                    $.ajax({
                         type: "POST",
                         url: "../BackEnd/Controllers/recipe-controller.php",
 						data: {action: "Fetch_Recepies"},
@@ -76,40 +78,85 @@ require_once "Views/home-page-views.php";
 								url: "Views/browse-recipes-page-view.php",
 								data: {function_name : "populate_Recipes", recipes: data},
 								success:function(data){
-                                    
+                                    $("#step-1").html("");
 									$("#step-2").html(data);
                                     
 								}
 							});
 						}
 
-                        });
                     });
+                });
 
-
-                    // Loads step-3 when recipe is clicked
-                    $(document).on("click", ".recipe", function(e){
-                        e.preventDefault();
-                        let recipe_id_recv = $(this).attr('recipe_id');
-                        $.ajax({
-                            type: "POST",
-                            url: "../BackEnd/Controllers/ingredient-controller.php",
-                            data: {action: "Fetch_Recepies", recipe_id: recipe_id_recv},
-                            success: function(data){
-                                $.ajax({
-                                    type: "POST",
-                                    url: "Views/browse-recipes-page-view.php",
-                                    data: {function_name : "populate_Ingredients", ingredients: data},
-                                    success:function(data){
-                                        console.log(data);
-                                        $("#step-3").html(data);
-                                    }
-                                });
-                            }
-
-                        });
+                // Load step-1 when back button is clicked in step-2
+                $(document).on("click", "#back-button-step-2", function(e){
+                    e.preventDefault();
+                    buget = null;
+                    console.log("HERE");
+                    $.ajax({
+                        type: "POST",
+                        url: "Views/browse-recipes-page-view.php",
+						data: {function_name: "populate_budget_page"},
+						success: function(data){
+							$("#step-1").html(data);
+                            $('#step-2').html("");
+						}
 
                     });
+                });
+
+                // Load step-2 when back button is clicked in step-3
+                $(document).on("click", "#back-button-step-3", function(e){
+                    e.preventDefault();
+                    recipe_id = null;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../BackEnd/Controllers/recipe-controller.php",
+						data: {action: "Fetch_Recepies"},
+						success: function(data){
+							$.ajax({
+								type: "POST",
+								url: "Views/browse-recipes-page-view.php",
+								data: {function_name : "populate_Recipes", recipes: data},
+								success:function(data){
+                                    $("#step-3").html("");
+									$("#step-2").html(data);
+                                    
+								}
+							});
+						} 
+
+                    });
+                    
+                });
+
+
+                // Loads step-3 when recipe is clicked
+                $(document).on("click", ".recipe", function(e){
+                    e.preventDefault();
+                    recipe_id = $(this).attr('recipe_id')
+                    $.ajax({
+                        type: "POST",
+                        url: "../BackEnd/Controllers/ingredient-controller.php",
+                        data: {action: "Fetch_Recepies", "recipe_id": recipe_id},
+                        success: function(data){
+                            ingredients = data;
+                            console.log(data);
+                            $.ajax({
+                                type: "POST",
+                                url: "Views/browse-recipes-page-view.php",
+                                data: {function_name : "populate_Ingredients", "ingredients": ingredients},
+                                success:function(data){
+                                    $("#step-2").html("");
+                                    $("#step-3").html(data);
+                                }
+                            });
+                        }
+
+                    });
+
+                });
 
 
 

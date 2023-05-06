@@ -36,8 +36,9 @@
 				</div>
 			</div>
 
-
+			
 			<script> 
+			
 
 			$(document).ready(function(){
 				$.ajax({
@@ -48,12 +49,19 @@
 						data = JSON.parse(data);
 						for(var i in data){
 							if(data[i].Status.slice(0, 7) == "on sale"){
-								data[i].Status = "-" + data[i].Status.slice(10);
+								data[i].Status = "-" + data[i].Status.slice(10) + "%";
 							}
-							$("#main #offers .offer:nth-child("+(i+1)+")").css("background-image"," url('../"+ data[i]["Image"] +"')");
-							$("#main #offers .offer:nth-child("+(i+1)+") a").text(data[i].Ingredient_Name);
-							$("#main #offers .offer:nth-child("+(i+1)+") .sticker").text(data[i].Status);
 						}
+						console.log(data);
+						$("#main #offers .offer:nth-child(1)").css("background-image",'url(' + data[0].Image +')');
+						$("#main #offers .offer:nth-child(1) a").text(data[0].Ingredient_Name);
+						$("#main #offers .offer:nth-child(1) .sticker").text(data[0].Status);
+						$("#main #offers .offer:nth-child(2)").css("background-image",'url(' + data[1].Image +')');
+						$("#main #offers .offer:nth-child(2) a").text(data[1].Ingredient_Name);
+						$("#main #offers .offer:nth-child(2) .sticker").text(data[1].Status);
+						$("#main #offers .offer:nth-child(3)").css("background-image",' url( '+ data[2].Image +')');
+						$("#main #offers .offer:nth-child(3) a").text(data[2].Ingredient_Name);
+						$("#main #offers .offer:nth-child(3) .sticker").text(data[2].Status);
 						
 					}
 				});
