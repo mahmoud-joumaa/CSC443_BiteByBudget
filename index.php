@@ -21,7 +21,7 @@ require_once "Pages/Views/home-page-views.php";
 
 	<body>
 		<!-- Menu Nav Bar -->
-		<?php populateHeaderView(); ?>
+		<?php populateHomePageHeaderView(); ?>
 		<!-- Main -->
 		<div id="main">
 			<!-- Slideshow -->

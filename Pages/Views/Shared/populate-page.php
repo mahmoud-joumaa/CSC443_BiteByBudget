@@ -3,6 +3,26 @@
 	function populateHeaderView() {
 		?>
 			<div id="header">
+				<a href="../index.php"><i>LOGO</i><span>Bite By Budget</span></a>
+				<div id="burger-menu" tabindex="0" onclick="toggleHeader()">
+					<div class="burger-bun"></div>
+					<div class="burger-bun"></div>
+					<div class="burger-bun"></div>
+				</div>
+				<ul>
+					<li><a href="about-us.php">About Us</a></li>
+					<li><a href="our-partners.php">Our Partners</a></li>
+					<li><a href="browse-recipes.php">Browse Recipes</a></li>
+					<li><a href="contact-us.php">Contact Us</a></li>
+					<li><button>Login</button></li>
+				</ul>
+			</div>
+		<?php
+	}
+
+	function populateHomePageHeaderView() {
+		?>
+			<div id="header">
 				<a href="index.php"><i>LOGO</i><span>Bite By Budget</span></a>
 				<div id="burger-menu" tabindex="0" onclick="toggleHeader()">
 					<div class="burger-bun"></div>
