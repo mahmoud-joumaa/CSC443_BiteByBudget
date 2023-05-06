@@ -59,15 +59,8 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-#main #offers .offer:nth-child(1) {
-	background-image: url('../Images/Recipes/one-direction.png');
-}
-#main #offers .offer:nth-child(2) {
-	background-image: url('../Images/Recipes/indila.jpg');
-}
-#main #offers .offer:nth-child(3) {
-	background-image: url('../Images/Recipes/adele.jpg');
-}
+
+
 
 #main #offers .offer .overlay {
 	height: 100%;

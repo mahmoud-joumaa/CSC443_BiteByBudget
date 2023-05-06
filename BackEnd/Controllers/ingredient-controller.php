@@ -14,7 +14,12 @@ if (isset($_REQUEST["action"])){
             }
 
             break;
-        
+
+        case "Fetch_Offers": 
+
+            echo json_encode(Fetch_Ingerdient_Offers());
+
+            break;
     }
 }
 

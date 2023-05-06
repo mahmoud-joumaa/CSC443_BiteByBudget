@@ -5,7 +5,7 @@
 function populate_Recipes($recipes){
     $recipes = json_decode($recipes);
     for($i = 0; $i < sizeof($recipes); $i++){
-        $image = $recipes[$i]->Image;
+        $image = "../../" . $recipes[$i]->Image;
         $recipe_name = $recipes[$i]->Recipe_Name;
         $recipe_id = $recipes[$i] ->Recipe_ID;
         ?>
@@ -41,7 +41,7 @@ function populate_Ingredients($ingredients){
     for($i = 0; $i < sizeof($ingredients); $i++){
         ?>
         <div class='item-wrapper'>
-            <img class='item-img' src= <?php echo $ingredients[$i]->Image ?> >
+            <img class='item-img' src= <?php echo "../../" . $ingredients[$i]->Image ?> >
             <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
             <div class='item-cost'>
             <button class='item-sell'>-</button>
