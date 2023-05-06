@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lora:ital@1&family=Roboto:wght@400;700&display=swap');
+
 /* ============================================================================================= */
 /* General Layout */
 /* ============================================================================================= */
+
 *, *::before, *::after {
 	padding: 0;
 	margin: 0;
@@ -9,6 +12,7 @@
 }
 
 html {
+	min-height: 100vh;
 	scroll-behavior: smooth;
 	font-size: 16px;
 }
@@ -27,6 +31,11 @@ body {
 }
 #main.shrink {
 	transform: scale(0.95);
+}
+@media screen and (min-width: 750px) {
+	#main.shrink {
+		transform: scale(0.95);
+	}
 }
 
 /* ============================================================================================= */
