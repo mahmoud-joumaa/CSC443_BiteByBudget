@@ -31,7 +31,7 @@
 				for (let i = 0; i < size; i++) {
 					const circle = document.createElement("div");
 					circle.setAttribute("tabindex", 0);
-					circle.setAttribute("onclick", `moveSlideshowHere(${i})`);
+					circle.setAttribute("onclick", `moveSlideshowToIndex(${i})`);
 					circle.classList.add("circle");
 					slider.appendChild(circle);
 				}
@@ -67,7 +67,7 @@
 				index = (index+1)%size;
 				moveSlideshow();
 			}
-			function moveSlideshowHere(current_index) {
+			function moveSlideshowToIndex(current_index) {
 				circles[index].classList.remove("fill");
 				index = current_index;
 				moveSlideshow();
