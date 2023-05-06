@@ -1,7 +1,7 @@
 <?php
 
 require_once "Pages/Views/Shared/populate-page.php";
-require_once "Pages/Views/Shared/scripts.php";
+
 require_once "Pages/Views/home-page-views.php";
 
 ?>
@@ -18,9 +18,8 @@ require_once "Pages/Views/home-page-views.php";
 			<link href="Styles/Shared/footer.css" rel="stylesheet" type="text/css">
 			<link href="Styles/home-page.css" rel="stylesheet" type="text/css">
 			<!-- Linked Scripts -->
-			<?php
-				toggleHeaderScript();
-			?>
+			<?php toggleHeaderScript(); ?>
+			<?php fetchSlideshowImagesScript(); ?>
 		</head>
 
 		<body>
