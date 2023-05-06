@@ -9,7 +9,7 @@ require_once("../Common/db-connect.php");
  */
 function Fetch_Recepies(){
     $db = DBConnect();
-    $query = "SELECT Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
+    $query = "SELECT Recipe_ID, Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
