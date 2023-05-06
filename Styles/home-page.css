@@ -20,7 +20,7 @@
 
 #main #slideshow #slideshow-carousel .slideshow-image {
 	display: block;
-	height: 100%;
+	height: calc(100% - 45px);
 	width: 100%;
 	position: absolute;
 	background-size: contain;
@@ -35,6 +35,7 @@
 	width: 20px;
 	position: absolute;
 	top: 50%;
+	border-radius: 1px;
 	background-color: white;
 	cursor: pointer;
 }
@@ -43,6 +44,38 @@
 }
 #main #slideshow .slideshow-arrow.right {
 	right: 10px;
+}
+
+#main #slideshow #slider {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	position: absolute;
+	bottom: 15px;
+}
+
+#main #slideshow #slider .circle {
+	display: block;
+	height: 10px;
+	width: 10px;
+	margin: 2px;
+	position: relative;
+	border-radius: 50%;
+	background-color: #fff;
+	cursor: pointer;
+}
+#main #slideshow #slider .fill::after {
+	content: "";
+	display: block;
+	height: 65%;
+	width: 65%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background-color: #181a1b;
 }
 
 #main #slideshow #view {
@@ -90,8 +123,11 @@
 	max-width: 350px;
 	margin: 1%;
 	position: relative;
-	background-size: cover;
+	background-color: #303436;
+	background-size: 100%;
+	background-position: center;
 	background-repeat: no-repeat;
+	transition: background-size 0.5s ease-in-out;
 }
 #main #offers .offer:nth-child(1) {
 	background-image: url('../Images/Recipes/one-direction.png');
@@ -101,6 +137,11 @@
 }
 #main #offers .offer:nth-child(3) {
 	background-image: url('../Images/Recipes/adele.jpg');
+}
+
+#main #offers .offer:hover,
+#main #offers .offer:focus-within {
+	background-size: 150%;
 }
 
 #main #offers .offer .overlay {
@@ -118,7 +159,8 @@
 	color:#fff;
 	transition: opacity 0.2s linear;
 }
-#main #offers .offer:hover > .overlay {
+#main #offers .offer:hover > .overlay,
+#main #offers .offer:focus-within > .overlay {
 	opacity: 1;
 	pointer-events: auto;
 }
@@ -135,7 +177,8 @@
 	transition: background-position 0.2s linear,
 							color 0.2s linear;
 }
-#main #offers .offer .overlay > a:hover {
+#main #offers .offer .overlay > a:hover,
+#main #offers .offer .overlay > a:focus {
 	background-position: -100%;
 	color: #181a1b;
 }
