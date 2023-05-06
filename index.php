@@ -6,43 +6,45 @@ require_once "Pages/Views/home-page-views.php";
 
 ?>
 
-	<html>
+<html>
 
-		<head>
-			<!-- Title Bar -->
-			<title>BBB | Home Page</title>
-			<!-- Linked Styles -->
-			<link href="Styles/Shared/reset.css" rel="stylesheet" type="text/css">
-			<link href="Styles/Shared/icons.css" rel="stylesheet" type="text/css">
-			<link href="Styles/Shared/header.css" rel="stylesheet" type="text/css">
-			<link href="Styles/Shared/footer.css" rel="stylesheet" type="text/css">
-			<link href="Styles/home-page.css" rel="stylesheet" type="text/css">
-			<!-- Linked Scripts -->
-			<?php toggleHeaderScript(); ?>
-			<?php fetchSlideshowImagesScript(); ?>
-		</head>
+	<head>
+		<!-- Title Bar -->
+		<title>BBB | Home Page</title>
+		<!-- Linked Styles -->
+		<link href="Styles/Shared/reset.css" rel="stylesheet" type="text/css">
+		<link href="Styles/Shared/icons.css" rel="stylesheet" type="text/css">
+		<link href="Styles/Shared/header.css" rel="stylesheet" type="text/css">
+		<link href="Styles/Shared/footer.css" rel="stylesheet" type="text/css">
+		<link href="Styles/home-page.css" rel="stylesheet" type="text/css">
+	</head>
 
-		<body>
-			<!-- Menu Nav Bar -->
-			<?php populateHeaderView(); ?>
-			<!-- Main -->
-			<div id="main">
-				<!-- Slideshow -->
-				<?php populateSlideshowView(); ?>
-				<!-- Description(s) -->
-				<div class="description">
-					<h1>What is Bite By Budget?</h1>
-				</div>
-				<div class="description">
-					<h1>How do You Use Bite By Budget?</h1>
-				</div>
-				<!-- Speical Offers -->
-				<?php populateOffersView(); ?>
+	<body>
+		<!-- Menu Nav Bar -->
+		<?php populateHeaderView(); ?>
+		<!-- Main -->
+		<div id="main">
+			<!-- Slideshow -->
+			<?php populateSlideshowView(); ?>
+			<!-- Description(s) -->
+			<div class="description">
+				<h1>What is Bite By Budget?</h1>
 			</div>
-			<!-- Footer -->
-			<?php populateFooterView(); ?>
-		</body>
+			<div class="description">
+				<h1>How do You Use Bite By Budget?</h1>
+			</div>
+			<!-- Speical Offers -->
+			<?php populateOffersView(); ?>
+		</div>
+		<!-- Footer -->
+		<?php populateFooterView(); ?>
+	</body>
 
-	</html>
-<?php
-?>
+	<!-- Linked Scripts -->
+	<?php
+		toggleHeaderScript();
+		fetchSlideshowImagesScript();
+		moveSlideshowScript();
+	?>
+
+</html>
