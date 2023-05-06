@@ -25,7 +25,9 @@
 			<script>
 				function toggleHeader() {
 					const menu = document.getElementById("burger-menu");
+					const main = document.getElementById("main");
 					menu.classList.toggle("expand");
+					main.classList.toggle("shrink");
 				}
 			</script>
 		<?php
