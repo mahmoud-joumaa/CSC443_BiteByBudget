@@ -52,7 +52,7 @@
 
     // Create an array to store the calculated prices for each supermarket
     $supermarketPrices = array();
-
+    $supermarketContaining = array();
     foreach ($results as $row) {
         $supermarketName = $row['Supermarket_Name'];
         $calculatedPrice = $row['calculated_price'];
@@ -66,8 +66,11 @@
         // Sum up the prices for each supermarket
         if (isset($supermarketPrices[$supermarketName])) {
             $supermarketPrices[$supermarketName] += $totalPrice;
-        } else {
+            $supermarketContaining[$supermarketName] +=1;
+        } 
+        else {
             $supermarketPrices[$supermarketName] = $totalPrice;
+            $supermarketContaining[$supermarketName] =1;
         }
     }
 
@@ -76,6 +79,9 @@
 
     // Display the supermarket name and the total price for each supermarket
     foreach ($supermarketPrices as $supermarketName => $totalPrice) {
-        echo "Supermarket Name: $supermarketName, Total Price: $totalPrice <br>";
+        if ($supermarketContaining[$supermarketName]== sizeof($ingredients)){
+            echo "Supermarket Name: $supermarketName, Total Price: $totalPrice <br>";
+        }
+        
     }
 ?>
