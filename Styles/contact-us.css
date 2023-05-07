@@ -1,8 +1,3 @@
-body {
-	max-height: 100vh;
-	overflow-y: hidden;
-}
-
 #main #form-wrapper {
 	display: block;
 	height: 60%;

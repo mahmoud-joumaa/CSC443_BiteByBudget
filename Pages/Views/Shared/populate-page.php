@@ -73,7 +73,7 @@
 						<ul>
 							<li><a href="">Phone</a></li>
 							<li><a href="">Email</a></li>
-							<li><a href="Pages/contact-us.php">Submit Feedback</a></li>
+							<li><a href="Pages/contact-us.php">Rate Us</a></li>
 						</ul>
 					</div>
 				</div>
