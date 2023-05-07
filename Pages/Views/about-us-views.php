@@ -1,6 +1,6 @@
 <?php
 
-	class member {
+	class Member {
 		public $id = 0;
 		public $name = null;
 		public $role = null;
@@ -9,12 +9,12 @@
 		public $social_media = array('facebook' => null, 'instagram' => null, 'twitter' => null, 'linkedin' => null);
 	}
 
-	function getMembers() {
-		$m1 = new member();
-		$m2 = new member();
-		$m3 = new member();
-		$m4 = new member();
-		$m5 = new member();
+	function populateMembers() {
+		$m1 = new Member();
+		$m2 = new Member();
+		$m3 = new Member();
+		$m4 = new Member();
+		$m5 = new Member();
 		$members = array($m1, $m2, $m3, $m4, $m5);
 		// Ahmad Hussein
 		$m1->name = 'Blob Cat';

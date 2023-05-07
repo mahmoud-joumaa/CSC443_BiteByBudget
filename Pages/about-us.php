@@ -27,7 +27,7 @@ require_once "Views/about-us-views.php";
 			<h2>Meet The Team</h2>
 			<div id="team-wrapper">
 				<?php
-					$members = getMembers();
+					$members = populateMembers();
 					$team_size = count($members);
 					for ($i = 0; $i < $team_size; $i++) {
 						populateTeamMemberView($members[$i]);
