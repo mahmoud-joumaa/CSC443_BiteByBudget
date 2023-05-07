@@ -30,7 +30,10 @@
 }
 
 #main #team-wrapper .team-member .member-intro {
-
+	width: 250px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 #main #team-wrapper .team-member .member-img {
 	display: block;
