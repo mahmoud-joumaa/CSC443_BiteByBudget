@@ -34,7 +34,7 @@ body {
 }
 @media screen and (min-width: 750px) {
 	#main.shrink {
-		transform: scale(0.95);
+		transform: scale(1);
 	}
 }
 
