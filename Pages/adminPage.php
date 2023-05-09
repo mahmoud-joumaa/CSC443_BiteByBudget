@@ -99,6 +99,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     $count++;
                                     $supermarket = $row['supermarket_name'];
                                     $ingredients = $row['ingredient_name'];
+                                    $ingredientId = "ingredient_" . $count; // Generate a unique id for each ingredient row
                             ?>
                             <div class="table-row">
                                 <div class="div-block-406 _2">
@@ -115,10 +116,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="table-box _2">
                                     <div class="table-data" style="box-sizing = border-box">
-                                    <form>
-                                        <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-                                        <input type="number" id="number" value="<?php echo $row['Quantity']; ?>" />
-                                        <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+                                    <form style="box-sizing: border-box;">
+                                        <div class="value-button" id="decrease" onclick="decreaseValue('<?php echo $ingredientId; ?>')" value="Decrease Value">-</div>
+                                        <input type="number" class="number" id="<?php echo $ingredientId; ?>" value="<?php echo $row['Quantity']; ?>" />
+                                        <div class="value-button" id="increase" onclick="increaseValue('<?php echo $ingredientId; ?>')" value="Increase Value">+</div>
                                     </form>
                                     </div>
                                 </div>
@@ -128,6 +129,22 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </a>
                                 </div>
                             </div>
+                            <script>
+                            function increaseValue() {
+                            var value = parseInt(document.getElementById('count').value, 10);
+                            value = isNaN(value) ? 0 : value;
+                            value++;
+                            document.getElementById('count').value = value;
+                            }
+
+                            function decreaseValue() {
+                            var value = parseInt(document.getElementById('count').value, 10);
+                            value = isNaN(value) ? 0 : value;
+                            value < 1 ? value = 1 : '';
+                            value--;
+                            document.getElementById('count').value = value;
+                            }
+                            </script>
                             <?php
                                 }
                             ?>
@@ -142,18 +159,18 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 </html>
 <script>
-function increaseValue() {
-  var value = parseInt(document.getElementById('number').value, 10);
-  value = isNaN(value) ? 0 : value;
-  value++;
-  document.getElementById('number').value = value;
+function increaseValue(ingredientId) {
+    var value = parseInt(document.getElementById(ingredientId).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById(ingredientId).value = value;
 }
 
-function decreaseValue() {
-  var value = parseInt(document.getElementById('number').value, 10);
-  value = isNaN(value) ? 0 : value;
-  value < 1 ? value = 1 : '';
-  value--;
-  document.getElementById('number').value = value;
+function decreaseValue(ingredientId) {
+    var value = parseInt(document.getElementById(ingredientId).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById(ingredientId).value = value;
 }
 </script>
