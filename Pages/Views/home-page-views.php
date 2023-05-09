@@ -24,7 +24,7 @@
 				const slideshow = document.getElementById("slideshow");
 				const carousel = document.getElementById("slideshow-carousel");
 
-				const size = 10;
+				const size = 5;
 				let index = 0;
 				// Generate slider
 				const slider = document.getElementById("slider");
@@ -37,15 +37,30 @@
 				}
 				const circles = document.querySelectorAll("#slider .circle");
 				// Generate slideshow images
-				const image_srcs = ["AvengersAgeOfUltron.jpg", "BreakingBad.jpg", "CaptainAmericaTheFirstAvenger.jpg", "CaptainMarvel.jpg", "FRIENDS.png", "GuardiansOfTheGalaxy.webp", "GuardiansOfTheGalaxy2.webp", "IronMan.jpg", "IronMan2.jpg", "Manifest.jpg", "TheIncredibleHulk.webp"];
-				for (let i = 0; i < size; i++) {
-					const img = document.createElement("div");
-					img.classList.add("slideshow-image");
-					img.style.backgroundImage = `url(Images/Recipes/${image_srcs[i]})`;
-					img.style.right = `-${i*100}%`;
-					carousel.appendChild(img);
-				}
-				const images = document.querySelectorAll("#slideshow .slideshow-image");
+
+				image_srcs = [];
+				$(document).ready(function(){
+					$.ajax({
+						type: "POST",
+						url: "BackEnd/Controllers/recipe-controller.php",
+						data: {action: "Fetch_Slideshow_Recepies"},
+						success:function(data){
+							data = JSON.parse(data);
+							for (let i = 0; i < size; i++) {
+								const img = document.createElement("div");
+								image_srcs[i] = data[i].Image;
+								img.classList.add("slideshow-image");
+								img.style.backgroundImage = `url(${image_srcs[i]})`;
+								img.setAttribute("recipe_id", data[i].Recipe_ID);
+								img.style.right = `-${i*100}%`;
+								carousel.appendChild(img);
+							}
+						}
+					});
+				});
+				
+				
+				const images = document.getElementById("slideshow-carousel").children;
 			</script>
 		<?php
 	}

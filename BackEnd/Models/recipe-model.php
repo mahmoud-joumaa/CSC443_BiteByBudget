@@ -27,7 +27,7 @@ function Fetch_Recepies(){
 function Fetch_Slideshow_Recepies(){
     $NUM_OF_RECIPES = 5;
     $db = DBConnect();
-    $query = "SELECT Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
+    $query = "SELECT Recipe_ID, Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
