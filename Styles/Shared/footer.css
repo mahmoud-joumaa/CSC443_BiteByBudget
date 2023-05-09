@@ -2,12 +2,13 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	min-height: 100px;
+	min-height: 120px;
 	width: 100%;
 	padding: 5px 20px;
 	position: relative;
 	z-index: 2;
 	background-color: #0d0cb5;
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #footer > div {
@@ -16,4 +17,40 @@
 #footer > div > span {
 	display: block;
 	width: 100%;
+	margin-bottom: 5px;
+	text-align: center;
+	font-family: 'Lobster', cursive, sans-serif;
+	font-size: 1.2rem;
+}
+#footer > div > span::after {
+	content: "";
+	display: block;
+	height: 2px;
+	width: 100%;
+	margin-top: 2px;
+	background-color: #fff;
+}
+
+#footer #social-media {
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+#footer #contact-info {
+	display: inline-block;
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+@media screen and (max-width: 750px) {
+	#footer {
+		flex-direction: column;
+	}
+	#footer > div {
+		width: 100%;
+	}
+	#footer > div > span {
+		margin-top: 15px;
+	}
 }

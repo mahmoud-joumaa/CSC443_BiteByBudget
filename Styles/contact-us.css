@@ -1,0 +1,80 @@
+#main #form-wrapper {
+	display: block;
+	height: 60%;
+	width: 80%;
+	padding: 15px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, calc(-40px - 50%));
+	border-radius: 3px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba(254, 173, 66, 0.65);
+	text-align: center;
+}
+
+#main #form-wrapper h1 {
+	margin-bottom: 15px;
+}
+
+#main #form-wrapper form {
+	display: flex;
+	flex-direction: column;
+}
+
+#main #form-wrapper form .section-wrapper {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+#main #form-wrapper form .section-wrapper label {
+	display: block;
+	width: 100%;
+	padding: 5px 0px;
+	margin-top: 2px;
+	font-size: 1.2rem;
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-style: italic;
+}
+#main #form-wrapper form .section-wrapper input[type="text"] {
+	height: 25px;
+	width: 100%;
+	padding: 2px;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 2px 2px #181a1b;
+	font-family: inherit;
+}
+#main #form-wrapper form .section-wrapper textarea {
+	width: 100%;
+	padding: 2px;
+	resize: vertical;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 2px 2px #181a1b;
+	font-family: inherit;
+}
+
+#main #form-wrapper form .section-wrapper button {
+	width: 100%;
+	padding: 2px;
+	margin-top: 15px;
+	margin-bottom: 7px;
+	border: 1px solid #181a1b;
+	border-radius: 2px;
+	box-shadow: 2px 2px #181a1b;
+	cursor: pointer;
+	background-image: linear-gradient(to right, #c82121 0%,#c82121 50%, #39da8a 50%, #39da8a 100%);
+	background-size: 200% 100%;
+	font-size: 1.1rem;
+	color: #fff;
+	transition: background-position 0.25s linear,
+							color 0.25s linear;
+}
+#main #form-wrapper form .section-wrapper button:hover,
+#main #form-wrapper form .section-wrapper button:focus {
+	background-position: -100%;
+	color: #181a1b;
+}
