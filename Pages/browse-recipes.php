@@ -1,7 +1,7 @@
 <?php
 
 require_once "Views/Shared/populate-page.php";
-require_once "Views/Shared/scripts.php";
+
 require_once "Views/home-page-views.php";
 require_once "Views/browse-recipes-page-view.php";
 
