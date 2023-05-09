@@ -40,6 +40,9 @@ require_once "Pages/Views/home-page-views.php";
 		<?php populateFooterView(); ?>
 	</body>
 
+
+<?php
+?>
 	<!-- Linked Scripts -->
 	<?php
 		toggleHeaderScript();
@@ -48,3 +51,4 @@ require_once "Pages/Views/home-page-views.php";
 	?>
 
 </html>
+

@@ -129,15 +129,8 @@
 	background-repeat: no-repeat;
 	transition: background-size 0.5s ease-in-out;
 }
-#main #offers .offer:nth-child(1) {
-	background-image: url('../Images/Recipes/one-direction.png');
-}
-#main #offers .offer:nth-child(2) {
-	background-image: url('../Images/Recipes/indila.jpg');
-}
-#main #offers .offer:nth-child(3) {
-	background-image: url('../Images/Recipes/adele.jpg');
-}
+
+
 
 #main #offers .offer:hover,
 #main #offers .offer:focus-within {
