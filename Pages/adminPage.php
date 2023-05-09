@@ -14,7 +14,7 @@ try {
 }
 
 // Fetch data from the "sells" table
-$query = "SELECT s.supermarket_name, i.ingredient_name, se.Quantity
+$query = "SELECT s.supermarket_name, i.ingredient_name, i.Ingredient_ID, se.Quantity
           FROM sells AS se
           INNER JOIN supermarket AS s ON se.Supermarket_ID = s.Supermarket_ID
           INNER JOIN ingredient AS i ON se.Ingredient_ID = i.Ingredient_ID;";
@@ -22,7 +22,7 @@ $stmt = $db->query($query);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<html data-wf-domain="table-template-81d32b.webflow.io" data-wf-page="5ec7e046dab9421e1dc39d52" data-wf-site="5ec7e046dab94257e6c39d51">
+<html>
 <head>
   <meta charset="utf-8">
   <title>Admin Page</title>
@@ -34,8 +34,18 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script type="text/javascript">
     !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
   </script>
-  <link rel="shortcut icon" type="image/x-icon" href="https://assets.website-files.com/img/favicon.ico">
   <link rel="apple-touch-icon" href="https://assets.website-files.com/img/webclip.png">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script >
+    $(document).ready( function() {
+      $('.number').on('change', function(e) {
+        var ingredientId = $(this).attr('id');
+        var quantity = $(this).val();
+        updateQuantity(ingredientId, quantity);
+      });
+
+    });
+  </script>
 </head>
 <body>
     <div class="wrapper-section">
@@ -99,7 +109,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     $count++;
                                     $supermarket = $row['supermarket_name'];
                                     $ingredients = $row['ingredient_name'];
-                                    $ingredientId = "ingredient_" . $count; // Generate a unique id for each ingredient row
+                                    $ingredientId = $row['Ingredient_ID']; // Generate a unique id for each ingredient row
                             ?>
                             <div class="table-row">
                                 <div class="div-block-406 _2">
@@ -118,33 +128,19 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <div class="table-data" style="box-sizing = border-box">
                                     <form style="box-sizing: border-box;">
                                         <div class="value-button" id="decrease" onclick="decreaseValue('<?php echo $ingredientId; ?>')" value="Decrease Value">-</div>
-                                        <input type="number" class="number" id="<?php echo $ingredientId; ?>" value="<?php echo $row['Quantity']; ?>" />
+                                        <input type="number" class="number" id="<?php echo $ingredientId; ?>" value="<?php echo $row['Quantity']; ?>"/>
                                         <div class="value-button" id="increase" onclick="increaseValue('<?php echo $ingredientId; ?>')" value="Increase Value">+</div>
                                     </form>
                                     </div>
                                 </div>
                                 <div class="table-box _2 action">
+                                <form name="FrmDelete" class="FrmDelete" method="post" action="../BackEnd/delete.php">
                                     <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
                                     <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
                                     </a>
+                                </form>
                                 </div>
                             </div>
-                            <script>
-                            function increaseValue() {
-                            var value = parseInt(document.getElementById('count').value, 10);
-                            value = isNaN(value) ? 0 : value;
-                            value++;
-                            document.getElementById('count').value = value;
-                            }
-
-                            function decreaseValue() {
-                            var value = parseInt(document.getElementById('count').value, 10);
-                            value = isNaN(value) ? 0 : value;
-                            value < 1 ? value = 1 : '';
-                            value--;
-                            document.getElementById('count').value = value;
-                            }
-                            </script>
                             <?php
                                 }
                             ?>
@@ -164,13 +160,31 @@ function increaseValue(ingredientId) {
     value = isNaN(value) ? 0 : value;
     value++;
     document.getElementById(ingredientId).value = value;
-}
+    updateQuantity(ingredientId, value); // Call the updateQuantity function
+  }
 
-function decreaseValue(ingredientId) {
+  function decreaseValue(ingredientId) {
     var value = parseInt(document.getElementById(ingredientId).value, 10);
     value = isNaN(value) ? 0 : value;
     value < 1 ? value = 1 : '';
     value--;
     document.getElementById(ingredientId).value = value;
-}
+    updateQuantity(ingredientId, value); // Call the updateQuantity function
+  }
+  function updateQuantity(ingredientId, quantity) {
+        $.ajax({
+          url: '../BackEnd/Edit-quantity.php',
+          type: 'POST',
+          data: {
+            ingredientId: ingredientId,
+            quantity: quantity
+          },
+          success: function(response) {
+            console.log(response);
+          },
+          error: function(xhr, status, error) {
+            console.log(error);
+          }
+        });
+      }
 </script>
