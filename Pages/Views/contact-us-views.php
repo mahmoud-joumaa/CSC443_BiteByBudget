@@ -13,11 +13,11 @@
 						<label>Rating </label>
 						<div id="rating-ui-wrapper">
 							<div id="rating-labels-wrapper">
-								<label class="rating-label one" for="rating-1" onclick="updateRating(1)"></label>
-								<label class="rating-label two" for="rating-2" onclick="updateRating(2)"></label>
-								<label class="rating-label three selected" for="rating-3" onclick="updateRating(3)"></label>
-								<label class="rating-label four" for="rating-4" onclick="updateRating(4)"></label>
-								<label class="rating-label five" for="rating-5" onclick="updateRating(5)"></label>
+								<div class="label-wrapper"><label class="rating-label one" for="rating-1" onclick="updateRating(1)" tabindex="0"></label></div>
+								<div class="label-wrapper"><label class="rating-label two" for="rating-2" onclick="updateRating(2)" tabindex="0"></label></div>
+								<div class="label-wrapper selected"><label class="rating-label three" for="rating-3" onclick="updateRating(3)" tabindex="0"></label></div>
+								<div class="label-wrapper"><label class="rating-label four" for="rating-4" onclick="updateRating(4)" tabindex="0"></label></div>
+								<div class="label-wrapper"><label class="rating-label five" for="rating-5" onclick="updateRating(5)" tabindex="0"></label></div>
 							</div>
 							<span id="rating-message">3 - Fine, I guess</span>
 						</div>
@@ -62,9 +62,9 @@
 				const msg = document.querySelector("#rating-message");
 				// update the rating UI
 				function updateRating(i) {
-					ratings[index-1].classList.remove("selected");
+					ratings[index-1].parentNode.classList.remove("selected");
 					index = i;
-					ratings[index-1].classList.add("selected");
+					ratings[index-1].parentNode.classList.add("selected");
 					msg.innerText = msgs[index-1];
 				}
 			</script>
