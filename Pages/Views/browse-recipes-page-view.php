@@ -25,33 +25,23 @@ function loadScripts(){
             
             </script>
 
-            <script>  
-                let budget = 0;
-                let recipe_id = -1;
-                let ingredients = null;
-                let ingredient_ids = [];
-                let ingredient_quantity = [];
-
-                $(document).ready(function(){
-                    
-                    // Loads step-1 page
+            <script> 
+                function load_budget_ajx(){
                     $.ajax({
                         type: "POST",
                         url: "Views/browse-recipes-page-view.php",
-						data: {function_name: "populate_budget_page"},
-						success: function(data){
-							$("#step-1").html(data);
-						}
+                        data: {function_name: "populate_budget_page"},
+                        success: function(data){
+                            $("#step-1").html(data);
+                        }
 
                     });
+                }       
+        
+            </script>
 
-                });
-
-                // loads step-2 when budget is submitted
-                $(document).on("submit", "#budget-form", function(e){
-                    e.preventDefault();
-                    budget = $("#budget").val();
-                    
+            <script> 
+                function load_recipes_ajx(){
                     $.ajax({
                         type: "POST",
                         url: "../BackEnd/Controllers/recipe-controller.php",
@@ -70,66 +60,25 @@ function loadScripts(){
 						}
 
                     });
-                });
+                }       
+        
+            </script>
 
-                // Load step-1 when back button is clicked in step-2
-                $(document).on("click", "#back-button-step-2", function(e){
-                    e.preventDefault();
-                    buget = null;
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-						data: {function_name: "populate_budget_page"},
-						success: function(data){
-							$("#step-1").html(data);
-                            $('#step-2').html("");
-						}
-
-                    });
-                });
-
-                // Load step-2 when back button is clicked in step-3
-                $(document).on("click", "#back-button-step-3", function(e){
-                    e.preventDefault();
-                    recipe_id = null;
-
-                    $.ajax({
-                        type: "POST",
-                        url: "../BackEnd/Controllers/recipe-controller.php",
-						data: {action: "Fetch_Recepies"},
-						success: function(data){
-							$.ajax({
-								type: "POST",
-								url: "Views/browse-recipes-page-view.php",
-								data: {function_name : "populate_Recipes", recipes: data},
-								success:function(data){
-                                    $("#step-3").html("");
-									$("#step-2").html(data);
-                                    
-								}
-							});
-						} 
-
-                    });
-                    
-                });
-
-
-                // Loads step-3 when recipe is clicked
-                $(document).on("click", ".recipe", function(e){
-                    e.preventDefault();
-                    recipe_id = $(this).attr('recipe_id');
+            <script> 
+                function load_ingredients_ajx(recipe){
                     $.ajax({
                         type: "POST",
                         url: "../BackEnd/Controllers/ingredient-controller.php",
-                        data: {action: "Fetch_Ingredients", "recipe_id": recipe_id},
+                        data: {action: "Fetch_Ingredients", "recipe_id": recipe},
                         success: function(data){
                             ingredients = data;
+                            let sending = {function_name : "populate_Ingredients", "ingredients": ingredients};
                             $.ajax({
                                 type: "POST",
                                 url: "Views/browse-recipes-page-view.php",
-                                data: {function_name : "populate_Ingredients", "ingredients": ingredients},
+                                data: sending,
                                 success:function(data){
+                                    $("#step-1").html("");
                                     $("#step-2").html("");
                                     $("#step-3").html(data);
                                 }
@@ -137,24 +86,30 @@ function loadScripts(){
                         }
 
                     });
+                }       
+        
+            </script>
 
-                });
+            <script>
+                function return_to_ingredients_ajx(ings){
+                    $.ajax({
+                        type: "POST",
+                        url: "Views/browse-recipes-page-view.php",
+                        data: {function_name : "populate_Ingredients", "ingredients": ings},
+                        success:function(data){
+                            $("#step-4").html("");
+                            $("#step-3").html(data);
+                        }
+                    });
+                }
+            </script>
 
-
-                // Loads step 4 when Next button is clicked
-                $(document).on("click", "#next-button-step-3", function(e){
-                    e.preventDefault();
-                    let ingredients_temp = JSON.parse(ingredients);
-                    let values = document.querySelectorAll(".item-wrapper .item-input");
-                    for (let i = 0; i < values.length; i++) {
-                        ingredient_quantity.push(values[i].value);
-                        ingredient_ids.push(ingredients_temp[i]["4"]);
-                    }
-                    
+            <script>
+                function load_supermarkets_ajx(ing_IDs, ing_quantity){
                     $.ajax({
                         type: "POST",
                         url: "../BackEnd/Controllers/supermarket-controller.php",
-                        data: {action: "Fetch_SuperMarkets_With_Prices", "ing_IDs": ingredient_ids, "ing_quantity": ingredient_quantity},
+                        data: {action: "Fetch_SuperMarkets_With_Prices", "ing_IDs": ing_IDs, "ing_quantity": ing_quantity},
                         success: function(data){
                             let markets = data;
                             $.ajax({
@@ -168,6 +123,63 @@ function loadScripts(){
                             });
                         }
                     });
+                }
+            </script>
+
+            
+
+
+
+
+            <script>  
+                let budget = 0;
+                let recipe_id = -1;
+                let ingredients = null;
+                let ingredient_ids = [];
+                let ingredient_quantity = [];
+
+                $(document).ready(function(){
+                    // Loads step-1 page
+                    load_budget_ajx();
+                });
+
+                // Load step-1 when back button is clicked in step-2
+                $(document).on("click", "#back-button-step-2", function(e){
+                    e.preventDefault();
+                    buget = null;
+                    document.getElementById("step-2").innerHTML = "";
+                    load_budget_ajx();
+                });
+
+                // loads step-2 when budget is submitted
+                $(document).on("submit", "#budget-form", function(e){
+                    e.preventDefault();
+                    budget = $("#budget").val();
+                    if(recipe_id != -1){
+                        load_ingredients_ajx(recipe_id);
+                    }
+                    else{
+                        load_recipes_ajx();
+                    }
+                });
+
+                
+
+                // Load step-2 when back button is clicked in step-3
+                $(document).on("click", "#back-button-step-3", function(e){
+                    e.preventDefault();
+                    recipe_id = -1;
+                    document.getElementById("step-3").innerHTML = "";
+                    load_recipes_ajx();
+                    
+                });
+
+
+                // Loads step-3 when recipe is clicked
+                $(document).on("click", ".recipe", function(e){
+                    e.preventDefault();
+                    recipe_id = $(this).attr('recipe_id');
+                    load_ingredients_ajx(recipe_id);
 
                 });
 
@@ -183,28 +195,31 @@ function loadScripts(){
                     ingredients =JSON.stringify(ingredients);
                     ingredient_ids = [];
                     ingredient_quantity = [];
-
-                    
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: {function_name : "populate_Ingredients", "ingredients": ingredients},
-                        success:function(data){
-                            $("#step-4").html("");
-                            $("#step-3").html(data);
-                        }
-                    });
-                        
-
-                    
-
+                    return_to_ingredients_ajx(ingredients);
                 });
 
 
+                // Loads step 4 when Next button is clicked
+                $(document).on("click", "#next-button-step-3", function(e){
+                    e.preventDefault();
+                    let ingredients_temp = JSON.parse(ingredients);
+                    let values = document.querySelectorAll(".item-wrapper .item-input");
+                    for (let i = 0; i < values.length; i++) {
+                        ingredient_quantity.push(values[i].value);
+                        ingredient_ids.push(ingredients_temp[i]["4"]);
+                    }
+                    load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
+                    
 
+                });
+ 
             </script>
+
+            
     <?php
 }
+
+
 
 /**
  * Loads step-1 or the budget form page
