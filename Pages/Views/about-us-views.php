@@ -68,11 +68,10 @@
 						for ($i = 0; $i < count($keys); $i++) {
 							$account = $m->social_media[$keys[$i]];
 							if ($account != null) {
+								echo '<div class="social-media '.$keys[$i].'">';
 								echo '<a href="'.$account.'" target="_blank">';
-								echo '<div class="social-media '.$keys[$i].'" tabindex="0">';
-								echo 'A';
-								echo '</div>';
 								echo '</a>';
+								echo '</div>';
 							}
 						}
 						echo '</div>';
