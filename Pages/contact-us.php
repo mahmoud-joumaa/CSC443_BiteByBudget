@@ -34,6 +34,7 @@ require_once "Views/contact-us-views.php";
 	<!-- Linked Scripts -->
 	<?php
 		toggleHeaderScript();
+		updateRatingScript();
 	?>
 
 </html>
