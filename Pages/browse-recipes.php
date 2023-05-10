@@ -2,7 +2,7 @@
 
 require_once "Views/Shared/populate-page.php";
 
-require_once "Views/browse-recipes-page-view.php";
+require_once "Views/browse-recipes-views.php";
 
 
 ?>
