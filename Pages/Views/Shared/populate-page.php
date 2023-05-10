@@ -3,7 +3,7 @@
 	function populateHeaderView() {
 		?>
 			<div id="header">
-				<a href="../index.php"><i>LOGO</i><span>Bite By Budget</span></a>
+				<a href="../index.php"><i class="logo"></i><span>Bite By Budget</span></a>
 				<div id="burger-menu" tabindex="0" onclick="toggleHeader()">
 					<div class="burger-bun"></div>
 					<div class="burger-bun"></div>
@@ -23,7 +23,7 @@
 	function populateHomePageHeaderView() {
 		?>
 			<div id="header">
-				<a href="index.php"><i>LOGO</i><span>Bite By Budget</span></a>
+				<a href="../index.php"><i class="logo"></i><span>Bite By Budget</span></a>
 				<div id="burger-menu" tabindex="0" onclick="toggleHeader()">
 					<div class="burger-bun"></div>
 					<div class="burger-bun"></div>

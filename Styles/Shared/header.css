@@ -9,6 +9,22 @@
 	font-size: 1.25rem;
 }
 
+#header .logo {
+	display: inline-block;
+	height: 35px;
+	width: 35px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: cover !important;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../../Images/Icons/favicon-enhanced-no-bg.png");
+}
+#header .logo ~ span {
+	padding-left: 40px;
+}
+
 #header a {
 	padding: 5px;
 	border-radius: 2px;
