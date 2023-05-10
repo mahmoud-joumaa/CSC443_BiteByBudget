@@ -21,6 +21,8 @@ require_once "Views/our-partners-views.php";
 	</head>
 
 	<body>
+		<!-- Loader -->
+		<?php populateLoaderView(); ?>
 		<!-- Menu Nav Bar -->
 		<?php populateHeaderView(); ?>
 		<!-- Main -->
@@ -39,6 +41,7 @@ require_once "Views/our-partners-views.php";
 
 	<!-- Linked Scripts -->
 	<?php
+		animateLoaderScript();
 		toggleHeaderScript();
 	?>
 

@@ -21,6 +21,8 @@ require_once "Views/about-us-views.php";
 	</head>
 
 	<body>
+		<!-- Loader -->
+		<?php populateLoaderView(); ?>
 		<!-- Menu Nav Bar -->
 		<?php populateHeaderView(); ?>
 		<!-- Main -->
@@ -42,6 +44,7 @@ require_once "Views/about-us-views.php";
 
 	<!-- Linked Scripts -->
 	<?php
+		animateLoaderScript();
 		toggleHeaderScript();
 	?>
 

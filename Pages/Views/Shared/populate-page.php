@@ -1,5 +1,34 @@
 <?php
 
+	function populateLoaderView() {
+		?>
+			<div id="loader-wrapper">
+				<div id="loader"></div>
+			</div>
+		<?php
+	}
+
+	function animateLoaderScript() {
+		?>
+			<script>
+				const loader_wrapper = document.querySelector("#loader-wrapper");
+				// Set loader to appear / disapper
+				window.addEventListener("load", removeLoader);
+				function removeLoader() {
+					loader_wrapper.style.display = "none";
+				}
+				// Rotate loader
+				const loader = document.querySelector("#loader");
+				setInterval(rotateLoader, 1500);
+				let i = 1;
+				function rotateLoader() {
+					loader.style.rotate = `${i*360}deg`;
+					i++;
+				}
+			</script>
+		<?php
+	}
+
 	function populateHeaderView() {
 		?>
 			<div id="header">

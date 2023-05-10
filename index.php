@@ -21,6 +21,8 @@ require_once "Pages/Views/home-page-views.php";
 	</head>
 
 	<body>
+		<!-- Loader -->
+		<?php populateLoaderView(); ?>
 		<!-- Menu Nav Bar -->
 		<?php populateHomePageHeaderView(); ?>
 		<!-- Main -->
@@ -43,6 +45,7 @@ require_once "Pages/Views/home-page-views.php";
 
 	<!-- Linked Scripts -->
 	<?php
+		animateLoaderScript();
 		toggleHeaderScript();
 		fetchSlideshowImagesScript();
 		moveSlideshowScript();
