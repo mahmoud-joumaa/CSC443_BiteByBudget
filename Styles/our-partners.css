@@ -13,21 +13,28 @@
 #main .partner h3  {
 	display: block;
 	width: 100%;
-	margin: 2px 0;
+	margin-top: 2px;
+	margin-bottom: 5px;
 	text-align: center;
 }
 
 #main .partner > div {
 	display: flex;
-	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 	text-align: center;
 }
+#main .partner.left > div {
+	flex-direction: row;
+}
+#main .partner.right > div {
+	flex-direction: row-reverse;
+}
+
 #main .partner > div img {
-	height: 100px;
-	width: 100px;
-	margin: 7px;
+	height: 150px;
+	width: 150px;
+	margin: 0 20px;
 }
 
 @media screen and (max-width: 600px) {
