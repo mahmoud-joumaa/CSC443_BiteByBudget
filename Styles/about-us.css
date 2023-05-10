@@ -54,23 +54,27 @@
 }
 #main #team-wrapper .team-member .member-img .member-quote {
 	display: block;
-	height: 50px;
+	height: 40%;
 	width: 100%;
 	position: absolute;
 	left: 0;
-	bottom: -50px;
+	bottom: -40%;
 	background-color: rgba(48, 52, 54, 0.7);
-	text-align: center;
 	color: #fff;
+	text-align: center;
 	transition: bottom 0.2s linear;
 }
 #main #team-wrapper .team-member .member-img:hover .member-quote {
 	bottom: 0;
 }
 #main #team-wrapper .team-member .member-img .member-quote > span {
+	display: block;
+	width: 100%;
+	padding: 2px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	font-size: 0.9rem;
 	transform: translate(-50%, -50%);
 }
 #main #team-wrapper .team-member .member-social {

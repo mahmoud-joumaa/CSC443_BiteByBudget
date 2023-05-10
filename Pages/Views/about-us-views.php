@@ -17,35 +17,38 @@
 		$m5 = new Member();
 		$members = array($m1, $m2, $m3, $m4, $m5);
 		// Ahmad Hussein
-		$m1->name = 'Blob Cat';
-		$m1->role = 'Cat & Fullstack Developer';
-		$m1->quote = '"Meow"';
-		$m1->image = '../Images/Team/blob-cat.png';
-		$m1->social_media['facebook'] = 'https://google.com';
+		$m1->name = 'Ahmad Hussein';
+		$m1->role = 'World Domination via AGI Plotter & Fullstack Developer';
+		$m1->quote = '"EZ"';
+		$m1->image = '../Images/Team/ahmad-hussein.jpg';
+		$m1->social_media['linkedin'] = 'https://www.linkedin.com/in/ahmad-hussein-b55272243/';
 		// Leen Obeid
-		$m2->name = 'Blob Cat';
-		$m2->role = 'Cat & Fullstack Developer';
-		$m2->quote = '"Meow"';
-		$m2->image = '../Images/Team/blob-cat.png';
-		$m2->social_media['instagram'] = 'https://google.com';
+		$m2->name = 'Leen Obeid';
+		$m2->role = 'Tester & Fullstack Developer';
+		$m2->quote = '"A journey of a thousand miles begins with a single step." -Lao Tzu';
+		$m2->image = '../Images/Team/leen-obeid.jpg';
+		$m2->social_media['linkedin'] = 'https://www.linkedin.com/in/leen-obeid-175394225/';
+		$m2->social_media['instagram'] = 'https://www.instagram.com/leenobeid18/';
 		// Mahmoud Joumaa
-		$m3->name = 'Blob Cat';
-		$m3->role = 'Cat & Fullstack Developer';
-		$m3->quote = '"Meow"';
-		$m3->image = '../Images/Team/blob-cat.png';
-		$m3->social_media['twitter'] = 'https://google.com';
+		$m3->name = 'Mahmoud Joumaa';
+		$m3->role = 'Dreamer & Fullstack Developer';
+		$m3->quote = '"Life is a journey to be experienced, not a problem to be solved." -Winnie the pooh';
+		$m3->image = '../Images/Team/mahmoud-joumaa.jpeg';
+		$m3->social_media['linkedin'] = 'https://www.linkedin.com/in/mahmoud-joumaa-661b9a25b/';
 		// Razan Al Hajjar
-		$m4->name = 'Blob Cat';
-		$m4->role = 'Cat & Fullstack Developer';
-		$m4->quote = '"Meow"';
-		$m4->image = '../Images/Team/blob-cat.png';
-		$m4->social_media['linkedin'] = 'https://google.com';
+		$m4->name = 'Razan Al Hajjar';
+		$m4->role = 'Fullstack Developer';
+		$m4->quote = '"You\'ll regret majoring in Computer Science during your second year."';
+		$m4->image = '../Images/Team/razan-al-hajjar.jpg';
+		$m4->social_media['instagram'] = 'https://instagram.com/itsraz.xoxo?igshid=NTc4MTIwNjQ2YQ==';
+		$m4->social_media['linkedin'] = 'https://www.linkedin.com/in/razan-hajjar-a18923251/';
 		// Sara El Baba
-		$m5->name = 'Blob Cat';
-		$m5->role = 'Cat & Fullstack Developer';
-		$m5->quote = '"Meow"';
-		$m5->image = '../Images/Team/blob-cat.png';
-		$m5->social_media['instagram'] = 'https://google.com';
+		$m5->name = 'Sara El Baba';
+		$m5->role = 'Writer, swifitie at heart, & Fullstack Developer';
+		$m5->quote = '"Work hard in silence, let your success be the noise." -Frank Ocean';
+		$m5->image = '../Images/Team/sara-el-baba.jpg';
+		$m5->social_media['instagram'] = 'https://instagram.com/sara_baba11?igshid=NTc4MTIwNjQ2YQ';
+		$m5->social_media['linkedin'] = 'https://www.linkedin.com/in/sara-el-baba-2003s';
 		
 		return $members;
 	}
