@@ -50,7 +50,7 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         $ingredientQuantity = $ingredients[$ingredientIndex][1];
         $totalPrice = $calculatedPrice * $ingredientQuantity;
         
-        $supermarketIngredients[$supermarketName][$ingredientID] = $totalPrice;
+        $supermarketIngredients[$supermarketName][$ingredientID] = [$calculatedPrice, $ingredientQuantity];
 
         // Sum up the prices for each supermarket
         if (isset($supermarketPrices[$supermarketName])) {
@@ -68,7 +68,8 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     return array(
         'supermarketPrices' => $supermarketPrices,
         'supermarketContaining' => $supermarketContaining,
-        'ingredients' => $ingredients
+        'ingredients' => $ingredients,
+        'supermarketIngredients' => $supermarketIngredients
     );
 }
 
