@@ -19,7 +19,7 @@
 				}
 				// Rotate loader
 				const loader = document.querySelector("#loader");
-				setInterval(rotateLoader, 1500);
+				setInterval(rotateLoader, 1000);
 				let i = 1;
 				function rotateLoader() {
 					loader.style.rotate = `${i*360}deg`;
