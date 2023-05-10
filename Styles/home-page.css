@@ -95,8 +95,9 @@
 /* Description(s) */
 /* ============================================================================================= */
 #main .description {
-	height: 55vh;
 	width: 100%;
+	padding: 10px 5px;
+	text-align: center;
 }
 #main .description:nth-child(2) {
 	background-color: #181a1b;
@@ -106,7 +107,40 @@
 }
 
 #main .description h1 {
-	text-align: center;
+	margin-bottom: 5px;
+}
+#main .description h2 {
+	margin: 7px 0;
+}
+
+#main .description p {
+	margin: 5px;
+	font-size: 1.1rem;
+}
+
+#main .description a {
+	padding: 2px;
+	border-radius: 1px;
+	background-size: 200% 100%;
+	transition: background-position 0.25s linear,
+							color 0.25s linear;
+}
+
+#main .description:nth-child(2) a {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
+}
+#main .description:nth-child(2) a:hover,
+#main .description:nth-child(2) a:focus {
+	background-position: -100%;
+	color: #181a1b;
+}
+#main .description:nth-child(3) a {
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
+}
+#main .description:nth-child(3) a:hover,
+#main .description:nth-child(3) a:focus {
+	background-position: -100%;
+	color: #303436;
 }
 
 /* ============================================================================================= */

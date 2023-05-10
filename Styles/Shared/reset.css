@@ -73,9 +73,13 @@ li {
   outline: none;
 }
 
-li.disc {
-  list-style-type: disc;
-  list-style-position: outside;
+ol.number {
+	padding-left: 35px;
+	text-align: left;
+}
+ol.number li {
+	list-style-type: decimal;
+	list-style-position: outside;
 }
 
 /* ============================================================================================= */
@@ -111,6 +115,10 @@ a,
 a:visited {
 	text-decoration: none;
 	color: inherit;
+}
+
+a.underlined {
+	border-bottom: 2px solid white;
 }
 
 @media screen and (min-width: 900px) {
