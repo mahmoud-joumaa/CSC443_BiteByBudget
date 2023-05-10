@@ -4,7 +4,7 @@
 		?>
 			<div id="form-wrapper">
 				<h1>Contact Us!</h1>
-				<form action="" method="POST">
+				<form action="" method="POST" onsubmit="event.preventDefault();">
 					<div class="section-wrapper">
 						<label for="email">Email</label>
 						<input id="email" name="email" type="text">
@@ -26,6 +26,16 @@
 						<input id="rating-3" name="rating" type="radio" value="3" checked>
 						<input id="rating-4" name="rating" type="radio" value="4">
 						<input id="rating-5" name="rating" type="radio" value="5">
+					</div>
+					<div class="section-wrapper">
+						<label for="subject">Subject</label>
+						<input id="subject" name="subject" list="subjects">
+						<datalist id="subjects">
+							<option value="Bug Report"></option>
+							<option value="Customer Support"></option>
+							<option value="Feature Request"></option>
+							<option value="Information Technology"></option>
+						</datalist>
 					</div>
 					<div class="section-wrapper">
 						<label for="feedback">Feedback</label>
@@ -64,8 +74,39 @@
 	function submitFormScript() {
 		?>
 			<script>
+				// Get elements
+				const email = document.querySelector("#email");
+				const subject = document.querySelector("#subject");
+				const feedback = document.querySelector("#feedback");
+				// Validate form submission
 				function submitForm() {
+					if (!validateEmail(email.value))
+						alert("Please enter a valid email.");
+					else if (!validateSubject(subject.value))
+						alert("Kindly select a subject from the list or type in a subject.");
+					else if (!validateFeedback(feedback.value))
+						alert("Please enter a minimum of 3 characters as feedback.");
+					else
+						console.log("submitted");
 
+					function validateEmail(text) {
+						if (text.length == 0) return false;
+						for (let i = 0; i < text.length; i++) {
+							if (text[i] == '@' || text[i] == '.') {
+								if (i == 0 || i == text.length-1)
+									return false;
+								if (text[i+1] == '@' || text[i+1] == '.')
+									return false;
+							}
+						}
+						return true;
+					}
+					function validateSubject(text) {
+						return text.length != 0;
+					}
+					function validateFeedback(text) {
+						return text.length >= 3;
+					}
 				}
 			</script>
 		<?php

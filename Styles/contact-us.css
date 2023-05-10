@@ -103,6 +103,16 @@
 	cursor: default;
 }
 
+#main #form-wrapper form .section-wrapper input[list="subjects"] {
+	height: 25px;
+	width: 100%;
+	padding: 2px;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 2px 2px #181a1b;
+	font-family: inherit;
+}
+
 #main #form-wrapper form .section-wrapper textarea {
 	width: 100%;
 	padding: 2px;

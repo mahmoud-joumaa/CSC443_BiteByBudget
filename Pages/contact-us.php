@@ -38,6 +38,7 @@ require_once "Views/contact-us-views.php";
 		animateLoaderScript();
 		toggleHeaderScript();
 		updateRatingScript();
+		submitFormScript();
 	?>
 
 </html>
