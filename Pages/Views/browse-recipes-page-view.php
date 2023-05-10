@@ -275,6 +275,9 @@ function populate_Ingredients($ingredients){
 }
 
 
+/**
+ * Loads step-4 or the SuperMarkets page
+ */
 function populate_Markets($markets){
     $markets = json_decode($markets);
     foreach($markets as $key => $value) {

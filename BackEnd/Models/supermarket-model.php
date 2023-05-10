@@ -14,6 +14,7 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     $placeholders = array_fill(0, count($ing_IDs), '(c.Ingredient_ID = ? AND c.Quantity >= ?)');
     
     $whereClause = implode(' OR ', $placeholders);
+    
     $query = "SELECT s.Supermarket_Name, c.Price AS calculated_price, c.Ingredient_ID
     FROM supermarket s
     JOIN sells c ON s.Supermarket_ID = c.Supermarket_ID
@@ -32,9 +33,12 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     // Fetch the results
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+    
+
     // Create an array to store the calculated prices for each supermarket
     $supermarketPrices = array();
     $supermarketContaining = array();
+    $supermarketIngredients = array();
 
     foreach ($results as $row) {
         $supermarketName = $row['Supermarket_Name'];
@@ -45,6 +49,8 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         $ingredientIndex = array_search($ingredientID, array_column($ingredients, 0)); // we will search for the index of the ingredient to find the index of the quantity need. Smart eh :)
         $ingredientQuantity = $ingredients[$ingredientIndex][1];
         $totalPrice = $calculatedPrice * $ingredientQuantity;
+        
+        $supermarketIngredients[$supermarketName][$ingredientID] = $totalPrice;
 
         // Sum up the prices for each supermarket
         if (isset($supermarketPrices[$supermarketName])) {
@@ -57,9 +63,12 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         }
     }
 
-    asort($supermarketPrices);
+    asort($supermarketContaining);
     
     return $supermarketPrices;
 }
+
+
+
 
 ?>

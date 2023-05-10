@@ -1,5 +1,4 @@
 <?php
-
 	function populateSlideshowView() {
 		?>
 		<div id="slideshow">
