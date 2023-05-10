@@ -93,21 +93,45 @@
 					<span>Let's Connect</span>
 					<div id="social-media">
 						<ul>
-							<li><a href="">Facebook</a></li>
-							<li><a href="">Instagram</a></li>
-							<li><a href="">LinkedIn</a></li>
+							<li><i class="social-media facebook"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">Facebook</a></li>
+							<li><i class="social-media instagram"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">Instagram</a></li>
+							<li><i class="social-media linkedin"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">LinkedIn</a></li>
 						</ul>
 					</div>
 					<div id="contact-info">
 						<ul>
-							<li><a href="">Phone</a></li>
-							<li><a href="">Email</a></li>
-							<li><a href="Pages/contact-us.php">Rate Us</a></li>
+							<li><a href="tel:96181823557">Phone</a><i class="contact phone"></i></li>
+							<li><a href="mailto:mahmoud.joumaa@lau.edu">Email</a><i class="contact email"></i></li>
+							<li><a href="contact-us.php">Rate Us</a><i class="contact rating"></i></li>
 						</ul>
 					</div>
 				</div>
-				<div id="site-map">
-					<span>Site Map</span>
+			</div>
+		<?php
+	}
+
+	function populateHomeFooterView() {
+		?>
+			<div id="footer">
+				<div id="copyright">
+					<span>copyright@2023</span>
+				</div>
+				<div id="connect">
+					<span>Let's Connect</span>
+					<div id="social-media">
+						<ul>
+							<li><i class="social-media facebook"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">Facebook</a></li>
+							<li><i class="social-media instagram"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">Instagram</a></li>
+							<li><i class="social-media linkedin"></i><a href="https://instagram.com/bitebybudget?igshid=NTc4MTIwNjQ2YQ==" target="_blank">LinkedIn</a></li>
+						</ul>
+					</div>
+					<div id="contact-info">
+						<ul>
+							<li><a href="tel:96181823557">Phone</a><i class="contact phone"></i></li>
+							<li><a href="mailto:mahmoud.joumaa@lau.edu">Email</a><i class="contact email"></i></li>
+							<li><a href="Pages/contact-us.php">Rate Us</a><i class="contact rating"></i></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		<?php

@@ -47,7 +47,7 @@ require_once "Pages/Views/home-page-views.php";
 			<?php populateOffersView(); ?>
 		</div>
 		<!-- Footer -->
-		<?php populateFooterView(); ?>
+		<?php populateHomeFooterView(); ?>
 	</body>
 
 	<!-- Linked Scripts -->
