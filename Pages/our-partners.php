@@ -10,7 +10,8 @@ require_once "Views/our-partners-views.php";
 
 	<head>
 		<!-- Title Bar -->
-		<title>BBB | Home Page</title>
+		<title>BBB | Our Partners</title>
+		<link href="../Images/Icons/favicon-enhanced.png" rel="favicon" type="image/png">
 		<!-- Linked Styles -->
 		<link href="../Styles/Shared/reset.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/Shared/icons.css" rel="stylesheet" type="text/css">
