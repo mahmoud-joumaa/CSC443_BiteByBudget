@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2023 at 11:22 PM
+-- Generation Time: May 10, 2023 at 11:28 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `sells` (
   `Ingredient_ID` int NOT NULL,
   `Quantity` int NOT NULL,
   `Price` double NOT NULL,
-  `Status` int NOT NULL DEFAULT '1',
+  `Status` double NOT NULL DEFAULT '1',
   PRIMARY KEY (`Supermarket_ID`,`Ingredient_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `sells` (
 
 INSERT INTO `sells` (`Supermarket_ID`, `Ingredient_ID`, `Quantity`, `Price`, `Status`) VALUES
 (1, 1, 321132, 0.03, 1),
-(1, 3, 132323, 0.02, 1),
+(1, 3, 132323, 0.02, 0.5),
 (1, 4, 312122, 0.05, 1),
 (1, 5, 423324, 0.1, 1),
 (1, 6, 534543, 0.15, 1),
@@ -337,15 +337,15 @@ INSERT INTO `sells` (`Supermarket_ID`, `Ingredient_ID`, `Quantity`, `Price`, `St
 (1, 20, 3213212, 0.02, 1),
 (1, 21, 54435, 0.02, 1),
 (3, 1, 536517, 0.02, 1),
-(3, 18, 2113211, 0.031, 1),
-(3, 3, 12332, 0.021, 1),
-(3, 19, 31232321, 0.03, 1),
+(3, 18, 2113211, 0.031, 0.75),
+(3, 3, 12332, 0.021, 0.9),
+(3, 19, 31232321, 0.03, 0.5),
 (3, 21, 4324342, 0.02, 1),
 (3, 6, 654654, 0.19, 1),
 (3, 5, 7348724, 0.12, 1),
 (3, 4, 222220, 0.08, 1),
 (3, 20, 675765, 0.02, 1),
-(1, 33, 43543, 0.5, 1),
+(1, 33, 43543, 0.5, 0.5),
 (1, 36, 7687, 0.3, 1),
 (1, 38, 32132, 0.09, 1),
 (1, 37, 4324, 0.08, 1),
@@ -367,7 +367,7 @@ INSERT INTO `sells` (`Supermarket_ID`, `Ingredient_ID`, `Quantity`, `Price`, `St
 (2, 43, 12312, 0.03, 1),
 (2, 44, 213312, 0.02, 1),
 (2, 45, 11212, 0.025, 1),
-(2, 20, 12161, 0.021, 1),
+(2, 20, 12161, 0.021, 0.85),
 (2, 21, 44531, 0.02, 1),
 (2, 41, 13221, 0.13, 1),
 (2, 42, 43243, 0.09, 1),
@@ -393,7 +393,7 @@ INSERT INTO `sells` (`Supermarket_ID`, `Ingredient_ID`, `Quantity`, `Price`, `St
 (3, 59, 231321, 0.031, 1),
 (3, 58, 434342, 0.02, 1),
 (3, 60, 243342, 0.02, 1),
-(1, 62, 31212, 0.02, 1),
+(1, 62, 31212, 0.02, 0.25),
 (1, 28, 31212, 0.02, 1),
 (1, 64, 31212, 0.3, 1),
 (1, 30, 36171, 0.02, 1),
@@ -414,7 +414,7 @@ INSERT INTO `sells` (`Supermarket_ID`, `Ingredient_ID`, `Quantity`, `Price`, `St
 (2, 29, 12332, 0.02, 1),
 (1, 73, 432431, 0.03, 1),
 (2, 73, 423432, 0.025, 1),
-(3, 73, 321312, 0.02, 1),
+(3, 73, 321312, 0.02, 0.5),
 (1, 67, 31213, 0.079, 1),
 (3, 67, 312131, 0.075, 1);
 
