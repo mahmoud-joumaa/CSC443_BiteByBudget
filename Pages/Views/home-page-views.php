@@ -23,7 +23,7 @@
 				const slideshow = document.getElementById("slideshow");
 				const carousel = document.getElementById("slideshow-carousel");
 
-				const size = 5;
+				const size = 10;
 				let index = 0;
 				// Generate slider
 				const slider = document.getElementById("slider");
