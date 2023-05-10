@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2023 at 11:01 PM
+-- Generation Time: May 10, 2023 at 11:10 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -193,7 +193,7 @@ INSERT INTO `ingredient` (`Ingredient_ID`, `Ingredient_Name`, `Type`, `Image`) V
 (4, 'milk', 'dairy', 'Images/IngredientsAndRecipes/milk.jpg'),
 (5, 'butter', 'dairy', 'Images/IngredientsAndRecipes/butter.jpg'),
 (6, 'egg', 'protein', 'Images/IngredientsAndRecipes/egg.jpg'),
-(7, 'maple syrup', 'syrup', 'Images/IngredientsAndRecipes/syrup.jpeg'),
+(7, 'maple syrup', 'syrup', 'Images/IngredientsAndRecipes/syrup.jpg'),
 (8, 'olive oil', 'oil', 'Images/IngredientsAndRecipes/olive-oil.jpg'),
 (9, 'white onion', 'vegetable', 'Images/IngredientsAndRecipes/white-onion.png'),
 (10, 'orange sweet potato', 'vegetable', 'Images/IngredientsAndRecipes/orange-sweet-potato.jpg'),
@@ -287,7 +287,7 @@ INSERT INTO `recipe` (`Recipe_ID`, `Recipe_Name`, `Ingredients`, `Image`) VALUES
 (6, 'lasagna', 'ground beef,marinara sauce,whole milk ricotta cheese, parmesan cheese,fresh parsley,fresh basil,kosher salt,black pepper,olive oil,lasagna noodles,mozzarella cheese', 'Images/IngredientsAndRecipes/lasagna.jpg'),
 (7, 'brownies', 'butter,brown sugar,granulated sugar ,vanilla extract,salt,egg,flour,dark cocoa powder,semi-sweet chocolate chips', 'Images/IngredientsAndRecipes/brownies.jpg'),
 (8, 'grilled shrimp tacos', 'shrimp,paprika,garlic powder, dried oregano,cumin,red pepper flakes,salt,skewers,olive oil,corn tortillas', 'Images/IngredientsAndRecipes/grilled-shrimp-tacos.jpg'),
-(9, 'veggie garlic noodles\r\n', 'vegetable oil,garlic,green onions,carrots,snap peas,brown sugar,soy sauce,rice noodles', 'Images/IngredientsAndRecipes/veggie-garlic-noodles\n.jpg'),
+(9, 'veggie garlic noodles\r\n', 'vegetable oil,garlic,green onions,carrots,snap peas,brown sugar,soy sauce,rice noodles', 'Images/IngredientsAndRecipes/veggie-garlic-noodles.jpg'),
 (10, 'chicken teriyaki fried rice', 'chicken,teriyaki sauce,vegetable oil,green onion,garlic,carrot,broccoli floret,egg,brown rice,soy sauce,sesame oil\npepper', 'Images/IngredientsAndRecipes/chicken-teriyaki-fried-rice.jpg'),
 (11, 'honey BBQ chicken wings', 'flour,chili powder,kosher salt,black pepper,paprika,garlic powder,chicken wings,BBQ sauce,honey', 'Images/IngredientsAndRecipes/honey-BBQ-chicken-wings.jpg'),
 (12, 'grilled cheese', 'sourdough bread,butter,mayonnaise,cheddar cheese', 'Images/IngredientsAndRecipes/grilled-cheese.jpg\n'),
