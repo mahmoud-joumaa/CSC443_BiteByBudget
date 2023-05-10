@@ -25,7 +25,7 @@ function Fetch_Recepies(){
  * @return array {Recipe_Name: ..., Image}
  */
 function Fetch_Slideshow_Recepies(){
-    $NUM_OF_RECIPES = 5;
+    $NUM_OF_RECIPES = 10;
     $db = DBConnect();
     $query = "SELECT Recipe_ID, Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
     $stmt = $db->prepare($query);
