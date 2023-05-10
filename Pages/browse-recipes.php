@@ -37,6 +37,7 @@ require_once "Views/browse-recipes-page-view.php";
                 <div id="step-2"> </div>
                 <div id="step-3"> </div>
                 <div id="step-4"> </div>
+				<div id="step-4-half"> </div>
                 <div id="step-5"> </div>
 			</div>
 			<!-- Footer -->

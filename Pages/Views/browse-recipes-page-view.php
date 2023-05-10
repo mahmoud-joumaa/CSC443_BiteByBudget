@@ -1,6 +1,5 @@
 <?php 
 
-
 /**
  * Handles the logic of loading the page step by step
  */
@@ -126,6 +125,36 @@ function loadScripts(){
                 }
             </script>
 
+            <script>
+                function show_buget_insufficient_page_ajx(price, budg){
+                    $.ajax({
+                        type: "POST",
+                        url: "Views/browse-recipes-page-view.php",
+                        data: {function_name : "populate_budget_insuficient_page", "budget": budg, "price": price},
+                        success: function(data){
+                            $("#step-4-half").html(data);
+                            $("#step-4").html("");
+                        }
+                    });
+                }
+            </script>
+
+
+            <script>
+                function load_step_5_ajx(ings){
+                    $.ajax({
+                        type: "POST",
+                        url: "Views/browse-recipes-page-view.php",
+                        data: {function_name : "populate_step_5_page", "ingredients" : ings},
+                        success: function(data){
+                            $("#step-4-half").html("");
+                            $("#step-4").html("");
+                            $("#step-5").html(data);
+                        }
+                    });
+                }
+            </script>
+
             
 
 
@@ -137,6 +166,8 @@ function loadScripts(){
                 let ingredients = null;
                 let ingredient_ids = [];
                 let ingredient_quantity = [];
+                let supermarket = null;
+                let chosen_price = -1;
 
                 $(document).ready(function(){
                     // Loads step-1 page
@@ -146,7 +177,7 @@ function loadScripts(){
                 // Load step-1 when back button is clicked in step-2
                 $(document).on("click", "#back-button-step-2", function(e){
                     e.preventDefault();
-                    buget = null;
+                    buget = 0;
                     document.getElementById("step-2").innerHTML = "";
                     load_budget_ajx();
                 });
@@ -187,11 +218,10 @@ function loadScripts(){
                 $(document).on("click", "#back-button-step-4", function(e){
                     e.preventDefault();
                     ingredients =JSON.parse(ingredients);
-                    console.log(ingredients);
+                    
                     for(let i=0; i<ingredient_quantity.length; i++){
                         ingredients[i]["Quantity"] =ingredient_quantity[i];
                     }
-                    console.log(ingredients);
                     ingredients =JSON.stringify(ingredients);
                     ingredient_ids = [];
                     ingredient_quantity = [];
@@ -211,6 +241,54 @@ function loadScripts(){
                     load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
                     
 
+                });
+
+                // Loads step 5 if the buget is sufficient else goes to step 4 and a half
+                $(document).on("click", ".select-supermarket-button", function(e){
+                    e.preventDefault();
+                    supermarket = $(this).prev().prev().html();
+                    supermarket =supermarket.substring(0, supermarket.length - 1);
+                    chosen_price = $(this).prev().html();
+                    if(budget >= parseInt(chosen_price)){
+                        load_step_5_ajx(ingredients);
+                    }
+                    else{
+                        show_buget_insufficient_page_ajx(chosen_price, budget);
+                    }
+
+                });
+
+                // Loads step-5 after continue button is pressed
+                $(document).on("click", "#continue-step-4-half", function(){
+                    load_step_5_ajx(ingredients);
+                });
+
+
+                // Returns all the way back to step-1 after the return button is pressed in step-4 and a half
+                $(document).on("click", "#return-step-4-half", function(){
+                    budget = 0;
+                    ingredients = null;
+                    ingredient_ids = [];
+                    ingredient_quantity = [];
+                    supermarket = null;
+                    recipe_id = -1;
+                    chosen_price = -1;
+                    $("#step-4-half").html("");
+                    load_budget_ajx();
+                });
+
+                $(document).on("click", "#back-button-step-5", function(e){
+                    e.preventDefault();
+                    ingredients =JSON.parse(ingredients);
+                    
+                    for(let i=0; i<ingredient_quantity.length; i++){
+                        ingredients[i]["Quantity"] = ingredient_quantity[i];
+                    }
+                    
+                    ingredients =JSON.stringify(ingredients);
+                    supermarket = null;
+                    document.getElementById("step-5").innerHTML = "";
+                    load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
                 });
  
             </script>
@@ -232,7 +310,7 @@ function populate_budget_page(){
         <div class="container">
             <h1>Enter your budget</h1>
             <form id="budget-form">
-                <input type="text" name="budget" id="budget" placeholder="e.g: 100$" class="textfield">
+                <input type="text" name="budget" id="budget" placeholder="e.g: 100$" class="textfield" >
                 <br><br>
                 <button type="submit" class="mbutton">Submit</button>
             </form>
@@ -296,12 +374,53 @@ function populate_Ingredients($ingredients){
 function populate_Markets($markets){
     $markets = json_decode($markets);
     foreach($markets as $key => $value) {
-        echo $key . ": " . $value . "<br>";
+        echo '<div class="supermarket">';
+        echo '<span>' . $key . ":</span> <span> " . $value . '</span>';
+        echo '<button class = "select-supermarket-button"> SELECT </button>';
+        echo '</div>';
     }
     ?>
     <button id="back-button-step-4"> Back </button>
 
     <?php
+}
+
+
+function populate_step_5_page($ingredients){
+    $ingredients = json_decode($ingredients);
+    for($i = 0; $i < sizeof($ingredients); $i++){
+        ?>
+        <div class='item-wrapper'>
+            <img width=100 class='item-img' src= <?php echo "../" . $ingredients[$i]->Image ?> >
+            <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
+            <div class='item-cost'>
+                <button class='item-sell'>-</button>
+                <input class='item-input' type='number' pattern='\d*' value= <?php echo $ingredients[$i]->Quantity ?> >
+                <button class='item-buy'>+</button>
+                <?php echo $ingredients[$i]->Unit ?>
+            </div>
+            </div>
+        <?php
+    } 
+
+    ?>
+    <button id="back-button-step-5"> Back </button>
+    <?php
+}
+
+function populate_budget_insuficient_page($budget, $price){
+    $diff = floatval($price) - floatval($budget);
+   ?>
+    <div>
+        <span> Unfortunately, your budget is not enough for this recipe. <br>
+               Your buget was <?php echo $budget ?>$, the price is <?php echo $price ?>$ <br>
+                You are <?php echo $diff ?> $ short. <br>
+                Do you wish to continue or go back to step-1?
+        </span>
+        <button id="continue-step-4-half"> CONTINUE </button>
+        <button id="return-step-4-half"> RETURN </button>
+    </div>
+   <?php
 }
 
 
@@ -312,6 +431,11 @@ function populate_Markets($markets){
 if(isset($_POST["function_name"])){
     $name = $_POST["function_name"];
     switch($name){
+        case "populate_budget_page":
+                
+            echo populate_budget_page();
+                
+            break;
         case "populate_Recipes":
             if(isset($_POST["recipes"])){
                 echo populate_Recipes($_POST["recipes"]);
@@ -322,17 +446,26 @@ if(isset($_POST["function_name"])){
                 echo populate_Ingredients($_POST["ingredients"]);
             }
             break;
-        case "populate_budget_page":
-                
-            echo populate_budget_page();
-                
-            break;
-
+    
         case "populate_market_page":
             if(isset($_POST["markets"])){
 
                 echo populate_Markets($_POST["markets"]);
             }
+            break;
+
+        case "populate_budget_insuficient_page":
+            if(isset($_POST["budget"]) && isset($_POST["price"])){
+
+                echo populate_budget_insuficient_page($_POST["budget"], $_POST["price"]);
+            }
+            break;
+
+        case "populate_step_5_page":
+            if(isset($_POST["ingredients"])){
+                echo populate_step_5_page($_POST["ingredients"]);
+            }
+            
             break;
 
     }
