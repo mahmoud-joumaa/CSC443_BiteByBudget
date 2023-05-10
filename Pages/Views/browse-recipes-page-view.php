@@ -6,34 +6,31 @@
  */
 function loadScripts(){
     ?>
-    <script>
-            // Get all the item-buy buttons and add an event listener to each one
-                var itemBuyButtons = document.querySelectorAll('.item-buy');
-                for (var i = 0; i < itemBuyButtons.length; i++) {
-                    itemBuyButtons[i].addEventListener('click', function(event) {
-                        // Get the input element for this button's item
-                        var input = event.target.parentNode.querySelector('.item-input');
-                        // Increment the input value
-                        input.value = parseInt(input.value) + 1;
-                    });
-                }
+            <script>
 
-                // Get all the item-sell buttons and add an event listener to each one
-                var itemSellButtons = document.querySelectorAll('.item-sell');
-                for (var i = 0; i < itemSellButtons.length; i++) {
-                    itemSellButtons[i].addEventListener('click', function(event) {
-                        // Get the input element for this button's item
-                        var input = event.target.parentNode.querySelector('.item-input');
-                        // Decrement the input value, but don't allow negative values nor to reach below zero
-                        input.value = Math.max(parseInt(input.value) - 1, 0);
-                    });
-                }
+
+                // Decreases value of ingredients by 1 when - button is clicked
+                $(document).on("click", ".item-sell", function(e){
+                    let curr_val = parseInt($(this).next().val());
+                    curr_val -= 1;
+                    $(this).next().val(curr_val);
+                });
+
+                // Increases value of ingredients by 1 when + button is clicked
+                $(document).on("click", ".item-buy", function(e){
+                    let curr_val = parseInt($(this).prev().val());
+                    curr_val += 1;
+                    $(this).prev().val(curr_val);
+                });
+            
             </script>
 
             <script>  
                 let budget = 0;
                 let recipe_id = -1;
                 let ingredients = null;
+                let ingredient_ids = [];
+                let ingredient_quantity = [];
 
                 $(document).ready(function(){
                     
@@ -121,14 +118,13 @@ function loadScripts(){
                 // Loads step-3 when recipe is clicked
                 $(document).on("click", ".recipe", function(e){
                     e.preventDefault();
-                    recipe_id = $(this).attr('recipe_id')
+                    recipe_id = $(this).attr('recipe_id');
                     $.ajax({
                         type: "POST",
                         url: "../BackEnd/Controllers/ingredient-controller.php",
-                        data: {action: "Fetch_Recepies", "recipe_id": recipe_id},
+                        data: {action: "Fetch_Ingredients", "recipe_id": recipe_id},
                         success: function(data){
                             ingredients = data;
-                            console.log(data);
                             $.ajax({
                                 type: "POST",
                                 url: "Views/browse-recipes-page-view.php",
@@ -141,6 +137,66 @@ function loadScripts(){
                         }
 
                     });
+
+                });
+
+
+                // Loads step 4 when Next button is clicked
+                $(document).on("click", "#next-button-step-3", function(e){
+                    e.preventDefault();
+                    let ingredients_temp = JSON.parse(ingredients);
+                    let values = document.querySelectorAll(".item-wrapper .item-input");
+                    for (let i = 0; i < values.length; i++) {
+                        ingredient_quantity.push(values[i].value);
+                        ingredient_ids.push(ingredients_temp[i]["4"]);
+                    }
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "../BackEnd/Controllers/supermarket-controller.php",
+                        data: {action: "Fetch_SuperMarkets_With_Prices", "ing_IDs": ingredient_ids, "ing_quantity": ingredient_quantity},
+                        success: function(data){
+                            let markets = data;
+                            $.ajax({
+                                type: "POST",
+                                url: "Views/browse-recipes-page-view.php",
+                                data: {function_name : "populate_market_page", "markets": markets},
+                                success:function(data){
+                                    $("#step-3").html("");
+                                    $("#step-4").html(data);
+                                }
+                            });
+                        }
+                    });
+
+                });
+
+                // Loads step-3 when back button is clicked in step-4
+                $(document).on("click", "#back-button-step-4", function(e){
+                    e.preventDefault();
+                    ingredients =JSON.parse(ingredients);
+                    console.log(ingredients);
+                    for(let i=0; i<ingredient_quantity.length; i++){
+                        ingredients[i]["Quantity"] =ingredient_quantity[i];
+                    }
+                    console.log(ingredients);
+                    ingredients =JSON.stringify(ingredients);
+                    ingredient_ids = [];
+                    ingredient_quantity = [];
+
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "Views/browse-recipes-page-view.php",
+                        data: {function_name : "populate_Ingredients", "ingredients": ingredients},
+                        success:function(data){
+                            $("#step-4").html("");
+                            $("#step-3").html(data);
+                        }
+                    });
+                        
+
+                    
 
                 });
 
@@ -204,7 +260,7 @@ function populate_Ingredients($ingredients){
             <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
             <div class='item-cost'>
                 <button class='item-sell'>-</button>
-                <input class='item-input' type='number' pattern='\d*' value= <?php $ingredients[$i]->Quantity ?> >
+                <input class='item-input' type='number' pattern='\d*' value= <?php echo $ingredients[$i]->Quantity ?> >
                 <button class='item-buy'>+</button>
                 <?php echo $ingredients[$i]->Unit ?>
             </div>
@@ -214,8 +270,22 @@ function populate_Ingredients($ingredients){
 
     ?>
     <button id="back-button-step-3"> Back </button>
+    <button id="next-button-step-3"> Next </button>
     <?php
 }
+
+
+function populate_Markets($markets){
+    $markets = json_decode($markets);
+    foreach($markets as $key => $value) {
+        echo $key . ": " . $value . "<br>";
+    }
+    ?>
+    <button id="back-button-step-4"> Back </button>
+
+    <?php
+}
+
 
 
 
@@ -238,6 +308,13 @@ if(isset($_POST["function_name"])){
                 
             echo populate_budget_page();
                 
+            break;
+
+        case "populate_market_page":
+            if(isset($_POST["markets"])){
+
+                echo populate_Markets($_POST["markets"]);
+            }
             break;
 
     }

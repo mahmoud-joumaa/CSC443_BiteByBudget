@@ -84,4 +84,6 @@
         }
         
     }
+
+    print_r($supermarketPrices);
 ?>
