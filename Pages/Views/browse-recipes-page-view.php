@@ -233,11 +233,22 @@ function loadScripts(){
                 $(document).on("click", "#next-button-step-3", function(e){
                     e.preventDefault();
                     let ingredients_temp = JSON.parse(ingredients);
+                    
+                    
                     let values = document.querySelectorAll(".item-wrapper .item-input");
                     for (let i = 0; i < values.length; i++) {
                         ingredient_quantity.push(values[i].value);
                         ingredient_ids.push(ingredients_temp[i]["4"]);
                     }
+
+                    ingredients =JSON.parse(ingredients);
+                    
+                    for(let i=0; i<ingredient_quantity.length; i++){
+                        ingredients[i]["Quantity"] = ingredient_quantity[i];
+                    }
+                    
+                    ingredients =JSON.stringify(ingredients);
+                    
                     load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
                     
 
@@ -247,8 +258,9 @@ function loadScripts(){
                 $(document).on("click", ".select-supermarket-button", function(e){
                     e.preventDefault();
                     supermarket = $(this).prev().prev().html();
-                    supermarket =supermarket.substring(0, supermarket.length - 1);
-                    chosen_price = $(this).prev().html();
+                    supermarket = $("#supermarket-select").val();
+                    chosen_price = $("#supermarket-select option:selected").attr("price");
+                    
                     if(budget >= parseInt(chosen_price)){
                         load_step_5_ajx(ingredients);
                     }
@@ -372,17 +384,59 @@ function populate_Ingredients($ingredients){
  * Loads step-4 or the SuperMarkets page
  */
 function populate_Markets($markets){
-    $markets = json_decode($markets);
-    foreach($markets as $key => $value) {
-        echo '<div class="supermarket">';
-        echo '<span>' . $key . ":</span> <span> " . $value . '</span>';
-        echo '<button class = "select-supermarket-button"> SELECT </button>';
-        echo '</div>';
+    $markets = json_decode($markets, true);
+    $supermarketPrices = $markets["supermarketPrices"];
+    $supermarketContaining = $markets["supermarketContaining"];
+    $ingredients = $markets["ingredients"];
+    // Display the supermarket name and the total price for each supermarket
+    foreach ($supermarketPrices as $supermarketName => $totalPrice) {
+        if ($supermarketContaining[$supermarketName]== sizeof($ingredients)){
+            echo "Supermarket Name: $supermarketName, Total Price: $totalPrice <br>";
+        }
+        
+    }
+    $availableSupermarkets = array();
+    $availableSupermarketsPrices = array();
+    foreach ($supermarketContaining as $supermarketName => $numIngredients) {
+        if ($numIngredients == sizeof($ingredients)) {
+            $availableSupermarkets[] = $supermarketName;
+            $availableSupermarketsPrices[] = $supermarketPrices[$supermarketName];
+        }
+    }
+    
+
+// Check if any supermarkets are available
+    if (count($availableSupermarkets) == 0) {
+        echo "No supermarkets found that contain all ingredients.";
+    } else {
+        // Display the available supermarkets in a dropdown menu
+        echo "<form method='post' action=''>";
+        echo "<label for='supermarket-select'>Choose a supermarket:</label>";
+        echo "<select name='supermarket' id='supermarket-select'>";
+        for ($i=0; $i<sizeof($availableSupermarkets); $i++) {
+            echo "<option price='$availableSupermarketsPrices[$i] 'value='$availableSupermarkets[$i]'>$availableSupermarkets[$i]</option>";
+        }
+        echo "</select>";
+        echo "<input class='select-supermarket-button' type='button' value='Select'>";
+        echo "</form>";
+
+        // If the user has selected a supermarket, display its details
+        if (isset($_POST['supermarket'])) {
+            $selectedSupermarket = $_POST['supermarket'];
+            echo "Selected supermarket: $selectedSupermarket<br>";
+
+            // Display the details of the selected supermarket
+            foreach ($supermarketPrices as $supermarketName => $totalPrice) {
+                if ($supermarketName == $selectedSupermarket) {
+                    echo "Supermarket Name: $supermarketName, Total Price: $totalPrice <br>";
+                }
+            }
+        }
     }
     ?>
     <button id="back-button-step-4"> Back </button>
-
     <?php
+
 }
 
 

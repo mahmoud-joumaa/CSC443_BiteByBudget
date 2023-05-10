@@ -65,7 +65,11 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
 
     asort($supermarketContaining);
     
-    return $supermarketPrices;
+    return array(
+        'supermarketPrices' => $supermarketPrices,
+        'supermarketContaining' => $supermarketContaining,
+        'ingredients' => $ingredients
+    );
 }
 
 
