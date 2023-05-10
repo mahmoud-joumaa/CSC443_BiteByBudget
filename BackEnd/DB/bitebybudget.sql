@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2023 at 11:28 PM
+-- Generation Time: May 10, 2023 at 11:43 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -189,13 +189,13 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 
 INSERT INTO `ingredient` (`Ingredient_ID`, `Ingredient_Name`, `Type`, `Image`) VALUES
 (1, 'flour', 'grains', 'Images/IngredientsAndRecipes/flour.jpg'),
-(3, 'baking powder', 'powder', 'Images/IngredientsAndRecipes/baking-powder.png'),
+(3, 'baking powder', 'powder', 'Images/IngredientsAndRecipes/baking-powder.jpg'),
 (4, 'milk', 'dairy', 'Images/IngredientsAndRecipes/milk.jpg'),
 (5, 'butter', 'dairy', 'Images/IngredientsAndRecipes/butter.jpg'),
 (6, 'egg', 'protein', 'Images/IngredientsAndRecipes/egg.jpg'),
 (7, 'maple syrup', 'syrup', 'Images/IngredientsAndRecipes/syrup.jpg'),
 (8, 'olive oil', 'oil', 'Images/IngredientsAndRecipes/olive-oil.jpg'),
-(9, 'white onion', 'vegetable', 'Images/IngredientsAndRecipes/white-onion.png'),
+(9, 'white onion', 'vegetable', 'Images/IngredientsAndRecipes/white-onion.jpg'),
 (10, 'orange sweet potato', 'vegetable', 'Images/IngredientsAndRecipes/orange-sweet-potato.jpg'),
 (11, 'gala apple', 'fruit', 'Images/IngredientsAndRecipes/gala-apple.jpg'),
 (12, 'fresh thyme', 'herb', 'Images/IngredientsAndRecipes/fresh-thyme.jpg'),
@@ -204,20 +204,20 @@ INSERT INTO `ingredient` (`Ingredient_ID`, `Ingredient_Name`, `Type`, `Image`) V
 (15, 'potato', 'vegetable', 'Images/IngredientsAndRecipes/potato.jpg'),
 (16, 'purple potato', 'vegetable', 'Images/IngredientsAndRecipes/purple-potato.jpg'),
 (17, 'black pepper', 'seasoning', 'Images/IngredientsAndRecipes/black-pepper.jpg'),
-(18, 'corn starch', 'grains', 'Images/IngredientsAndRecipes/corn-starch.jpeg'),
+(18, 'corn starch', 'grains', 'Images/IngredientsAndRecipes/corn-starch.jpg'),
 (19, 'sugar', 'powder', 'Images/IngredientsAndRecipes/sugar.jpg'),
-(20, 'vanilla extract', 'syrup', 'Images/IngredientsAndRecipes/vanilla-extract.jpeg'),
+(20, 'vanilla extract', 'syrup', 'Images/IngredientsAndRecipes/vanilla-extract.jpg'),
 (21, 'salt', 'seasoning', 'Images/IngredientsAndRecipes/salt.jpg'),
 (22, '7-spice seasoning', 'seasoning', 'Images/IngredientsAndRecipes/7-spice-seasoning.jpg'),
 (23, 'green onion', 'vegetable', 'Images/IngredientsAndRecipes/green-onion.jpg'),
-(24, 'mint', 'herb', 'Images/IngredientsAndRecipes/mint.jpeg'),
+(24, 'mint', 'herb', 'Images/IngredientsAndRecipes/mint.jpg'),
 (25, 'cilantro', 'herb', 'Images/IngredientsAndRecipes/cilantro.jpg'),
 (26, 'chicken', 'protein', 'Images/IngredientsAndRecipes/chicken.jpg'),
-(27, 'buttermilk', 'powder', 'Images/IngredientsAndRecipes/buttermilk.png'),
+(27, 'buttermilk', 'powder', 'Images/IngredientsAndRecipes/buttermilk.jpg'),
 (28, 'paprika', 'seasoning', 'Images/IngredientsAndRecipes/paprika.jpg'),
 (29, 'dried oregano', 'herb', 'Images/IngredientsAndRecipes/dried-oregano.jpg'),
 (30, 'garlic powder', 'powder', 'Images/IngredientsAndRecipes/garlic-powder.jpg'),
-(31, 'onion powder', 'powder', 'Images/IngredientsAndRecipes/onion-powder.jpeg'),
+(31, 'onion powder', 'powder', 'Images/IngredientsAndRecipes/onion-powder.jpg'),
 (32, 'vegetable oil', 'oil', 'Images/IngredientsAndRecipes/vegetable-oil.jpg'),
 (33, 'ground beef', 'meat', 'Images/IngredientsAndRecipes/ground-beef.jpg'),
 (36, 'marinara sauce', 'sauce', 'Images/IngredientsAndRecipes/marinara-sauce.jpg'),

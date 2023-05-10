@@ -28,7 +28,7 @@ function Fetch_Ingerdients($recipe_id){
 function Fetch_Ingerdient_Offers(){
     $NUM_OF_INGREDIENTS = 3;
     $db = DBConnect();
-    $sql = "SELECT s.Ingredient_ID, Ingredient_Name,  Image, Status FROM sells s, ingredient i WHERE Status != '' AND s.Ingredient_ID=i.Ingredient_ID";
+    $sql = "SELECT s.Ingredient_ID, Ingredient_Name,  Image, Status FROM sells s, ingredient i WHERE Status != 1 AND s.Ingredient_ID=i.Ingredient_ID";
     $ingredients = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     $random_keys = array_rand($ingredients, $NUM_OF_INGREDIENTS);
