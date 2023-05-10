@@ -4,362 +4,34 @@
  * Handles the logic of loading the page step by step
  */
 function loadScripts(){
+    include_once("step-1-script.php");
+    include_once("step-2-script.php");
+    include_once("step-3-script.php");
+    include_once("step-4-script.php");
+    include_once("step-4-half-script.php");
+    include_once("step-5-script.php");
+
     ?>
-            <script>
-
-
-                // Decreases value of ingredients by 1 when - button is clicked
-                $(document).on("click", ".item-sell-step-3", function(e){
-                    let curr_val = parseInt($(this).next().val());
-                    curr_val -= 1;
-                    $(this).next().val(curr_val);
-                });
-
-                // Increases value of ingredients by 1 when + button is clicked
-                $(document).on("click", ".item-buy-step-3", function(e){
-                    let curr_val = parseInt($(this).prev().val());
-                    curr_val += 1;
-                    $(this).prev().val(curr_val);
-                });
-
-                $(document).on("click", ".item-sell-step-5", function(e){
-                    let curr_val = parseInt($(this).next().val());
-                    let price_per = parseFloat($(this).next().attr("price"));
-                    curr_val -= 1;
-                    $(this).next().val(curr_val);
-                    $(this).next().next().next().text(curr_val * price_per);
-                });
-
-                // Increases value of ingredients by 1 when + button is clicked
-                $(document).on("click", ".item-buy-step-5", function(e){
-                    let curr_val = parseInt($(this).prev().val());
-                    let price_per = parseFloat($(this).prev().attr("price"));
-                    curr_val += 1;
-                    $(this).prev().val(curr_val);
-                    $(this).next().text(curr_val * price_per);
-                });
-
-                $(document).on("change", ".item-input-step-5", function(e){
-                    let num_items = parseFloat($(this).val());
-                    let price_per = parseFloat($(this).attr("price"));
-                    $(this).next().next().text(num_items * price_per);
-                });
-            
-            </script>
-
-            <script> 
-                function load_budget_ajx(){
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: {function_name: "populate_budget_page"},
-                        success: function(data){
-                            $("#step-1").html(data);
-                        }
-
-                    });
-                }       
-        
-            </script>
-
-            <script> 
-                function load_recipes_ajx(){
-                    $.ajax({
-                        type: "POST",
-                        url: "../BackEnd/Controllers/recipe-controller.php",
-						data: {action: "Fetch_Recepies"},
-						success: function(data){
-							$.ajax({
-								type: "POST",
-								url: "Views/browse-recipes-page-view.php",
-								data: {function_name : "populate_Recipes", recipes: data},
-								success:function(data){
-                                    $("#step-1").html("");
-									$("#step-2").html(data);
-                                    
-								}
-							});
-						}
-
-                    });
-                }       
-        
-            </script>
-
-            <script> 
-                function load_ingredients_ajx(recipe){
-                    $.ajax({
-                        type: "POST",
-                        url: "../BackEnd/Controllers/ingredient-controller.php",
-                        data: {action: "Fetch_Ingredients", "recipe_id": recipe},
-                        success: function(data){
-                            ingredients = data;
-                            let sending = {function_name : "populate_Ingredients", "ingredients": ingredients};
-                            $.ajax({
-                                type: "POST",
-                                url: "Views/browse-recipes-page-view.php",
-                                data: sending,
-                                success:function(data){
-                                    $("#step-1").html("");
-                                    $("#step-2").html("");
-                                    $("#step-3").html(data);
-                                }
-                            });
-                        }
-
-                    });
-                }       
-        
-            </script>
-
-            <script>
-                function return_to_ingredients_ajx(ings){
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: {function_name : "populate_Ingredients", "ingredients": ings},
-                        success:function(data){
-                            $("#step-4").html("");
-                            $("#step-3").html(data);
-                        }
-                    });
-                }
-            </script>
-
-            <script>
-                function load_supermarkets_ajx(ing_IDs, ing_quantity) {
-                return new Promise((resolve, reject) => {
-                    $.ajax({
-                    type: "POST",
-                    url: "../BackEnd/Controllers/supermarket-controller.php",
-                    data: {
-                        action: "Fetch_SuperMarkets_With_Prices",
-                        ing_IDs: ing_IDs,
-                        ing_quantity: ing_quantity
-                    },
-                    success: function(data) {
-                        let markets = data;
-                        let response = JSON.parse(data);
-                        response = ingredients_of_supermarket["supermarketIngredients"];
-                        response = JSON.stringify(data);
-                        $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: { function_name: "populate_market_page", markets: markets },
-                        success: function(data) {
-                            $("#step-3").html("");
-                            $("#step-4").html(data);
-                            resolve(response);
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            reject(errorThrown);
-                        }
-                        });
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        reject(errorThrown);
-                    }
-                    });
-                });
-                }
-
-            </script>
-
-            <script>
-                function show_buget_insufficient_page_ajx(price, budg){
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: {function_name : "populate_budget_insuficient_page", "budget": budg, "price": price},
-                        success: function(data){
-                            $("#step-4-half").html(data);
-                            $("#step-4").html("");
-                        }
-                    });
-                }
-            </script>
-
-
-            <script>
-                function load_step_5_ajx(totalPrice, supermar, ings, ingredients_of_supermar){
-                    $.ajax({
-                        type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
-                        data: {function_name : "populate_step_5_page", "supermarket": supermar, "ingredients" : ings, "ingredients_of_supermarket": ingredients_of_supermar, "totalPrice": totalPrice},
-                        success: function(data){
-                            $("#step-4-half").html("");
-                            $("#step-4").html("");
-                            $("#step-5").html(data);
-                        }
-                    });
-                }
-            </script>
-
-            
-
-
-
-
-            <script>  
-                let budget = 0;
-                let recipe_id = -1;
-                let ingredients = null;
-                let ingredient_ids = [];
-                let ingredient_quantity = [];
-                let supermarket = null;
-                let chosen_price = -1;
-                let ingredients_of_supermarket = [];
-
-                $(document).ready(function(){
-                    // Loads step-1 page
-                    load_budget_ajx();
-                });
-
-                // Load step-1 when back button is clicked in step-2
-                $(document).on("click", "#back-button-step-2", function(e){
-                    e.preventDefault();
-                    buget = 0;
-                    document.getElementById("step-2").innerHTML = "";
-                    load_budget_ajx();
-                });
-
-                // loads step-2 when budget is submitted
-                $(document).on("submit", "#budget-form", function(e){
-                    e.preventDefault();
-                    budget = $("#budget").val();
-                    if(recipe_id != -1){
-                        load_ingredients_ajx(recipe_id);
-                    }
-                    else{
-                        load_recipes_ajx();
-                    }
-                });
-
-                
-
-                // Load step-2 when back button is clicked in step-3
-                $(document).on("click", "#back-button-step-3", function(e){
-                    e.preventDefault();
-                    recipe_id = -1;
-                    document.getElementById("step-3").innerHTML = "";
-                    load_recipes_ajx();
-                    
-                });
-
-
-                // Loads step-3 when recipe is clicked
-                $(document).on("click", ".recipe", function(e){
-                    e.preventDefault();
-                    recipe_id = $(this).attr('recipe_id');
-                    load_ingredients_ajx(recipe_id);
-
-                });
-
-                // Loads step-3 when back button is clicked in step-4
-                $(document).on("click", "#back-button-step-4", function(e){
-                    e.preventDefault();
-                    ingredients =JSON.parse(ingredients);
-                    
-                    for(let i=0; i<ingredient_quantity.length; i++){
-                        ingredients[i]["Quantity"] =ingredient_quantity[i];
-                    }
-                    ingredients =JSON.stringify(ingredients);
-                    ingredient_ids = [];
-                    ingredient_quantity = [];
-                    return_to_ingredients_ajx(ingredients);
-                });
-
-
-                // Loads step 4 when Next button is clicked
-                $(document).on("click", "#next-button-step-3", function(e){
-                    e.preventDefault();
-                    let ingredients_temp = JSON.parse(ingredients);
-                    
-                    
-                    let values = document.querySelectorAll(".item-wrapper .item-input-step-3");
-                    for (let i = 0; i < values.length; i++) {
-                        ingredient_quantity.push(values[i].value);
-                        ingredient_ids.push(ingredients_temp[i]["4"]);
-                    }
-
-                    ingredients =JSON.parse(ingredients);
-                    
-                    for(let i=0; i<ingredient_quantity.length; i++){
-                        ingredients[i]["Quantity"] = ingredient_quantity[i];
-                    }
-                    
-                    ingredients =JSON.stringify(ingredients);
-                    
-                    load_supermarkets_ajx(ingredient_ids, ingredient_quantity).then((response) => {
-                        ingredients_of_supermarket = response;
-                    }).catch((error) => {
-                        console.error(error);
-                    });
-                });
-
-                // Loads step 5 if the buget is sufficient else goes to step 4 and a half
-                $(document).on("click", ".select-supermarket-button", function(e){
-                    e.preventDefault();
-                    supermarket = $(this).prev().prev().html();
-                    supermarket = $("#supermarket-select").val();
-                    chosen_price = $("#supermarket-select option:selected").attr("price");
-                    ingredients_of_supermarket = JSON.parse(ingredients_of_supermarket);
-                    
-                    if(budget >= parseInt(chosen_price)){
-                        let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
-                        ingredients_of_supermarket_param =ingredients_of_supermarket_param["supermarketIngredients"];
-                        ingredients_of_supermarket_param = JSON.stringify(ingredients_of_supermarket_param);
-                        load_step_5_ajx(chosen_price, supermarket, ingredients, ingredients_of_supermarket_param);
-                    }
-                    else{
-                        show_buget_insufficient_page_ajx(chosen_price, budget);
-                    }
-
-                });
-
-                // Loads step-5 after continue button is pressed
-                $(document).on("click", "#continue-step-4-half", function(){
-                    let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
-                    ingredients_of_supermarket_param =ingredients_of_supermarket_param["supermarketIngredients"];
-                    ingredients_of_supermarket_param = JSON.stringify(ingredients_of_supermarket_param);
-                    load_step_5_ajx(chosen_price, supermarket, ingredients, ingredients_of_supermarket_param);
-                });
-
-
-                // Returns all the way back to step-1 after the return button is pressed in step-4 and a half
-                $(document).on("click", "#return-step-4-half", function(){
-                    budget = 0;
-                    ingredients = null;
-                    ingredient_ids = [];
-                    ingredient_quantity = [];
-                    supermarket = null;
-                    recipe_id = -1;
-                    chosen_price = -1;
-                    $("#step-4-half").html("");
-                    load_budget_ajx();
-                });
-
-                $(document).on("click", "#back-button-step-5", function(e){
-                    e.preventDefault();
-                    ingredients =JSON.parse(ingredients);
-                    
-                    for(let i=0; i<ingredient_quantity.length; i++){
-                        ingredients[i]["Quantity"] = ingredient_quantity[i];
-                    }
-                    
-                    ingredients =JSON.stringify(ingredients);
-                    supermarket = null;
-                    document.getElementById("step-5").innerHTML = "";
-                    load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
-                });
- 
-            </script>
-
-            
+    <script>
+        let budget = 0;
+        let recipe_id = -1;
+        let ingredients = null;
+        let ingredient_ids = [];
+        let ingredient_quantity = [];
+        let supermarket = null;
+        let chosen_price = -1;
+        let ingredients_of_supermarket = [];
+    </script>    
     <?php
+
+    load_step_1_scripts();
+    load_step_2_scripts();
+    load_step_3_scripts();
+    load_step_4_scripts();
+    load_step_4_half_scripts();
+    load_step_5_scripts();
+
 }
-
-
 
 /**
  * Loads step-1 or the budget form page
@@ -379,6 +51,7 @@ function populate_budget_page(){
     </div>
     <?php
 }
+
 /**
  * Loads step-2 or the recipe view page
  */
@@ -401,6 +74,7 @@ function populate_Recipes($recipes){
     <button id="back-button-step-2"> Back </button>
     <?php
 }
+
 
 
 /**
@@ -429,6 +103,24 @@ function populate_Ingredients($ingredients){
     <?php
 }
 
+/**
+ * 
+ * Loads the budget insufficient page
+ */
+function populate_budget_insuficient_page($budget, $price){
+    $diff = floatval($price) - floatval($budget);
+   ?>
+    <div>
+        <span> Unfortunately, your budget is not enough for this recipe. <br>
+               Your buget was <?php echo $budget ?>$, the price is <?php echo $price ?>$ <br>
+                You are <?php echo $diff ?> $ short. <br>
+                Do you wish to continue or go back to step-1?
+        </span>
+        <button id="continue-step-4-half"> CONTINUE </button>
+        <button id="return-step-4-half"> RETURN </button>
+    </div>
+   <?php
+}
 
 /**
  * Loads step-4 or the SuperMarkets page
@@ -455,7 +147,7 @@ function populate_Markets($markets){
     }
     
 
-// Check if any supermarkets are available
+    // Check if any supermarkets are available
     if (count($availableSupermarkets) == 0) {
         echo "No supermarkets found that contain all ingredients.";
     } else {
@@ -489,7 +181,6 @@ function populate_Markets($markets){
 
 }
 
-
 function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredients_of_supermarket){
     $ingredients = json_decode($ingredients);
     $ingredients_of_supermarket = json_decode($ingredients_of_supermarket);
@@ -520,24 +211,6 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
     <button id="back-button-step-5"> Back </button>
     <?php
 }
-
-function populate_budget_insuficient_page($budget, $price){
-    $diff = floatval($price) - floatval($budget);
-   ?>
-    <div>
-        <span> Unfortunately, your budget is not enough for this recipe. <br>
-               Your buget was <?php echo $budget ?>$, the price is <?php echo $price ?>$ <br>
-                You are <?php echo $diff ?> $ short. <br>
-                Do you wish to continue or go back to step-1?
-        </span>
-        <button id="continue-step-4-half"> CONTINUE </button>
-        <button id="return-step-4-half"> RETURN </button>
-    </div>
-   <?php
-}
-
-
-
 
 
 // Controls the page loading according to the name of the function called
