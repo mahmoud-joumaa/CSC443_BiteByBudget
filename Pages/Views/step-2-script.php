@@ -15,7 +15,7 @@ function load_step_2_scripts(){
                 success: function(data){
                     $.ajax({
                         type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
+                        url: "Views/browse-recipes-views.php",
                         data: {function_name : "populate_Recipes", recipes: data},
                         success:function(data){
                             $("#step-1").html("");

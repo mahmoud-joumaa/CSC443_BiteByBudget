@@ -35,7 +35,7 @@ function load_step_5_scripts(){
         function load_step_5_ajx(totalPrice, supermar, ings, ingredients_of_supermar){
             $.ajax({
                 type: "POST",
-                url: "Views/browse-recipes-page-view.php",
+                url: "Views/browse-recipes-views.php",
                 data: {function_name : "populate_step_5_page", "supermarket": supermar, "ingredients" : ings, "ingredients_of_supermarket": ingredients_of_supermar, "totalPrice": totalPrice},
                 success: function(data){
                     $("#step-4-half").html("");

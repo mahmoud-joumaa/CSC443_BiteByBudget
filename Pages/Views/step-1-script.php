@@ -9,7 +9,7 @@ function load_step_1_scripts(){
         function load_budget_ajx(){
             $.ajax({
                 type: "POST",
-                url: "Views/browse-recipes-page-view.php",
+                url: "Views/browse-recipes-views.php",
                 data: {function_name: "populate_budget_page"},
                 success: function(data){
                     $("#step-1").html(data);

@@ -17,7 +17,7 @@ function load_step_3_scripts(){
                     let sending = {function_name : "populate_Ingredients", "ingredients": ingredients};
                     $.ajax({
                         type: "POST",
-                        url: "Views/browse-recipes-page-view.php",
+                        url: "Views/browse-recipes-views.php",
                         data: sending,
                         success:function(data){
                             $("#step-1").html("");

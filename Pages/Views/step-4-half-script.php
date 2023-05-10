@@ -12,7 +12,7 @@ function load_step_4_half_scripts(){
         function show_buget_insufficient_page_ajx(price, budg){
             $.ajax({
                 type: "POST",
-                url: "Views/browse-recipes-page-view.php",
+                url: "Views/browse-recipes-views.php",
                 data: {function_name : "populate_budget_insuficient_page", "budget": budg, "price": price},
                 success: function(data){
                     $("#step-4-half").html(data);

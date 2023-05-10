@@ -12,7 +12,7 @@ function load_step_4_scripts(){
         function return_to_ingredients_ajx(ings){
             $.ajax({
                 type: "POST",
-                url: "Views/browse-recipes-page-view.php",
+                url: "Views/browse-recipes-views.php",
                 data: {function_name : "populate_Ingredients", "ingredients": ings},
                 success:function(data){
                     $("#step-4").html("");
@@ -40,7 +40,7 @@ function load_step_4_scripts(){
                 response = JSON.stringify(data);
                 $.ajax({
                 type: "POST",
-                url: "Views/browse-recipes-page-view.php",
+                url: "Views/browse-recipes-views.php",
                 data: { function_name: "populate_market_page", markets: markets },
                 success: function(data) {
                     $("#step-3").html("");
