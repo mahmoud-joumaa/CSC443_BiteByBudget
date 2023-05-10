@@ -4,12 +4,12 @@
  * Handles the logic of loading the page step by step
  */
 function loadScripts(){
-    include_once("step-1-script.php");
-    include_once("step-2-script.php");
-    include_once("step-3-script.php");
-    include_once("step-4-script.php");
-    include_once("step-4-half-script.php");
-    include_once("step-5-script.php");
+    require_once "step-1-script.php";
+    require_once "step-2-script.php";
+    require_once "step-3-script.php";
+    require_once "step-4-script.php";
+    require_once "step-4-half-script.php";
+    require_once "step-5-script.php";
 
     ?>
     <script>
