@@ -355,6 +355,7 @@ if(isset($_POST["function_name"])){
                 const wrappers = document.querySelectorAll(".step-wrapper");
                 const m = wrappers.length;
                 function moveStep(direction) {
+                    wrappers[index].style.pointerEvents = "auto";
                     switch (index) {
                         case 0:
                             if (direction < 0)
