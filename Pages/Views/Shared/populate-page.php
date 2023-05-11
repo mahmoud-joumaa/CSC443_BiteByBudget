@@ -43,7 +43,7 @@
 					<li><a href="our-partners.php">Our Partners</a></li>
 					<li><a href="browse-recipes.php">Browse Recipes</a></li>
 					<li><a href="contact-us.php">Contact Us</a></li>
-					<li><button>Login</button></li>
+					<li><a href="login.php"><button>Login</button></a></li>
 				</ul>
 			</div>
 		<?php
@@ -63,7 +63,7 @@
 					<li><a href="Pages/our-partners.php">Our Partners</a></li>
 					<li><a href="Pages/browse-recipes.php">Browse Recipes</a></li>
 					<li><a href="Pages/contact-us.php">Contact Us</a></li>
-					<li><button>Login</button></li>
+					<li><a href="Pages/login.php" style="outline: none; border: none; background: none;"><button>Login</button></a></li>
 				</ul>
 			</div>
 		<?php

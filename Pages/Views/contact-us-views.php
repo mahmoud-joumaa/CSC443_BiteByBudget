@@ -56,6 +56,8 @@
 				let index = 3;
 				// get all cookie labels
 				const ratings = document.querySelectorAll("#rating-labels-wrapper .rating-label");
+				for (let i = 0; i < ratings.length; i++)
+					ratings[i].addEventListener("keypress", function(e) { e.preventDefault(); ratings[i].click(); });
 				// generate rating messages
 				const msgs = ["1 - Dead", "2 - Pretty Bad", "3 - Fine I guess", "4 - Nice", "5 - Flawless"];
 				// get rating message

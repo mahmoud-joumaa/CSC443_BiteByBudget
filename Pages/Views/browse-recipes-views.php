@@ -70,7 +70,12 @@ function populate_Recipes($recipes){
         $recipe_id = $recipes[$i] ->Recipe_ID;
         ?>
 
-        <div class="recipe" recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)"> 
+        <div class="recipe
+        <?php
+            if ($i == 0)
+                echo ' select';
+        ?>
+        "recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)"> 
             <image width=100 class="recipe-img" src="<?php echo $image?>">
             <h4> <?php echo $recipe_name ?></h4>
         </div>
