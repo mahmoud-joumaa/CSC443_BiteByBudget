@@ -33,6 +33,8 @@ function load_step_5_scripts(){
 
     <script>
         function load_step_5_ajx(totalPrice, supermar, ings, ingredients_of_supermar){
+            console.log(ingredients_of_supermar);
+            console.log(ings);
             $.ajax({
                 type: "POST",
                 url: "Views/browse-recipes-views.php",

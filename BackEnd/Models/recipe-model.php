@@ -37,6 +37,7 @@ function Fetch_Slideshow_Recepies(){
     foreach ($random_keys as $key) {
         $random_recipes[] = $recipes[$key];
     }
+    shuffle($random_recipes);
 
     return $random_recipes;
 }

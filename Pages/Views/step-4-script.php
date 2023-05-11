@@ -85,10 +85,10 @@ function load_step_4_scripts(){
             supermarket = $(this).prev().prev().html();
             supermarket = $("#supermarket-select").val();
             chosen_price = $("#supermarket-select option:selected").attr("price");
-            ingredients_of_supermarket = JSON.parse(ingredients_of_supermarket);
+            let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
             
             if(budget >= parseInt(chosen_price)){
-                let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
+                ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket_param);
                 ingredients_of_supermarket_param =ingredients_of_supermarket_param["supermarketIngredients"];
                 ingredients_of_supermarket_param = JSON.stringify(ingredients_of_supermarket_param);
                 load_step_5_ajx(chosen_price, supermarket, ingredients, ingredients_of_supermarket_param);

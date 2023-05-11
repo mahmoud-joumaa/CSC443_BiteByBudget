@@ -28,13 +28,14 @@ function loadScripts(){
         ?>
         <script> recipe_id = parseInt(<?php echo $_GET["recipe_id"]?>) </script>
         <?php
+        
     }
 
     load_step_1_scripts();
     load_step_2_scripts();
     load_step_3_scripts();
-    load_step_4_scripts();
     load_step_4_half_scripts();
+    load_step_4_scripts();
     load_step_5_scripts();
 
 }
@@ -59,6 +60,10 @@ function populate_budget_page(){
  */
 function populate_Recipes($recipes){
     $recipes = json_decode($recipes);
+    echo "<br><br>";
+    echo "<label for='search'> Search Bar </label>";
+    echo "<input name='search' id='search-bar' value=''> </input>";
+    
     for($i = 0; $i < sizeof($recipes); $i++){
         $image = "../" . $recipes[$i]->Image;
         $recipe_name = $recipes[$i]->Recipe_Name;
@@ -132,21 +137,24 @@ function populate_Markets($markets){
     $supermarketPrices = $markets["supermarketPrices"];
     $supermarketContaining = $markets["supermarketContaining"];
     $ingredients = $markets["ingredients"];
+    $ings_found = array();
+
     // Display the supermarket name and the total price for each supermarket
     foreach ($supermarketPrices as $supermarketName => $totalPrice) {
-        if ($supermarketContaining[$supermarketName]== sizeof($ingredients)){
-            echo "Supermarket Name: $supermarketName, Total Price: $totalPrice <br>";
-        }
+        $totalIngCount = sizeof($ingredients);
+       $ings_found[$supermarketName] = $totalIngCount - ($totalIngCount - $supermarketContaining[$supermarketName]);
+        echo "Supermarket Name: $supermarketName, Total Price: $totalPrice, Ingredients Found: $ings_found[$supermarketName]/$totalIngCount <br>";
         
     }
+    
     $availableSupermarkets = array();
     $availableSupermarketsPrices = array();
+
     foreach ($supermarketContaining as $supermarketName => $numIngredients) {
-        if ($numIngredients == sizeof($ingredients)) {
-            $availableSupermarkets[] = $supermarketName;
-            $availableSupermarketsPrices[] = $supermarketPrices[$supermarketName];
-        }
+        $availableSupermarkets[] = $supermarketName;
+        $availableSupermarketsPrices[] = $supermarketPrices[$supermarketName];
     }
+
     
 
     // Check if any supermarkets are available
@@ -190,20 +198,39 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
     echo "<span>TOTAL PRICE: $totalPrice</span>";
 
     for($i = 0; $i < sizeof($ingredients); $i++){
-        $ing_price = $ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[0];
-        $ing_quantity = $ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[1];
+        $is_in_supermarket = false;
+        if(isset($ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[0]) && isset($ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[1])){
+            $ing_price = $ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[0];
+            $ing_quantity = $ingredients_of_supermarket->{$supermarket}->{$ingredients[$i]->Ingredient_ID}[1];
+            $price = $ing_price * $ing_quantity;
+            $is_in_supermarket = true;
+        }
 
-        $price = $ing_price * $ing_quantity;
         ?>
         <div class='item-wrapper'>
             <img width=100 class='item-img' src= <?php echo "../" . $ingredients[$i]->Image ?> >
             <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
             <div class='item-cost'>
                 <button class='item-sell-step-5'>-</button>
-                <input price="<?php echo $ing_price ?>"class='item-input-step-5' type='number' pattern='\d*' value= <?php echo $ingredients[$i]->Quantity ?> >
+                <?php
+                if($is_in_supermarket){
+                    echo "<input price='$ing_price' class='item-input-step-5' type='number' pattern='\d*' value=" . $ingredients[$i]->Quantity ." >";
+                }
+                else{
+                    echo "<input price='N-A' class='item-input-step-5-NA' type='text' pattern='\d*' value='Item not available'>";
+                }
+                ?>
                 <button class='item-buy-step-5'>+</button>
-                <?php echo $ingredients[$i]->Unit ?>
-                <?php echo "<span> $price </span>" ?>
+                <?php  ?>
+                <?php 
+                if($is_in_supermarket){
+                    echo $ingredients[$i]->Unit;
+                    echo "<span> $price </span>" ;
+                }
+                else{
+                    echo "<span> </span>"; 
+                }
+                ?>
             </div>
             </div>
         <?php

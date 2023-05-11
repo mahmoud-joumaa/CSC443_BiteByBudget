@@ -15,17 +15,17 @@ try {
 
 $ingredientId = $_POST["ingredientId"];
 
-function DeleteUser($id){
-    $query="DELETE FROM sells where Ingredient_ID = :ingredientId";
-    $stmt=$db->prepare($query);
-    $stmt->bindParam(":ingredientId", $ingredientId, PDO::PARAM_INT);
+function DeleteUser($id, $db){
+    $query = "DELETE FROM sells WHERE Ingredient_ID = :ingredientId";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":ingredientId", $id, PDO::PARAM_INT);
     $stmt->execute();
-    if ($stmt->rowCount()>0){
+    if ($stmt->rowCount() > 0) {
         return 1;
-    }else{
+    } else {
         return 0;
     }
 }
 
-echo (DeleteUser($id));
+echo (DeleteUser($ingredientId, $db));
 ?>

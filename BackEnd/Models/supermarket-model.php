@@ -3,6 +3,7 @@
 require_once("../Common/db-connect.php");
 
 
+
 function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     $ingredients = [];
     for($i = 0; $i < sizeof($ing_IDs); $i++){
@@ -15,7 +16,7 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     
     $whereClause = implode(' OR ', $placeholders);
     
-    $query = "SELECT s.Supermarket_Name, c.Price AS calculated_price, c.Ingredient_ID
+    $query = "SELECT s.Supermarket_Name, c.Status, c.Price AS calculated_price, c.Ingredient_ID
     FROM supermarket s
     JOIN sells c ON s.Supermarket_ID = c.Supermarket_ID
     WHERE $whereClause;";
@@ -44,13 +45,14 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         $supermarketName = $row['Supermarket_Name'];
         $calculatedPrice = $row['calculated_price'];
         $ingredientID = $row['Ingredient_ID'];
+        $Status = $row['Status'];
 
         // Multiply the calculated price by the ingredient quantity
         $ingredientIndex = array_search($ingredientID, array_column($ingredients, 0)); // we will search for the index of the ingredient to find the index of the quantity need. Smart eh :)
         $ingredientQuantity = $ingredients[$ingredientIndex][1];
-        $totalPrice = $calculatedPrice * $ingredientQuantity;
+        $totalPrice = $calculatedPrice * $ingredientQuantity * $Status;
         
-        $supermarketIngredients[$supermarketName][$ingredientID] = [$calculatedPrice, $ingredientQuantity];
+        $supermarketIngredients[$supermarketName][$ingredientID] = [$calculatedPrice * $Status, $ingredientQuantity];
 
         // Sum up the prices for each supermarket
         if (isset($supermarketPrices[$supermarketName])) {
@@ -63,14 +65,33 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         }
     }
 
-    asort($supermarketContaining);
+    $supermarketNames = array_keys($supermarketContaining);
+    usort($supermarketNames, function($a, $b) use ($supermarketPrices, $supermarketContaining) {
+        if($supermarketContaining[$a] > $supermarketContaining[$b]) {
+            return -1;
+        } elseif($supermarketContaining[$a] < $supermarketContaining[$b]) {
+            return 1;
+        } else {
+            $priceComparison = $supermarketPrices[$a] <=> $supermarketPrices[$b];
+            return $priceComparison !== 0 ? $priceComparison : $a <=> $b;
+        }
+    });
+
+    $supermarketContainingSorted = array();
+    foreach ($supermarketNames as $supermarket){
+        $supermarketContainingSorted[$supermarket] = $supermarketContaining[$supermarket];
+    }
+
     
-    return array(
+
+    
+    $result = array(
         'supermarketPrices' => $supermarketPrices,
-        'supermarketContaining' => $supermarketContaining,
+        'supermarketContaining' => $supermarketContainingSorted,
         'ingredients' => $ingredients,
         'supermarketIngredients' => $supermarketIngredients
     );
+    return $result;
 }
 
 
