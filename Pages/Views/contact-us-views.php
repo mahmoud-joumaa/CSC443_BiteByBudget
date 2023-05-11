@@ -4,7 +4,7 @@
 		?>
 			<div id="form-wrapper">
 				<h1>Contact Us!</h1>
-				<form action="" method="POST" onsubmit="event.preventDefault();">
+				<form id="contact-form" action="https://formspree.io/mzbjqwzj" method="POST" onsubmit="event.preventDefault();">
 					<div class="section-wrapper">
 						<label for="email">Email</label>
 						<input id="email" name="email" type="text">
@@ -89,6 +89,7 @@
 					else if (!validateFeedback(feedback.value))
 						alert("Please enter a minimum of 3 characters as feedback.");
 					else
+						// document.getElementById("contact-form").submit();
 						console.log("submitted");
 
 					function validateEmail(text) {
@@ -110,7 +111,35 @@
 						return text.length >= 3;
 					}
 				}
-			</script>
+
+			// 	$(document).on("submit", "#contact-form", function(){
+			// 		var formData = $(this).serializeArray();
+			// 		var email, rating, subject, feedback;
+					
+			// 		$.each(formData, function(index, field) {
+			// 			if (field.name === "email") {
+			// 			email = field.value;
+			// 			} else if (field.name === "rating") {
+			// 			rating = field.value;
+			// 			} else if (field.name === "subject") {
+			// 			subject = field.value;
+			// 			} else if (field.name === "feedback") {
+			// 			feedback = field.value;
+			// 			}
+			// 		});
+			// 		console.log(email + " " + rating + " " + subject + " " + feedback);
+
+			// 		$.ajax({
+			// 			"method": "POST",
+			// 			"url": "Views/contact-send.php",
+			// 			"data": {"email": email, "rating":rating, "subject":subject, "feedback":feedback},
+			// 			success: function(data){
+
+			// 			}
+
+			// 		});
+			// 	});
+			// </script>
 		<?php
 	}
 
