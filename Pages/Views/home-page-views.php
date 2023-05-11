@@ -57,6 +57,12 @@
 						}
 					});
 				});
+
+				$(document).on("click", ".slideshow-image", function(e){
+					let img_id = $(this).attr("recipe_id");
+					window.location.href = "Pages/browse-recipes?recipe_id=" + img_id;
+
+				});
 				
 				
 				const images = document.getElementById("slideshow-carousel").children;

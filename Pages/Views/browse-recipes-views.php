@@ -24,6 +24,12 @@ function loadScripts(){
     </script>    
     <?php
 
+    if(isset($_GET["recipe_id"])){
+        ?>
+        <script> recipe_id = parseInt(<?php echo $_GET["recipe_id"]?>) </script>
+        <?php
+    }
+
     load_step_1_scripts();
     load_step_2_scripts();
     load_step_3_scripts();
