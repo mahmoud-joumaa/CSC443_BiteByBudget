@@ -161,9 +161,9 @@ function populate_Markets($markets){
         $totalIngCount = sizeof($ingredients);
        $ings_found[$supermarketName] = $totalIngCount - ($totalIngCount - $supermarketContaining[$supermarketName]);
     //     echo "Supermarket Name: $supermarketName, Total Price: $totalPrice, Ingredients Found: $ings_found[$supermarketName]/$totalIngCount <br>";
-        echo "<image src='../$images[$supermarketName]'> </image>";
         echo '<label for="radio-'.$supermarketName.'" onclick="selectSupermarket('.'$j'.')">';
         echo '<div class="supermarket-preview">';
+        echo "<image src='../$images[$supermarketName]'> </image>";
         echo '<div class="supermarket-img">'.'</div>';
         echo '<div class="supermarket-info">';
         echo '<h2>'.$supermarketName.'</h2>';
