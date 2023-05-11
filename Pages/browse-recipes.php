@@ -39,7 +39,7 @@ require_once "Views/browse-recipes-views.php";
 				<div id="step-4" class="step-wrapper"></div>
 				<div id="step-4-half" class="step-wrapper"></div>
 				<div id="step-5" class="step-wrapper"></div>
-				<div class="arrow prev" onclick="prevStep()"></div>
+				<div class="arrow prev hide" onclick="prevStep()"></div>
 				<div class="arrow next" onclick="nextStep()"></div>
 			</div>
 			<!-- Footer -->
@@ -52,6 +52,8 @@ require_once "Views/browse-recipes-views.php";
 		animateLoaderScript();
 		toggleHeaderScript();
 		trackStepsScript();
+		selectRecipeScript();
+		selectSupermarketScript();
 		echo loadScripts();
 	?>
 

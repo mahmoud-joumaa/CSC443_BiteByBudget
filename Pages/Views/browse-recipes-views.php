@@ -48,7 +48,7 @@ function populate_budget_page(){
         <div class="container">
             <form id="budget-form">
                 <label for="budget">Enter your budget:</label>
-                <input type="number" name="budget" id="budget" placeholder="e.g: 100$">
+                <input type="number" name="budget" id="budget" placeholder="e.g: 100$" value="0">
                 <button type="submit" class="mbutton hidden">Submit</button>
             </form>
         </div>
@@ -61,8 +61,8 @@ function populate_budget_page(){
 function populate_Recipes($recipes){
     $recipes = json_decode($recipes);
     echo "<br><br>";
-    echo "<label for='search'> Search Bar </label>";
-    echo "<input name='search' id='search-bar' value=''> </input>";
+    // echo "<label for='search'> Search Bar </label>";
+    echo "<input name='search' id='search-bar' value='' placeholder='Search Recipes (Use @ to filter ingredients)'> </input>";
     
     for($i = 0; $i < sizeof($recipes); $i++){
         $image = "../" . $recipes[$i]->Image;
@@ -70,15 +70,15 @@ function populate_Recipes($recipes){
         $recipe_id = $recipes[$i] ->Recipe_ID;
         ?>
 
-        <div class="recipe" recipe_id = "<?php echo $recipe_id?>"> 
+        <div class="recipe" recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)"> 
             <image width=100 class="recipe-img" src="<?php echo $image?>">
-            <span> <?php echo $recipe_name ?></span>
+            <h4> <?php echo $recipe_name ?></h4>
         </div>
 
     <?php
     }
     ?>
-    <button id="back-button-step-2"> Back </button>
+    <button id="back-button-step-2" class="hidden"> Back </button>
     <?php
 }
 
@@ -93,20 +93,22 @@ function populate_Ingredients($ingredients){
         ?>
         <div class='item-wrapper'>
             <img width=100 class='item-img' src= <?php echo "../" . $ingredients[$i]->Image ?> >
-            <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
-            <div class='item-cost'>
-                <button class='item-sell-step-3'>-</button>
-                <input class='item-input-step-3' type='number' pattern='\d*' value= <?php echo $ingredients[$i]->Quantity ?> >
-                <button class='item-buy-step-3'>+</button>
-                <?php echo $ingredients[$i]->Unit ?>
+            <div class='right-wrapper'>
+                <h4 class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></h4>
+                <div class='item-cost'>
+                    <button class='item-sell-step-3'">-</button>
+                    <input class='item-input-step-3' type='number' pattern='\d*' value= '<?php echo $ingredients[$i]->Quantity ?>' style='text-align: center;'>
+                    <button class='item-buy-step-3'">+</button>
+                    <?php echo $ingredients[$i]->Unit ?>
+                </div>
             </div>
             </div>
         <?php
     } 
 
     ?>
-    <button id="back-button-step-3"> Back </button>
-    <button id="next-button-step-3"> Next </button>
+    <button id="back-button-step-3" class="hidden"> Back </button>
+    <button id="next-button-step-3" class="hidden"> Next </button>
     <?php
 }
 
@@ -140,11 +142,24 @@ function populate_Markets($markets){
     $ings_found = array();
 
     // Display the supermarket name and the total price for each supermarket
+    $j = 0;
     foreach ($supermarketPrices as $supermarketName => $totalPrice) {
         $totalIngCount = sizeof($ingredients);
        $ings_found[$supermarketName] = $totalIngCount - ($totalIngCount - $supermarketContaining[$supermarketName]);
-        echo "Supermarket Name: $supermarketName, Total Price: $totalPrice, Ingredients Found: $ings_found[$supermarketName]/$totalIngCount <br>";
-        
+    //     echo "Supermarket Name: $supermarketName, Total Price: $totalPrice, Ingredients Found: $ings_found[$supermarketName]/$totalIngCount <br>";
+        echo '<label for="radio-'.$supermarketName.'" onclick="selectSupermarket('.'$j'.')">';
+        echo '<div class="supermarket-preview">';
+        echo '<div class="supermarket-img">'.'</div>';
+        echo '<div class="supermarket-info">';
+        echo '<h2>'.$supermarketName.'</h2>';
+        echo '<div class="supermarket-stats">';
+        echo '<h3>'.$totalPrice.'</h3>';
+        echo '<h4>'.$ings_found[$supermarketName].'/'.$totalIngCount.'</h4>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</label>';
+        $j++;
     }
     
     $availableSupermarkets = array();
@@ -162,6 +177,7 @@ function populate_Markets($markets){
         echo "No supermarkets found that contain all ingredients.";
     } else {
         // Display the available supermarkets in a dropdown menu
+        /*
         echo "<form method='post' action=''>";
         echo "<label for='supermarket-select'>Choose a supermarket:</label>";
         echo "<select name='supermarket' id='supermarket-select'>";
@@ -169,8 +185,14 @@ function populate_Markets($markets){
             echo "<option price='$availableSupermarketsPrices[$i] 'value='$availableSupermarkets[$i]'>$availableSupermarkets[$i]</option>";
         }
         echo "</select>";
-        echo "<input class='select-supermarket-button' type='button' value='Select'>";
+        echo "<input class='hidden select-supermarket-button' type='button' value='Select'>";
         echo "</form>";
+        */
+        echo '<form method="POST" action="">';
+        for ($i=0; $i<sizeof($availableSupermarkets); $i++) {
+            echo '<input class="hidden" id="radio-'.$availableSupermarkets[$i].'" type="radio" name="supermarket" value="'.$availableSupermarkets[$i].' price='.$availableSupermarketsPrices[$i].'">';
+        }
+        echo '</form>';
 
         // If the user has selected a supermarket, display its details
         if (isset($_POST['supermarket'])) {
@@ -186,7 +208,7 @@ function populate_Markets($markets){
         }
     }
     ?>
-    <button id="back-button-step-4"> Back </button>
+    <button id="back-button-step-4" class="hidden"> Back </button>
     <?php
 
 }
@@ -294,6 +316,8 @@ if(isset($_POST["function_name"])){
     function trackStepsScript() {
         ?>
             <script>
+                const arrownext = document.querySelector(".arrow.next");
+                const arrowprev = document.querySelector(".arrow.prev");
                 const steps = document.querySelectorAll(".step-tracker");
                 const n = steps.length;
                 let index = 0;
@@ -303,6 +327,10 @@ if(isset($_POST["function_name"])){
                     steps[index].classList.add("complete");
                     index = Math.min(index+1, n-1);
                     steps[index].classList.add("current");
+                    if (index == n-1)
+                        arrownext.classList.add("hide");
+                    else if (arrowprev.classList.contains("hide"))
+                        arrowprev.classList.remove("hide");
                     moveStep(1);
                 }
                 function prevStep() {
@@ -312,6 +340,10 @@ if(isset($_POST["function_name"])){
                     index = Math.max(0, index-1);
                     steps[index].classList.remove("complete");
                     steps[index].classList.add("current");
+                    if (index == 0)
+                        arrowprev.classList.add("hide");
+                    else if (arrownext.classList.contains("hide"))
+                        arrownext.classList.remove("hide");
                     moveStep(-1);
                 }
 
@@ -319,11 +351,29 @@ if(isset($_POST["function_name"])){
                 const m = wrappers.length;
                 function moveStep(direction) {
                     switch (index) {
+                        case 0:
+                            if (direction < 0)
+                                document.querySelector("#back-button-step-2").click();
+                            break;
                         case 1:
                             if (direction > 0)
-                                document.querySelector("#budget-form button[type='submit'").click();
-                            else
-                                console.log(document.querySelector("#back-button-step-2"));
+                                document.querySelector("#budget-form button[type='submit']").click();
+                            if (direction < 0)
+                                document.querySelector("#back-button-step-3").click();
+                            break;
+                        case 2:
+                            if (direction < 0)
+                                document.querySelector("#back-button-step-4").click();
+                            break;
+                        case 3:
+                            if (direction > 0)
+                                document.querySelector("#next-button-step-3").click();
+                            if (direction < 0)
+                                document.querySelector("#back-button-step-5").click();
+                            break;
+                        case 5:
+                            if (direction > 0)
+                                document.querySelector("").click();
                             break;
                     }
                     for (let i = 0; i < m; i++) {
@@ -333,5 +383,36 @@ if(isset($_POST["function_name"])){
                 }
             </script>
         <?php
+
+        function selectRecipeScript() {
+            ?>
+                <script>
+                    let ind = 0;
+                    const recipes = document.querySelectorAll("#step-2 .recipe");
+                    function selectRecipe(i) {
+                        if (recipes[ind].classList.contains("select"))
+                            recipes[ind].classList.remove("select");
+                        ind = i;
+                        if (!recipes[ind].classList.contains("select"))
+                            recipes[ind].classList.add("select");
+                    }
+                </script>
+            <?php
+        }
+        function selectSupermarketScript() {
+            ?>
+                <script>
+                    let id = 0;
+                    const supermarkets = document.querySelectorAll("#step-4 label");
+                    function selectSupermarket(i) {
+                        if (supermarkets[id].classList.contains("select"))
+                            supermarkets[id].classList.remove("select");
+                        id = i;
+                        if (!supermarkets[id].classList.contains("select"))
+                            supermarkets[id].classList.add("select");
+                    }
+                </script>
+            <?php
+        }
     }
 ?>
