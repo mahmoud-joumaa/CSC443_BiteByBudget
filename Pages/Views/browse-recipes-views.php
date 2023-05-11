@@ -96,9 +96,9 @@ function populate_Ingredients($ingredients){
             <div class='right-wrapper'>
                 <h4 class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></h4>
                 <div class='item-cost'>
-                    <button class='item-sell-step-3'">-</button>
+                    <button class='item-sell-step-3'>-</button>
                     <input class='item-input-step-3' type='number' pattern='\d*' value= '<?php echo $ingredients[$i]->Quantity ?>' style='text-align: center;'>
-                    <button class='item-buy-step-3'">+</button>
+                    <button class='item-buy-step-3'>+</button>
                     <?php echo $ingredients[$i]->Unit ?>
                 </div>
             </div>
