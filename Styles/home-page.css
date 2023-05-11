@@ -37,22 +37,23 @@
 
 #main #slideshow #slideshow-carousel .slideshow-image > a {
 	display: block;
-	padding: 1px;
+	padding: 8px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border-radius: 1px;
+	border: 1px solid #fff;
+	border-radius: 3px;
 	background-size: 200% 100%;
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
 	opacity: 0;
-	font-size: 1.3rem;
+	font-size: 1.7rem;
 	transition: background-position 0.25s linear,
 							color 0.25s linear,
 							opacity 0.2s linear;
 }
 #main #slideshow #slideshow-carousel .slideshow-image:hover > a,
-#main #slideshow #slideshow-carousel .slideshow-image:focus > a {
+#main #slideshow #slideshow-carousel .slideshow-image:focus-within > a {
 	opacity: 1;
 }
 #main #slideshow #slideshow-carousel .slideshow-image > a:hover,
@@ -128,7 +129,7 @@
 /* ============================================================================================= */
 #main .description {
 	width: 100%;
-	padding: 10px 5px;
+	padding: 20px 10px;
 	text-align: center;
 }
 #main .description:nth-child(2) {

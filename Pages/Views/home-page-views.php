@@ -57,7 +57,7 @@
 								const recipe = document.createElement("a");
 								recipe.setAttribute("href", "");
 								recipe.innerText = "Recipe Name";
-								img.append(recipe);
+								img.appendChild(recipe);
 								carousel.appendChild(img);
 							}
 						}
