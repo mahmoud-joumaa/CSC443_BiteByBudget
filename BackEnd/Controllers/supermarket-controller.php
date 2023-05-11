@@ -10,8 +10,7 @@ if (isset($_REQUEST["action"])){
             $ing_IDs = $_POST["ing_IDs"];
             $ing_quantity = $_POST["ing_quantity"];
             echo json_encode(Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity));
-
-        break;
+            break;
         
     }
 }
