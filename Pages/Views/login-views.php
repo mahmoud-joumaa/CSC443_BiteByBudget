@@ -52,11 +52,14 @@ function populate_login_page(){
                             msg.text("Error: Invalid username or password");
                             break;
                         case "3":
-                            window.location = "supermarket-page.php";
+                            // window.location = "supermarket-page.php";
                             break;
                         case "2":
-                            // window.location("/admin-page.php");
+                            window.location="admin-page.php";
                             break
+                        case "4":
+                            msg.addClass("error");
+                            msg.text("Error: This user is not active");
                             
                     }
                 }
