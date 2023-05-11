@@ -87,7 +87,7 @@
 					else if (!validateFeedback(feedback.value))
 						alert("Please enter a minimum of 3 characters as feedback.");
 					else
-						console.log("submitted");
+						document.getElementById("contact-form").submit();
 
 					function validateEmail(text) {
 						if (text.length == 0) return false;
