@@ -17,16 +17,20 @@ In light of the current economic crisis in Lebanon, such a service can help peop
 Every story has its authors, and in this website, we took the role of both developing and being the authors by designing the story which in our case is BiteByBudget from scratch and bringing it to life. Below are pictures that display the process of how we visualized BiteByBudget website and its pages from start to finish.
 
 <img width="401" alt="Screenshot 2023-05-08 205157" src="https://github.com/MahmoudJLB/BiteByBudget/assets/125236191/1fe946ef-cd57-44e1-b098-cd14631357fc">
+
 ### Fig 1: How the user will be seeing the Homepage on both Mobile and Desktop
 
 <img width="587" alt="Screenshot 2023-05-08 205512" src="https://github.com/MahmoudJLB/BiteByBudget/assets/125236191/cdf37216-f303-4182-a7cb-18135373ccdf">
+
 ### Fig 2: How the user will be seeing the About Us page on both Mobile and Desktop
 
 <img width="416" alt="Screenshot 2023-05-08 205708" src="https://github.com/MahmoudJLB/BiteByBudget/assets/125236191/59bed37c-239e-40ae-a229-533420cda6bf">
+
 ### Fig 3: How the user will be seeing the Our Partners page on both Mobile and Desktop
 
 
 <img width="660" alt="Screenshot 2023-05-08 210716" src="https://github.com/MahmoudJLB/BiteByBudget/assets/125236191/91fcbe03-f2b5-4b99-b241-0cb2a28d9e4a">
+
 ### Fig 4: How the user will be seeing the Browse Recipes page
 
 
@@ -112,7 +116,7 @@ Many recipes consist of many ingredients. Each recipe consists of a certain quan
 |ID | USERNAME|Pass|IsAdmin
 |--|--|--|--|
 |  |  |  |  |
-This table is many to store the credentials(USERNAME and Pass) of the users(admins and supermarkets) when they want to login ,and an IsAdmin which will decided their privileges and redirect them if they are an admin or a supermarket or an inactive user(0 representing supermarket account and active,1 representing admin and active,and lastly -1 representing an inactive account).
+This table is mainly to store the credentials(USERNAME and Pass) of the users(admins and supermarkets) when they want to login ,and an IsAdmin which will decided their privileges and redirect them if they are an admin or a supermarket or an inactive user(0 representing supermarket account and active,1 representing admin and active,and lastly -1 representing an inactive account).
 
   
 ## Application Summary:
