@@ -87,7 +87,7 @@ Each recipe will have its own ID (primary key), name, and an image to visualize 
 | Ingredient_ID  | Ingredient_Name  |Type|Image
 |--|--|--|--|
 |  |  |  |  |
-Each ingredient will have its own ID (primary key), name, and a type.
+Each ingredient will have its own ID (primary key), name, type, and an image.
 
   
 
