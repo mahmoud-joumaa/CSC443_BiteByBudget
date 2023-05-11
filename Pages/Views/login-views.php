@@ -26,7 +26,7 @@ function populate_login_page(){
             const msg = document.getElementById("user-message");
             if (msg.classList.contains("success"))
                 msg.classList.remove("success");
-            else if (msg.classList.contains("error"))
+            if (msg.classList.contains("error"))
                 msg.classList.remove("error");
             msg.innerText = "Please enter your username and password.";
         }

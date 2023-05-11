@@ -83,7 +83,7 @@
 	height: 25px;
 	width: 100%;
 	text-align: left;
-	pointer-events: none;
+	/* pointer-events: none; */
 	font-size: 1.2rem;
 }
 
