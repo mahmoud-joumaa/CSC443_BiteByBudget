@@ -21,6 +21,7 @@ function load_step_3_scripts(){
                         data: sending,
                         success:function(data){
                             $("#step-1").html("");
+                            $("#step-2").html("");
                             $("#step-3").html(data);
                         }
                     });

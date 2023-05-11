@@ -42,9 +42,10 @@ function load_step_2_scripts(){
     });
     
     // Loads step-3 when recipe is clicked
-    $(document).on("click", ".recipe", function(e){
+    $(document).on("click", "#next-button-step-2", function(e){
         e.preventDefault();
-        recipe_id = $(this).attr('recipe_id');
+        let recipe = $(".select");
+        recipe_id = $(recipe).attr('recipe_id');
         load_ingredients_ajx(recipe_id);
     
     });

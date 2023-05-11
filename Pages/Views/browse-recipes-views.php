@@ -85,6 +85,7 @@ function populate_Recipes($recipes){
     }
     ?>
     <button id="back-button-step-2" class="hidden"> Back </button>
+    <button id="next-button-step-2" class="hidden"> Next </button>
     <?php
 }
 
@@ -371,6 +372,8 @@ if(isset($_POST["function_name"])){
                         case 2:
                             if (direction < 0)
                                 document.querySelector("#back-button-step-4").click();
+                            if (direction > 0)
+                                document.querySelector("#next-button-step-2").click();
                             break;
                         case 3:
                             if (direction > 0)
