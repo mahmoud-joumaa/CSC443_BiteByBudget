@@ -85,8 +85,8 @@ function load_step_2_scripts(){
                     let has_ing = false;
                     for(let j=0; j<data.length; j++){
                         str = data[j]["Ingredient_Name"].replace(/\s/g, "").toLowerCase();
-                        console.log(str + " " + txt.replace(/\s/g, "").toLowerCase().substring(1));
-                        if(str.substring(0, txt.length) == txt.replace(/\s/g, "").toLowerCase().substring(1)){
+                        
+                        if(str.substring(0, txt.length-1) == txt.replace(/\s/g, "").toLowerCase().substring(1)){
                             has_ing = true;
                         }
                     }

@@ -45,13 +45,14 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         $supermarketName = $row['Supermarket_Name'];
         $calculatedPrice = $row['calculated_price'];
         $ingredientID = $row['Ingredient_ID'];
+        $Status = $row['Status'];
 
         // Multiply the calculated price by the ingredient quantity
         $ingredientIndex = array_search($ingredientID, array_column($ingredients, 0)); // we will search for the index of the ingredient to find the index of the quantity need. Smart eh :)
         $ingredientQuantity = $ingredients[$ingredientIndex][1];
-        $totalPrice = $calculatedPrice * $ingredientQuantity;
+        $totalPrice = $calculatedPrice * $ingredientQuantity * $Status;
         
-        $supermarketIngredients[$supermarketName][$ingredientID] = [$calculatedPrice, $ingredientQuantity];
+        $supermarketIngredients[$supermarketName][$ingredientID] = [$calculatedPrice * $Status, $ingredientQuantity];
 
         // Sum up the prices for each supermarket
         if (isset($supermarketPrices[$supermarketName])) {
