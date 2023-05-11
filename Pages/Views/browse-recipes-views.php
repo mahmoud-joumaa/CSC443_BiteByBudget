@@ -163,8 +163,9 @@ function populate_Markets($markets){
     //     echo "Supermarket Name: $supermarketName, Total Price: $totalPrice, Ingredients Found: $ings_found[$supermarketName]/$totalIngCount <br>";
         echo '<label for="radio-'.$supermarketName.'" onclick="selectSupermarket('.'$j'.')">';
         echo '<div class="supermarket-preview">';
-        echo "<image src='../$images[$supermarketName]'> </image>";
-        echo '<div class="supermarket-img">'.'</div>';
+        // echo "<image src='../$images[$supermarketName]'> </image>";
+        $img_src = '"../'.$images[$supermarketName].'"';
+        echo '<div class="supermarket-img" style=\'background-image: url('.$img_src.')\'">'.'</div>';
         echo '<div class="supermarket-info">';
         echo '<h2>'.$supermarketName.'</h2>';
         echo '<div class="supermarket-stats">';

@@ -256,6 +256,9 @@
 #step-4 .supermarket-preview .supermarket-img {
 	height: 100px;
 	width: 100px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 #step-4 .supermarket-preview .supermarket-info {
 	width: 300px;
