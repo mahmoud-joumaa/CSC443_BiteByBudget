@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $dbhost = "127.0.0.1";
 $dbname = "bitebybudget";
 $dbuser = "root";
@@ -13,19 +17,26 @@ try {
     die();
 }
 
+// Get the Recipe_ID from the URL parameter
+// if (isset($_GET['Supermarket_Name'])) {
+//     $Supermarket_Name = $_GET['Supermarket_Name'];
+$Admin_Name = "Admin"; 
+
 // Fetch data from the "sells" table
-$query = "SELECT s.supermarket_name, i.ingredient_name, i.Ingredient_ID, se.Quantity
-          FROM sells AS se
-          INNER JOIN supermarket AS s ON se.Supermarket_ID = s.Supermarket_ID
-          INNER JOIN ingredient AS i ON se.Ingredient_ID = i.Ingredient_ID;";
-$stmt = $db->query($query);
+$query = "SELECT r.Recipe_Name, i.ingredient_name, i.Ingredient_ID, r.Recipe_ID, c.Quantity
+          FROM consistsof AS c
+          INNER JOIN recipe AS r ON r.Recipe_ID= c.Recipe_ID
+          INNER JOIN ingredient AS i ON i.Ingredient_ID = c.Ingredient_ID";
+
+$stmt = $db->prepare($query);
+$stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Admin Page</title>
+  <title>Admin page</title>
   <meta name="description" content="Table design. Made in Webflow, by Mirela Prifti.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
@@ -35,25 +46,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
   </script>
   <link rel="apple-touch-icon" href="https://assets.website-files.com/img/webclip.png">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script >
-    $(document).ready( function() {
-      $('.number').on('change', function(e) {
-        var ingredientId = $(this).attr('id');
-        var quantity = $(this).val();
-        updateQuantity(ingredientId, quantity);
-      });
-
-    });
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="wrapper-section">
         <div class="div-1">
-            <h1 class="heading-3">Ingredients in Supermarkets</h1>
+            <h1 class="heading-3">Editing the Recipes</h1>
             <div class="div-block-414">
                 <form action="/search" class="search saved-shortlists w-form">
-                    <input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Search..." id="search" required=""/>
+                    <input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Search..." id="search" onkeyup="myFunction()" required=""/>
                     <input type="submit" value="Search" class="search-button _2 w-button"/>
                     <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942c5dbc39db1_search.svg" alt="" class="search-icon"/>
                 </form>
@@ -65,19 +66,16 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="div-block-406">
                 </div>
                 <div class="table-box">
-                    <div class="table-heading">Supermarket</div>
+                    <div class="table-heading">Recipe Name</div>
                 </div>
                 <div class="table-box">
-                    <div class="table-heading">Ingredients Name</div>
-                </div>
-                <div class="table-box _11">
-                    <div class="table-heading">Last Update</div>
+                    <div class="table-heading">Ingredient</div>
                 </div>
                 <div class="table-box">
-                    <div class="table-heading">Edit Amount</div>
+                    <div class="table-heading">Edit Quantity</div>
                 </div>
                 <div class="table-box action">
-                    <div class="table-heading">Action</div>
+                    <div class="table-heading">Delete</div>
                 </div>
             </div>
             <div class="table-container">
@@ -88,56 +86,53 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="div-block-406">
                                 </div>
                                 <div class="table-box">
-                                    <div class="table-heading">Supermarket</div>
+                                    <div class="table-heading">Recipe Name</div>
                                 </div>
                                 <div class="table-box">
-                                    <div class="table-heading">Ingredients Name</div>
-                                </div>
-                                <div class="table-box _11">
-                                    <div class="table-heading">Last Update</div>
+                                    <div class="table-heading">Ingredient</div>
                                 </div>
                                 <div class="table-box">
-                                    <div class="table-heading">Edit Amount</div>
+                                    <div class="table-heading">Edit Quantity</div>
                                 </div>
                                 <div class="table-box action">
-                                    <div class="table-heading">Action</div>
+                                    <div class="table-heading">Delete</div>
                                 </div>
                             </div>
                             <?php
                                 $count = 0;
                                 foreach ($rows as $row) {
                                     $count++;
-                                    $supermarket = $row['supermarket_name'];
                                     $ingredients = $row['ingredient_name'];
-                                    $ingredientId = $row['Ingredient_ID']; // Generate a unique id for each ingredient row
+                                    $ingredientId = $row['Ingredient_ID']; // Generate a unique id for each ingredient to dec and inc correctly
+                                    $recipeId = $row['Recipe_ID'];
+                                    $recipes = $row['Recipe_Name'];
                             ?>
                             <div class="table-row">
                                 <div class="div-block-406 _2">
                                     <div class="table-row-nr"><?php echo $count; ?></div>
                                 </div>
                                 <div class="table-box _2">
-                                    <div class="table-data name"><?php echo $supermarket; ?></div>
+                                    <a href="#" class="table-data link" data-title="<?php echo $recipes; ?>"><?php echo $recipes; ?></a>
                                 </div>
                                 <div class="table-box _2">
-                                    <a href="#" class="table-data link"><?php echo $ingredients; ?></a>
-                                </div>
-                                <div class="table-box _2 small">
-                                    <div class="table-data"><?php echo $date = date("M d Y"); ?></div>
+                                    <a href="#" class="table-data link" data-title="<?php echo $ingredients; ?>"><?php echo $ingredients; ?></a>
                                 </div>
                                 <div class="table-box _2">
                                     <div class="table-data" style="box-sizing = border-box">
                                     <form style="box-sizing: border-box;">
-                                        <div class="value-button" id="decrease" onclick="decreaseValue('<?php echo $ingredientId; ?>')" value="Decrease Value">-</div>
+                                    <div class="value-button" id="decrease" onclick="decreaseQuantity('<?php echo $ingredientId; ?>', '<?php echo $recipeId; ?>')" value="Decrease Value">-</div>
                                         <input type="number" class="number" id="<?php echo $ingredientId; ?>" value="<?php echo $row['Quantity']; ?>"/>
-                                        <div class="value-button" id="increase" onclick="increaseValue('<?php echo $ingredientId; ?>')" value="Increase Value">+</div>
+                                        <div class="value-button" id="increase" onclick="increaseQuantity('<?php echo $ingredientId; ?>', '<?php echo $recipeId; ?>')" value="Increase Value">+</div>
                                     </form>
                                     </div>
                                 </div>
                                 <div class="table-box _2 action">
-                                <form name="FrmDelete" class="FrmDelete" method="post" action="../BackEnd/delete.php">
+                                <form>
+                                <div name="FrmDelete" class="FrmDelete" onclick="deleteRecipe('<?php echo $ingredientId; ?>', '<?php echo $recipeId; ?>')" value="Delete">
                                     <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
                                     <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
                                     </a>
+                                </div>
                                 </form>
                                 </div>
                             </div>
@@ -155,29 +150,13 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 </html>
 <script>
-function increaseValue(ingredientId) {
-    var value = parseInt(document.getElementById(ingredientId).value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById(ingredientId).value = value;
-    updateQuantity(ingredientId, value); // Call the updateQuantity function
-  }
-
-  function decreaseValue(ingredientId) {
-    var value = parseInt(document.getElementById(ingredientId).value, 10);
-    value = isNaN(value) ? 0 : value;
-    value < 1 ? value = 1 : '';
-    value--;
-    document.getElementById(ingredientId).value = value;
-    updateQuantity(ingredientId, value); // Call the updateQuantity function
-  }
-  function updateQuantity(ingredientId, quantity) {
+  function deleteRecipe(ingredientId, recipeId) {
         $.ajax({
-          url: '../BackEnd/Edit-quantity.php',
+          url: '../BackEnd/deleteRecipe.php',
           type: 'POST',
           data: {
             ingredientId: ingredientId,
-            quantity: quantity
+            recipeId: recipeId
           },
           success: function(response) {
             console.log(response);
@@ -186,5 +165,104 @@ function increaseValue(ingredientId) {
             console.log(error);
           }
         });
+  }
+
+  function increaseQuantity(ingredientId, recipeId) {
+    var value = parseInt(document.getElementById(ingredientId).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById(ingredientId).value = value;
+    updateQuantity(ingredientId, value, recipeId); // Call the updateQuantity function
+  }
+
+  function decreaseQuantity(ingredientId, recipeId) {
+    var value = parseInt(document.getElementById(ingredientId).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById(ingredientId).value = value;
+    updateQuantity(ingredientId, value, recipeId); // Call the updateQuantity function
+  }
+  function updateQuantity(ingredientId, value, recipeId) {
+        $.ajax({
+          url: '../BackEnd/edit-recipeQ.php',
+          type: 'POST',
+          data: {
+            ingredientId: ingredientId,
+            value:value,
+            recipeId: recipeId
+          },
+          success: function(response) {
+            console.log(response);
+          },
+          error: function(xhr, status, error) {
+            console.log(error);
+          }
+        });
+  }
+  /* working on the search bar */
+
+const arrows = document.querySelectorAll(".arrow");
+const movieLists = document.querySelectorAll(".table-container");
+
+function myFunction() {
+  var input, filter, movieList, movieListItems, title;
+  input = document.getElementById("search");
+  filter = input.value.toLowerCase();
+  movieList = document.getElementsByClassName("scroll-table-content")[0];
+  movieListItems = movieList.getElementsByClassName("table-row");
+  for (var i = 0; i < movieListItems.length; i++) {
+    title = movieListItems[i].querySelector(".table-data.link");
+if (title) {
+  title = title.textContent;
+} else {
+  title = ""; // or any other default value you prefer
+}
+    if (title.toLowerCase().indexOf(filter) > -1) {
+      movieListItems[i].style.display = "";
+    } else {
+      movieListItems[i].style.display = "none";
+    }
+  }
+}
+
+arrows.forEach((arrow, i) => {
+  const movieList = movieLists[i];
+  if (movieList) {
+    const itemNumber = movieList.querySelectorAll(".table-row").length;
+    let clickCounter = 0;
+    arrow.addEventListener("click", () => {
+      const ratio = Math.floor(window.innerWidth / 270);
+      clickCounter++;
+      if (itemNumber - (4 + clickCounter) + (4 - ratio) >= 0) {
+        movieList.style.transform = `translateX(${
+          movieList.computedStyleMap().get("transform")[0].x.value - 300
+        }px)`;
+      } else {
+        movieList.style.transform = "translateX(0)";
+        clickCounter = 0;
       }
+    });
+  }
+
+  console.log(Math.floor(window.innerWidth / 270));
+});
+
+// TOGGLE
+
+const ball = document.querySelector(".toggle-ball");
+const items = document.querySelectorAll(
+  ".wrapper-section,.table-heading,.search,.search-input,.search-button,.search-icon"
+);
+
+if (ball) {
+  ball.addEventListener("click", () => {
+    items.forEach((item) => {
+      item.classList.toggle("active");
+    });
+    ball.classList.toggle("active");
+  });
+}
+
+
 </script>
