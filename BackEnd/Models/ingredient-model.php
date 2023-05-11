@@ -31,11 +31,28 @@ function Fetch_Ingerdient_Offers(){
     $sql = "SELECT s.Ingredient_ID, Ingredient_Name,  Image, Status FROM sells s, ingredient i WHERE Status != 1 AND s.Ingredient_ID=i.Ingredient_ID";
     $ingredients = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    $random_keys = array_rand($ingredients, $NUM_OF_INGREDIENTS);
+    
+    $unique_ingredients = array_reduce(
+        $ingredients,
+        function($acc, $curr) {
+            if (!isset($acc[$curr['Ingredient_ID']])) {
+                $acc[$curr['Ingredient_ID']] = $curr;
+            }
+            return $acc;
+        },
+        []
+    );
+    
+    $unique_ingredients = array_values($unique_ingredients); // reset keys
+    
+    $random_keys = array_rand($unique_ingredients, $NUM_OF_INGREDIENTS);
     $random_ingrdients = array();
+
     foreach ($random_keys as $key) {
-        $random_ingrdients[] = $ingredients[$key];
+        $random_ingrdients[] = $unique_ingredients[$key];
     }
+    
+    
     
     return $random_ingrdients;
 }

@@ -48,6 +48,16 @@ function load_step_2_scripts(){
         load_ingredients_ajx(recipe_id);
     
     });
+
+
+    $(document).on("input", "#search-bar", function(){
+        let arr =  $("#step-2").children(".recipe");
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = $(arr[i]).children("span").text().trim();
+        }   
+        console.log(arr);
+
+    });
     
     </script>
     <?php
