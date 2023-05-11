@@ -14,7 +14,7 @@ function loadScripts(){
     ?>
     <script>
         let budget = 0;
-        let recipe_id = -1;
+        let recipe_id = 0;
         let ingredients = null;
         let ingredient_ids = [];
         let ingredient_quantity = [];

@@ -20,7 +20,19 @@ function load_step_2_scripts(){
                         success:function(data){
                             $("#step-1").html("");
                             $("#step-2").html(data);
-                            selectRecipe(0);
+                            const recipes = $("#step-2").children(".recipe");
+                            let sl = false;
+                            console.log(recipes);
+                            for(let i=0; i<recipes.length; i++){
+                                if($(recipes[i]).attr("recipe_id") == recipe_id){
+                                    selectRecipe(i);
+                                    sl = true;
+                                }
+                            }
+                            if(!sl){
+                                selectRecipe(0);
+                            }
+                            
                         }
                     });
                 }
