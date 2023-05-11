@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 11, 2023 at 05:01 PM
+-- Generation Time: May 11, 2023 at 10:39 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -269,6 +269,7 @@ DROP TABLE IF EXISTS `recipe`;
 CREATE TABLE IF NOT EXISTS `recipe` (
   `Recipe_ID` int NOT NULL AUTO_INCREMENT,
   `Recipe_Name` varchar(255) NOT NULL,
+  `Ingredients` varchar(255) NOT NULL,
   `Image` varchar(255) NOT NULL,
   PRIMARY KEY (`Recipe_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -277,22 +278,22 @@ CREATE TABLE IF NOT EXISTS `recipe` (
 -- Dumping data for table `recipe`
 --
 
-INSERT INTO `recipe` (`Recipe_ID`, `Recipe_Name`, `Image`) VALUES
-(1, 'fluffy pancake', 'Images/IngredientsAndRecipes/fluffy-pancake.jpg'),
-(2, 'ratatouille', 'Images/IngredientsAndRecipes/ratatouille.jpg'),
-(3, 'crispy belgian waffles', 'Images/IngredientsAndRecipes/crispy-belgian-waffles.jpg'),
-(4, 'ejjeh', 'Images/IngredientsAndRecipes/ejjeh.jpg'),
-(5, 'krispy chicken', 'Images/IngredientsAndRecipes/krispy-chicken.jpg'),
-(6, 'lasagna', 'Images/IngredientsAndRecipes/lasagna.jpg'),
-(7, 'brownies', 'Images/IngredientsAndRecipes/brownies.jpg'),
-(8, 'grilled shrimp tacos', 'Images/IngredientsAndRecipes/grilled-shrimp-tacos.jpg'),
-(9, 'veggie garlic noodles\r\n', 'Images/IngredientsAndRecipes/veggie-garlic-noodles.jpg'),
-(10, 'chicken teriyaki fried rice', 'Images/IngredientsAndRecipes/chicken-teriyaki-fried-rice.jpg'),
-(11, 'honey BBQ chicken wings', 'Images/IngredientsAndRecipes/honey-BBQ-chicken-wings.jpg'),
-(12, 'grilled cheese', 'Images/IngredientsAndRecipes/grilled-cheese.jpg\n'),
-(13, 'honey garlic chicken & veggie skewers', 'Images/IngredientsAndRecipes/honey-garlic-chicken-&-veggie-skewers.jpg\n'),
-(14, 'cheesy chicken nuggets', 'Images/IngredientsAndRecipes/cheesy-chicken-nuggets.jpg\n'),
-(15, 'mac & cheese', 'Images/IngredientsAndRecipes/mac-&-cheese.jpg');
+INSERT INTO `recipe` (`Recipe_ID`, `Recipe_Name`, `Ingredients`, `Image`) VALUES
+(1, 'fluffy pancake', 'flour, baking powder, milk, butter, egg, maple syrup', 'Images/IngredientsAndRecipes/fluffy-pancake.jpg'),
+(2, 'ratatouille', 'olive oil, white onion, orange sweet potato, gala apple, fresh thyme, kosher salt, potato, delicata squash, purple potato, black pepper', 'Images/IngredientsAndRecipes/ratatouille.jpg'),
+(3, 'crispy belgian waffles', 'flour, cornstarch, baking powder, sugar, salt, eggs, butter, milk, vanilla extract', 'Images/IngredientsAndRecipes/crispy-belgian-waffles.jpg'),
+(4, 'ejjeh', 'eggs, baking powder, 7-spice seasoning, salt, cilantro, green onion, mint, olive oil', 'Images/IngredientsAndRecipes/ejjeh.jpg'),
+(5, 'krispy chicken', 'chicken, buttermilk, flour, paprika, salt, thyme, dired oregano, garlic powder, onion powder, black pepper, vegetable oil', 'Images/IngredientsAndRecipes/krispy-chicken.jpg'),
+(6, 'lasagna', 'ground beef,marinara sauce,whole milk ricotta cheese, parmesan cheese,fresh parsley,fresh basil,kosher salt,black pepper,olive oil,lasagna noodles,mozzarella cheese', 'Images/IngredientsAndRecipes/lasagna.jpg'),
+(7, 'brownies', 'butter,brown sugar,granulated sugar ,vanilla extract,salt,egg,flour,dark cocoa powder,semi-sweet chocolate chips', 'Images/IngredientsAndRecipes/brownies.jpg'),
+(8, 'grilled shrimp tacos', 'shrimp,paprika,garlic powder, dried oregano,cumin,red pepper flakes,salt,skewers,olive oil,corn tortillas', 'Images/IngredientsAndRecipes/grilled-shrimp-tacos.jpg'),
+(9, 'veggie garlic noodles\r\n', 'vegetable oil,garlic,green onions,carrots,snap peas,brown sugar,soy sauce,rice noodles', 'Images/IngredientsAndRecipes/veggie-garlic-noodles.jpg'),
+(10, 'chicken teriyaki fried rice', 'chicken,teriyaki sauce,vegetable oil,green onion,garlic,carrot,broccoli floret,egg,brown rice,soy sauce,sesame oil\npepper', 'Images/IngredientsAndRecipes/chicken-teriyaki-fried-rice.jpg'),
+(11, 'honey BBQ chicken wings', 'flour,chili powder,kosher salt,black pepper,paprika,garlic powder,chicken wings,BBQ sauce,honey', 'Images/IngredientsAndRecipes/honey-BBQ-chicken-wings.jpg'),
+(12, 'grilled cheese', 'sourdough bread,butter,mayonnaise,cheddar cheese', 'Images/IngredientsAndRecipes/grilled-cheese.jpg\n'),
+(13, 'honey garlic chicken & veggie skewers', 'vegetable oil,honey,soy sauce,garlic,black pepper,chicken,red onion,red bell peppers,orange bell peppers,yellow bell peppers', 'Images/IngredientsAndRecipes/honey-garlic-chicken-&-veggie-skewers.jpg\n'),
+(14, 'cheesy chicken nuggets', 'chicken,salt,black pepper,mozzarella cheese,panko breadcrumbs,dried oregano,flour,egg', 'Images/IngredientsAndRecipes/cheesy-chicken-nuggets.jpg\n'),
+(15, 'mac & cheese', 'milk,elbow macaroni,cheddar cheese', 'Images/IngredientsAndRecipes/mac-&-cheese.jpg');
 
 -- --------------------------------------------------------
 
@@ -437,9 +438,9 @@ CREATE TABLE IF NOT EXISTS `supermarket` (
 --
 
 INSERT INTO `supermarket` (`Supermarket_ID`, `Supermarket_Name`, `Location`, `Image`) VALUES
-(1, 'Siyarafour', 'Lebanon,Beirut,Hazmieh Street', 'Images/Logos/Siyarafourlogo.jpg'),
-(2, 'Winneys', 'Lebanon,Beirut,Ashrafieh', 'Images/Logos/Winneyslogo.jpg'),
-(3, 'Foodies', 'Lebanon,Beirut,Mar Elias', 'Images/Logos/Foodieslogo.jpg');
+(1, 'Siyarafour', 'Lebanon,Beirut,Hazmieh Street', 'Images/Partners/siyarafour.png'),
+(2, 'Winneys', 'Lebanon,Beirut,Ashrafieh', 'Images/Partners/winneys.jpg'),
+(3, 'Foodies', 'Lebanon,Beirut,Mar Elias', 'Images/Partners/foodies.jpg');
 
 -- --------------------------------------------------------
 
@@ -454,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Pass` varchar(255) NOT NULL,
   `IsAdmin` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -463,8 +464,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`ID`, `USERNAME`, `Pass`, `IsAdmin`) VALUES
 (11, 'admin', 'admin', 1),
 (8, 'siyarfour', 'siyarafour', 0),
-(9, 'winneys', 'winneys', 0),
-(10, 'foodies', 'foodies', 0);
+(9, 'winneys', 'winneys', -1),
+(10, 'foodies', 'foodies', 0),
+(17, 'test2', 'ttt', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
