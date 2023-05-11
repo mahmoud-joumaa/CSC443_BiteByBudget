@@ -42,14 +42,15 @@ function populate_login_page(){
                 url: "../BackEnd/Controllers/user-controller.php",
                 data: {action: "Authenticate", "username":username, "password":password},
                 success:function(data){
+                    const msg = $("#user-message");
                     switch(data){
                         case "1":
-                            $("#user-message").addClass("success");
-                            $("#user-message").text("Login Success!");
+                            msg.addClass("success");
+                            msg.text("Login Success!");
                             break;
                         case "2":
-                            $("#user-message").addClass("error");
-                            $("#user-message").text("Error: Invalid username or password");
+                            msg.addClass("error");
+                            msg.text("Error: Invalid username or password");
                             break;
                         default:
                         $("#Success").text(data);
