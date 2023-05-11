@@ -143,10 +143,14 @@ function populate_budget_insuficient_page($budget, $price){
  */
 function populate_Markets($markets){
     $markets = json_decode($markets, true);
-    $supermarketPrices = $markets["supermarketPrices"];
+    $supermarketPrices1 = $markets["supermarketPrices"];
     $supermarketContaining = $markets["supermarketContaining"];
     $ingredients = $markets["ingredients"];
     $ings_found = array();
+    $supermarketPrices = array();
+    foreach ($supermarketContaining as $supermarketName => $totalPrice){
+        $supermarketPrices[$supermarketName] = $supermarketPrices1[$supermarketName];
+    }
 
     // Display the supermarket name and the total price for each supermarket
     $j = 0;
