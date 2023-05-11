@@ -28,9 +28,15 @@ $query = "SELECT r.Recipe_Name, i.ingredient_name, i.Ingredient_ID, r.Recipe_ID,
           INNER JOIN recipe AS r ON r.Recipe_ID= c.Recipe_ID
           INNER JOIN ingredient AS i ON i.Ingredient_ID = c.Ingredient_ID";
 
+$sql = "SELECT Ingredient_Name FROM ingredient";
+
 $stmt = $db->prepare($query);
 $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt2 = $db->prepare($sql);
+$stmt2->execute();
+$ingredients = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <html>
@@ -144,12 +150,89 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
+        <div class="table-container">
+                <div class="table-data-wrapper">
+                    <div class="scroll-container">
+                        <div class="scroll-table-content">
+                            <div class="table-row">
+                                <div class="div-block-406 _2">
+                                    <div class="table-row-nr"></div>
+                                </div>
+                                <form>
+                                <div class="table-box _2">
+                                  <a href="#" class="table-data link">
+                                    <input type="text" id="recipeName" class = "inp" name="recipeName" placeholder="Recipe Name" required><br><br>
+                                  </a>
+                                </div>
+                                <div class="table-box _2">
+                                    <a href="#" class="table-data link">
+                                      <input id="ingredientName" class = "inp" name="ingredientName" placeholder="Ingredient Name" list="subjects" required>
+                                      <datalist id="subjects">
+                                          <?php foreach ($ingredients as $ingredient){
+                                            $ing = $ingredient['Ingredient_Name'];
+                                            echo $ing;
+                                          ?>
+                                          <option value="<?php echo $ing; ?>"><?php echo $ing; ?></option>
+                                        <?php } ?>
+                                      </datalist><br><br>
+                                    </a>
+                                </div>
+                                <div class="table-box _2">
+                                    <div class="table-data" style="box-sizing = border-box">
+                                      <input type="number" id="quantity" class = "inp" name="quantity" placeholder="quantity" required><br><br>
+                                    </div>
+                                </div>
+                                <div class="table-box _2">
+                                    <div class="table-data" style="box-sizing = border-box">
+                                    <select class = "inp" name="unit" id="unit"required>
+                                      <option value="g">g</option>
+                                      <option value="mL">mL</option>
+                                    </select><br><br>
+                                    </div>
+                                </div>
+                                <div class="table-box _2 action">
+                                <div class="table-data" style="box-sizing = border-box">
+                                  <input type="submit" onclick= "addRecipe()" class = "inp" style="padding-left: 0;" value="Add Ingredient">
+                                </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <h6>^Add a new ingredient^</h6>
     </div>
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5ec7e046dab94257e6c39d51" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/js/webflow.b493206f0.js" type="text/javascript"></script>
 </body>
 </html>
 <script>
+
+    // function addRecipe() {
+    //     //search for the inputs to be sent
+    //     var recipeName = document.querySelector(`input[name="recipe_name"]`).value;
+    //     var ingredientName = document.querySelector(`select[name="ingredient_id"]`).value;
+    //     var quantity = document.querySelector(`input[name="number"]`).value;
+
+    //     // Send the data to the server
+    //     $.ajax({
+    //         url: '../BackEnd/addingRecipes.php',
+    //         type: 'POST',
+    //         data: {
+    //             recipeName: recipeName,
+    //             quantity: quantity,
+    //             ingredientName: ingredientName
+    //         },
+    //         success: function(response) {
+    //             console.log(response);
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
+
   function deleteRecipe(ingredientId, recipeId) {
         $.ajax({
           url: '../BackEnd/deleteRecipe.php',
@@ -200,6 +283,33 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
           }
         });
   }
+
+  function addRecipe() {
+  // Get the values from the input fields
+  var recipeName = document.getElementById("recipeName").value;
+  var ingredientName = document.getElementById("ingredientName").value;
+  var quantity = document.getElementById("quantity").value;
+  var unit = document.getElementById("unit").value;
+
+  $.ajax({
+    url: "../BackEnd/recipe.php", 
+    type: "POST",
+    data: {
+      recipeName: recipeName,
+      ingredientName: ingredientName,
+      quantity: quantity,
+      unit: unit
+    },
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(xhr, status, error) {
+      console.log(error);
+    }
+  });
+}
+
+
   /* working on the search bar */
 
 const arrows = document.querySelectorAll(".arrow");
@@ -264,5 +374,8 @@ if (ball) {
   });
 }
 
+function searchRecipe(){
+  let recipe = text.search
+}
 
 </script>
