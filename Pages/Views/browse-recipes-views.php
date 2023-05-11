@@ -59,6 +59,7 @@ function populate_budget_page(){
  * Loads step-2 or the recipe view page
  */
 function populate_Recipes($recipes){
+    
     $recipes = json_decode($recipes);
     echo "<br><br>";
     // echo "<label for='search'> Search Bar </label>";
@@ -75,7 +76,7 @@ function populate_Recipes($recipes){
             if ($i == 0)
                 echo ' select';
         ?>
-        "recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)"> 
+        "recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)" tabindex="0"> 
             <image width=100 class="recipe-img" src="<?php echo $image?>">
             <h4> <?php echo $recipe_name ?></h4>
         </div>
@@ -394,8 +395,9 @@ if(isset($_POST["function_name"])){
             ?>
                 <script>
                     let ind = 0;
-                    const recipes = document.querySelectorAll("#step-2 .recipe");
                     function selectRecipe(i) {
+                        const recipes = document.querySelectorAll("#step-2 .recipe");
+                        console.log(ind);
                         if (recipes[ind].classList.contains("select"))
                             recipes[ind].classList.remove("select");
                         ind = i;
@@ -409,8 +411,8 @@ if(isset($_POST["function_name"])){
             ?>
                 <script>
                     let id = 0;
-                    const supermarkets = document.querySelectorAll("#step-4 label");
                     function selectSupermarket(i) {
+                        const supermarkets = document.querySelectorAll("#step-4 label");
                         if (supermarkets[id].classList.contains("select"))
                             supermarkets[id].classList.remove("select");
                         id = i;
