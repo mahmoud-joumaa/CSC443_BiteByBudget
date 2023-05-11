@@ -85,9 +85,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="table-box">
                     <div class="table-heading">Edit Amount</div>
                 </div>
-                <div class="table-box action">
+                <!-- <div class="table-box action">
                     <div class="table-heading">Action</div>
-                </div>
+                </div> -->
             </div>
             <div class="table-container">
                 <div class="table-data-wrapper">
@@ -108,9 +108,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="table-box">
                                     <div class="table-heading">Edit Amount</div>
                                 </div>
-                                <div class="table-box action">
+                                <!-- <div class="table-box action">
                                     <div class="table-heading">Action</div>
-                                </div>
+                                </div> -->
                             </div>
                             <?php
                                 $count = 0;
@@ -149,13 +149,15 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </form>
                                     </div>
                                 </div>
-                                <div class="table-box _2 action">
-                                <form name="FrmDelete" class="FrmDelete" method="post" action="../BackEnd/delete.php">
-                                    <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
-                                    <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
-                                    </a>
-                                </form>
-                                </div>
+                                <!-- <div class="table-box _2 action">
+                                  <form>
+                                  <div name="FrmDelete" class="FrmDelete" onclick="deleteIngredient('<?php echo $ingredientId; ?>', '<?php echo $supermarketId; ?>')" value="Delete">
+                                      <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
+                                      <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
+                                      </a>
+                                  </div>
+                                  </form>
+                                </div> -->
                             </div>
                             <i class="fas fa-chevron-right arrow"></i>
                             <?php
@@ -172,6 +174,23 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 </html>
 <script>
+    // function deleteIngredient(ingredientId, supermarketId) {
+    // $.ajax({
+    //     url: '../BackEnd/deleteIngredient.php',
+    //     type: 'POST',
+    //     data: {
+    //         ingredientId: ingredientId,
+    //         supermarketId: supermarketId
+    //     },
+    //     success: function(response) {
+    //         console.log(response);
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.log(error);
+    //     }
+    // });
+    // }
+
    function increaseValue(ingredientId, supermarketId) {
     var quantityId = 'quantity_' + ingredientId; // Unique id for the quantity input
     var value = parseInt(document.getElementById(quantityId).value, 10);
