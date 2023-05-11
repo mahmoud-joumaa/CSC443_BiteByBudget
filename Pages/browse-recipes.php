@@ -34,11 +34,11 @@ require_once "Views/browse-recipes-views.php";
 					<h3 class="step-tracker">Step 5</h3>
 				</div>
 				<div id="step-1" class="step-wrapper"></div>
-				<div id="step-2" class="step-wrapper"></div>
-				<div id="step-3" class="step-wrapper"></div>
-				<div id="step-4" class="step-wrapper"></div>
-				<div id="step-4-half" class="step-wrapper"></div>
-				<div id="step-5" class="step-wrapper"></div>
+				<div id="step-2" class="step-wrapper" style="pointer-events: none;"></div>
+				<div id="step-3" class="step-wrapper" style="pointer-events: none;"></div>
+				<div id="step-4" class="step-wrapper" style="pointer-events: none;"></div>
+				<div id="step-4-half" class="step-wrapper" style="pointer-events: none;"></div>
+				<div id="step-5" class="step-wrapper" style="pointer-events: none;"></div>
 				<div class="arrow prev hide" onclick="prevStep()"></div>
 				<div class="arrow next" onclick="nextStep()"></div>
 			</div>
