@@ -17,6 +17,7 @@ require_once "Views/contact-us-views.php";
 		<link href="../Styles/Shared/header.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/Shared/footer.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/contact-us.css" rel="stylesheet" type="text/css">
+		<script src="../Libraries/jquery.min.js"> </script>
 	</head>
 
 	<body>
