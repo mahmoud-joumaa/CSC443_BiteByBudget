@@ -16,7 +16,7 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     
     $whereClause = implode(' OR ', $placeholders);
     
-    $query = "SELECT s.Supermarket_Name, c.Status, c.Price AS calculated_price, c.Ingredient_ID
+    $query = "SELECT s.Supermarket_Name, c.Status, s.Image, c.Price AS calculated_price, c.Ingredient_ID
     FROM supermarket s
     JOIN sells c ON s.Supermarket_ID = c.Supermarket_ID
     WHERE $whereClause;";
@@ -40,12 +40,14 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
     $supermarketPrices = array();
     $supermarketContaining = array();
     $supermarketIngredients = array();
+    $supermarketImages = array();
 
     foreach ($results as $row) {
         $supermarketName = $row['Supermarket_Name'];
         $calculatedPrice = $row['calculated_price'];
         $ingredientID = $row['Ingredient_ID'];
         $Status = $row['Status'];
+        $Image = $row['Image'];
 
         // Multiply the calculated price by the ingredient quantity
         $ingredientIndex = array_search($ingredientID, array_column($ingredients, 0)); // we will search for the index of the ingredient to find the index of the quantity need. Smart eh :)
@@ -63,8 +65,10 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
             $supermarketPrices[$supermarketName] = $totalPrice;
             $supermarketContaining[$supermarketName] =1;
         }
+        $supermarketImages[$supermarketName] = $Image;
     }
 
+    
     $supermarketNames = array_keys($supermarketContaining);
     usort($supermarketNames, function($a, $b) use ($supermarketPrices, $supermarketContaining) {
         if($supermarketContaining[$a] > $supermarketContaining[$b]) {
@@ -89,7 +93,8 @@ function Fetch_SuperMarkets_With_Prices($ing_IDs, $ing_quantity){
         'supermarketPrices' => $supermarketPrices,
         'supermarketContaining' => $supermarketContainingSorted,
         'ingredients' => $ingredients,
-        'supermarketIngredients' => $supermarketIngredients
+        'supermarketIngredients' => $supermarketIngredients,
+        'supermarketImags' => $supermarketImages,
     );
     return $result;
 }

@@ -32,12 +32,10 @@ function load_step_1_scripts(){
         $(document).on("submit", "#budget-form", function(e){
             e.preventDefault();
             budget = $("#budget").val();
-            if(recipe_id != -1){
-                load_ingredients_ajx(recipe_id);
-            }
-            else{
-                load_recipes_ajx();
-            }
+
+            
+            load_recipes_ajx();
+            
         });
     </script>
     <?php
