@@ -14,7 +14,7 @@ function populate_login_page(){
         <label for="pass">Password</label>
         <input type="password" name="password" id="pass">
         <div>
-            <input type="submit" value="Login">
+            <input id="submit-button"type="submit" value="Login">
             <input type="button" value="Reset" onclick="ClearForm()">
         </div>
     </form>
@@ -33,10 +33,13 @@ function populate_login_page(){
     </script>
 
     <script>
-        $(document).on("submit", "#login-form", function(e){
+        $(document).on("click", "#submit-button", function(e){
             e.preventDefault();
-            var username = $("#username").val();
-            var password = $("#pass").val();
+            
+            var username = $(this).parent().prev().prev().prev().val();
+            var password = $(this).parent().prev().val();
+            console.log(username);
+            console.log(password);
             $.ajax({
                 type: "POST",
                 url: "../BackEnd/Controllers/user-controller.php",
@@ -45,15 +48,16 @@ function populate_login_page(){
                     const msg = $("#user-message");
                     switch(data){
                         case "1":
-                            msg.addClass("success");
-                            msg.text("Login Success!");
-                            break;
-                        case "2":
                             msg.addClass("error");
                             msg.text("Error: Invalid username or password");
                             break;
-                        default:
-                        $("#Success").text(data);
+                        case "3":
+                            window.location = "supermarket-page.php";
+                            break;
+                        case "2":
+                            // window.location("/admin-page.php");
+                            break
+                            
                     }
                 }
             });

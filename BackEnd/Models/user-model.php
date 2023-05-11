@@ -17,13 +17,13 @@ function Authenticate($username, $password){
         // Redirect to appropriate page based on IsAdmin flag in the database
         if($row['IsAdmin'] == 1){
             //header('Location: welcomeadmin.html');
-            echo "Success, welcome admin";
+            echo 2;
         } else {
             //header('Location: welcomeuser.html');
-            echo "Success, welcome ".$username;
+            echo 3;
         }
     } else {
-        $error = 2;
+        $error = 1;
         echo $error;
     }
 
