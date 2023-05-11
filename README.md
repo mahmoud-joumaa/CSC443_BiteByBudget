@@ -100,8 +100,8 @@ Each supermarket will have its own ID (primary key), name, location, and image w
  
 ### 4.SELLS
 |  Supermarket_ID  | Ingredient_ID  |Quantity |Price|Status
-|--|--|--|--|--|--|
-|  |  |  |  |  |  |
+|--|--|--|--|--|
+|  |  |  |  |  | 
 Many supermarkets sell many ingredients. In each supermarket, the quantity, price, and status(that includes if the ingredient is on sale by how much or not) of a certain ingredient is kept track of.
 
  
