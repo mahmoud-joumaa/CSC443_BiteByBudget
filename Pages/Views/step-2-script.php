@@ -51,12 +51,60 @@ function load_step_2_scripts(){
 
 
     $(document).on("input", "#search-bar", function(){
-        let arr =  $("#step-2").children(".recipe");
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = $(arr[i]).children("span").text().trim();
+        let txt = $(this).val();
+        let childs =  $("#step-2").children(".recipe");
+        let str = "";
+        for (let i = 0; i < childs.length; i++) {
+            str = $(childs[i]).children("span").text().replace(/\s/g, "").toLowerCase();
+            if(txt[0] != '@'){
+                if(str.substring(0, txt.length) != txt.replace(/\s/g, "").toLowerCase()){
+                    $(childs[i]).hide();
+                }
+                else{
+                    $(childs[i]).show();
+                }
+                
+            }
         }   
-        console.log(arr);
+        
+    });
 
+    $(document).on("change", "#search-bar", function(){
+        let txt = $(this).val();
+        let childs =  $("#step-2").children(".recipe");
+        let str = "";
+        for (let i = 0; i < childs.length; i++) {
+            if(txt[0] == '@'){
+                let recipe = $(childs[i]).attr("recipe_id");
+                $.ajax({
+                type: "POST",
+                url: "../BackEnd/Controllers/ingredient-controller.php",
+                data: {action: "Fetch_Ingredients", "recipe_id": recipe},
+                success: function(data){
+                    data =JSON.parse(data);
+                    let has_ing = false;
+                    for(let j=0; j<data.length; j++){
+                        str = data[j]["Ingredient_Name"].replace(/\s/g, "").toLowerCase();
+                        console.log(str + " " + txt.replace(/\s/g, "").toLowerCase().substring(1));
+                        if(str.substring(0, txt.length) == txt.replace(/\s/g, "").toLowerCase().substring(1)){
+                            has_ing = true;
+                        }
+                    }
+
+                    if(!has_ing){
+                        $(childs[i]).hide();
+                    }
+                    else{
+                        $(childs[i]).show();
+                    }
+                    
+                }
+
+                });
+                
+            }
+        }   
+        
     });
     
     </script>
