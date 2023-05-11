@@ -20,7 +20,7 @@ function load_step_2_scripts(){
                         success:function(data){
                             $("#step-1").html("");
                             $("#step-2").html(data);
-                            
+                            selectRecipe(0);
                         }
                     });
                 }
