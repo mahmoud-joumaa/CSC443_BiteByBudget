@@ -76,7 +76,7 @@ function populate_Recipes($recipes){
             if ($i == 0)
                 echo ' select';
         ?>
-        "recipe_id = "<?php echo $recipe_id?>" onclick="selectRecipe(i)" tabindex="0"> 
+        "recipe_id = "<?php echo $recipe_id?>" <?php echo 'onclick="selectRecipe('.$i.')" tabindex="0">'?> 
             <image width=100 class="recipe-img" src="<?php echo $image?>">
             <h4> <?php echo $recipe_name ?></h4>
         </div>
@@ -397,7 +397,7 @@ if(isset($_POST["function_name"])){
                     let ind = 0;
                     function selectRecipe(i) {
                         const recipes = document.querySelectorAll("#step-2 .recipe");
-                        console.log(ind);
+                        // console.log(ind);
                         if (recipes[ind].classList.contains("select"))
                             recipes[ind].classList.remove("select");
                         ind = i;
