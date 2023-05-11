@@ -16,6 +16,7 @@
 #main #slideshow #slideshow-carousel {
 	height: 100%;
 	width: 100%;
+	position: relative;
 }
 
 #main #slideshow #slideshow-carousel .slideshow-image {
@@ -26,7 +27,38 @@
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
-	transition: right 2s ease-in-out;
+	transition: right 2s ease-in-out, opacity 0.2s linear;
+}
+#main #slideshow #slideshow-carousel .slideshow-image:hover,
+#main #slideshow #slideshow-carousel .slideshow-image:focus {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+#main #slideshow #slideshow-carousel .slideshow-image > a {
+	display: block;
+	padding: 1px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 1px;
+	background-size: 200% 100%;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
+	opacity: 0;
+	font-size: 1.3rem;
+	transition: background-position 0.25s linear,
+							color 0.25s linear,
+							opacity 0.2s linear;
+}
+#main #slideshow #slideshow-carousel .slideshow-image:hover > a,
+#main #slideshow #slideshow-carousel .slideshow-image:focus > a {
+	opacity: 1;
+}
+#main #slideshow #slideshow-carousel .slideshow-image > a:hover,
+#main #slideshow #slideshow-carousel .slideshow-image > a:focus {
+	background-position: -100%;
+	color: #181a1b;
 }
 
 #main #slideshow .slideshow-arrow {

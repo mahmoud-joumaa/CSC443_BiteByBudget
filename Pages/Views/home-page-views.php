@@ -25,6 +25,7 @@
 
 				const size = 10;
 				let index = 0;
+
 				// Generate slider
 				const slider = document.getElementById("slider");
 				for (let i = 0; i < size; i++) {
@@ -35,8 +36,8 @@
 					slider.appendChild(circle);
 				}
 				const circles = document.querySelectorAll("#slider .circle");
+				
 				// Generate slideshow images
-
 				image_srcs = [];
 				$(document).ready(function(){
 					$.ajax({
@@ -46,12 +47,17 @@
 						success:function(data){
 							data = JSON.parse(data);
 							for (let i = 0; i < size; i++) {
+								// create actual images
 								const img = document.createElement("div");
 								image_srcs[i] = data[i].Image;
 								img.classList.add("slideshow-image");
 								img.style.backgroundImage = `url(${image_srcs[i]})`;
 								img.setAttribute("recipe_id", data[i].Recipe_ID);
 								img.style.right = `-${i*100}%`;
+								const recipe = document.createElement("a");
+								recipe.setAttribute("href", "");
+								recipe.innerText = "Recipe Name";
+								img.append(recipe);
 								carousel.appendChild(img);
 							}
 						}
@@ -61,7 +67,6 @@
 				$(document).on("click", ".slideshow-image", function(e){
 					let img_id = $(this).attr("recipe_id");
 					window.location.href = "Pages/browse-recipes?recipe_id=" + img_id;
-
 				});
 				
 				
