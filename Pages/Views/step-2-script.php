@@ -56,7 +56,6 @@ function load_step_2_scripts(){
         let str = "";
         for (let i = 0; i < childs.length; i++) {
             str = $(childs[i]).children("h4").text().replace(/\s/g, "").toLowerCase();
-            console.log(str);
             if(txt[0] != '@'){
                 if(str.substring(0, txt.length) != txt.replace(/\s/g, "").toLowerCase()){
                     $(childs[i]).hide();
