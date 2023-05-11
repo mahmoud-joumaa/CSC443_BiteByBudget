@@ -22,10 +22,11 @@ $stmt = $db->query($query);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Admin Page</title>
+  <title>BBB | Supermarket Dashboard</title>
   <meta name="description" content="Table design. Made in Webflow, by Mirela Prifti.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">

@@ -51,12 +51,17 @@ body {
 }
 
 #main {
-	min-height: calc(100vh - 120px); /* footer offset = 120px */
+	min-height: calc(100vh - 140px); /* footer offset = 140px */
 	padding-top: 40px; /* header offset = 40px */
 	transition: transform 1s ease-in-out 0s;
 }
 #main.shrink {
 	transform: scale(0.95);
+}
+@media screen and (max-width: 750px) {
+	#main {
+		min-height: calc(100vh - 190px); /* footer offset = 190px */
+	}
 }
 @media screen and (min-width: 750px) {
 	#main.shrink {

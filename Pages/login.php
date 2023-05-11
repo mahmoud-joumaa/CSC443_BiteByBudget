@@ -2,7 +2,7 @@
 
 require_once "Views/Shared/populate-page.php";
 
-require_once "Views/login-view.php";
+require_once "Views/login-views.php";
 
 
 ?>
@@ -16,6 +16,7 @@ require_once "Views/login-view.php";
 			<link href="../Styles/Shared/reset.css" rel="stylesheet" type="text/css">
 			<link href="../Styles/Shared/header.css" rel="stylesheet" type="text/css">
 			<link href="../Styles/Shared/footer.css" rel="stylesheet" type="text/css">
+			<link href="../Styles/login.css" rel="stylesheet" type="text/css">
             <script src="../Libraries/jquery.min.js"></script>
             
             
