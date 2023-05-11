@@ -233,10 +233,10 @@
 	top: 50%;
 	left: 50%;
 }
-#step-4 label {
+#step-4 label .supermarket-preview {
 	transition: box-shadow 0.35s linear;
 }
-#step-r label.select {
+#step-4 label.select .supermarket-preview {
 	box-shadow: 0px 0px 2px 5px #fead42;
 }
 #step-4 .supermarket-preview {

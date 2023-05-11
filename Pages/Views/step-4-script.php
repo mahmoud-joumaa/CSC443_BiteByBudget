@@ -45,7 +45,7 @@ function load_step_4_scripts(){
                 success: function(data) {
                     $("#step-3").html("");
                     $("#step-4").html(data);
-                    selectSupermarket(i);
+                    selectSupermarket(0);
                     resolve(response);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
