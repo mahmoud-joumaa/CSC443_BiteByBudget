@@ -1,4 +1,7 @@
 <?php
+	/**
+	 * Populate the slideshow
+	 */
 	function populateSlideshowView() {
 		?>
 		<div id="slideshow">
@@ -17,6 +20,9 @@
 		<?php
 	}
 
+	/**
+	 * Fill slideshow with images
+	 */
 	function fetchSlideshowImagesScript() {
 		?>
 			<script>
@@ -82,6 +88,9 @@
 		<?php
 	}
 
+	/**
+	 * Move slideshow
+	 */
 	function moveSlideshowScript() {
 		?>
 		<script>
@@ -117,6 +126,9 @@
 		<?php
 	}
 
+	/**
+	 * Populate offers view
+	 */
 	function populateOffersView() {
 		?>
 			<script src="Libraries/jquery.min.js"> </script>

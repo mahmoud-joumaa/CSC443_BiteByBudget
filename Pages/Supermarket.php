@@ -85,9 +85,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="table-box">
                     <div class="table-heading">Edit Amount</div>
                 </div>
-                <div class="table-box action">
+                <!-- <div class="table-box action">
                     <div class="table-heading">Action</div>
-                </div>
+                </div> -->
             </div>
             <div class="table-container">
                 <div class="table-data-wrapper">
@@ -108,9 +108,9 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="table-box">
                                     <div class="table-heading">Edit Amount</div>
                                 </div>
-                                <div class="table-box action">
+                                <!-- <div class="table-box action">
                                     <div class="table-heading">Action</div>
-                                </div>
+                                </div> -->
                             </div>
                             <?php
                                 $count = 0;
@@ -149,18 +149,56 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </form>
                                     </div>
                                 </div>
-                                <div class="table-box _2 action">
-                                <form name="FrmDelete" class="FrmDelete" method="post" action="../BackEnd/delete.php">
-                                    <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
-                                    <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
-                                    </a>
-                                </form>
-                                </div>
+                                <!-- <div class="table-box _2 action">
+                                  <form>
+                                  <div name="FrmDelete" class="FrmDelete" onclick="deleteIngredient('<?php echo $ingredientId; ?>', '<?php echo $supermarketId; ?>')" value="Delete">
+                                      <a data-w-id="ae27a065-dfeb-a9cb-56ca-8b63a99081be" href="#" class="link-block-10 w-inline-block">
+                                      <img src="https://assets.website-files.com/5ec7e046dab94257e6c39d51/5ec7e05fdab942a262c39db7_close%20(2).svg" alt="" class="table-action-icon-2 x"/>
+                                      </a>
+                                  </div>
+                                  </form>
+                                </div> -->
                             </div>
                             <i class="fas fa-chevron-right arrow"></i>
                             <?php
                                 }
                             ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-container">
+                <div class="table-data-wrapper">
+                    <div class="scroll-container">
+                        <div class="scroll-table-content">
+                            <div class="table-row">
+                                <div class="div-block-406 _2">
+                                    <div class="table-row-nr"></div>
+                                </div>
+                                <form>
+                                <div class="table-box _2">
+                                  <a href="#" class="table-data link">
+                                    <input type="text" id="ingredientName" class = "inp" name="ingredientName" placeholder="Ingredient Name" required><br><br>
+                                  </a>
+                                </div>
+                                <div class="table-box _2">
+                                    <a href="#" class="table-data link">
+                                      <input type="number" id="price" class = "inp" name="price" placeholder="Price" required><br><br>
+                                    </a>
+                                </div>
+                                <div class="table-box _2">
+                                    <div class="table-data" style="box-sizing = border-box">
+                                      <input type="number" id="quantity" class = "inp" name="quantity" placeholder="quantity" required><br><br>
+                                    </div>
+                                </div>
+                                <div class="table-box _2 action">
+                                <div class="table-data" style="box-sizing = border-box">
+                                  <input type="hidden" name="supermarketName" id="supermarketName" value="<?php echo $Supermarket_Name; ?>">
+                                  <input type="submit" onclick= "addIngredient()" class = "inp" style="padding-left: 0; cursor:pointer" value="Add Ingredient">
+                                </div>
+                                </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,6 +210,32 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 </html>
 <script>
+
+  function addIngredient() {
+    // Get the values from the input fields
+    var ingredientName = document.getElementById("ingredientName").value;
+    var price = document.getElementById("price").value;
+    var quantity = document.getElementById("quantity").value;
+    var supermarketName = document.getElementById("supermarketName").value;
+
+    $.ajax({
+      url: "../BackEnd/ingredient.php", 
+      type: "POST",
+      data: {
+        ingredientName: ingredientName,
+        supermarketName: supermarketName,
+        price: price,
+        quantity: quantity
+      },
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
+    });
+  }
+
    function increaseValue(ingredientId, supermarketId) {
     var quantityId = 'quantity_' + ingredientId; // Unique id for the quantity input
     var value = parseInt(document.getElementById(quantityId).value, 10);
