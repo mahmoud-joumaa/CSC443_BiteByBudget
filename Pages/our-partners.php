@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+unset($_SESSION['username']);
+session_destroy();
 require_once "Views/Shared/populate-page.php";
 
 require_once "Views/our-partners-views.php";

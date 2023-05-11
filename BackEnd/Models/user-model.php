@@ -13,6 +13,7 @@ function Authenticate($username, $password){
     //1 will be representig they are an admin which will redirect them to their specific page to edit recipes and users
     //0 will be representing they are a supermarket which will redirect them to their specific page to eidt quantity and prices
     if($row) {
+        session_start();
         $_SESSION['username'] = $username;
         
         // Redirect to appropriate page based on IsAdmin flag in the database

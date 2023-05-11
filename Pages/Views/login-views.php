@@ -52,7 +52,7 @@ function populate_login_page(){
                             msg.text("Error: Invalid username or password");
                             break;
                         case "3":
-                            // window.location = "supermarket-page.php";
+                            window.location = "Supermarket.php";
                             break;
                         case "2":
                             window.location="admin-page.php";

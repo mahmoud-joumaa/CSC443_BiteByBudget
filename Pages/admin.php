@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+unset($_SESSION['username']);
+session_destroy();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

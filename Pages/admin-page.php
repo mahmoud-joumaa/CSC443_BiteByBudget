@@ -1,5 +1,7 @@
 <?php 
-
+session_start();
+unset($_SESSION['username']);
+session_destroy();
 require_once("Views/admin-view.php");
 
 ?>
