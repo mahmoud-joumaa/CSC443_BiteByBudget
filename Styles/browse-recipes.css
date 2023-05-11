@@ -1,0 +1,90 @@
+/* ================================================================================================ */
+/* Consistent UI */
+/* ================================================================================================ */
+
+.hidden {
+	display: none;
+}
+
+#main #step-tracker-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	position: fixed;
+	top: 80px;
+}
+
+#main #step-tracker-wrapper .step-tracker {
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	background-color: #c82121;
+	text-align: center;
+	line-height: 70px;
+	vertical-align: middle;
+	cursor: pointer;
+	transition: background-color 0.25s ease;
+}
+
+#main #step-tracker-wrapper .step-tracker.current {
+	background-color: #fead42;
+}
+#main #step-tracker-wrapper .step-tracker.complete {
+	background-color: #39da8a;
+}
+
+#main .arrow {
+	display: block;
+	height: 35px;
+	width: 35px;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+#main .arrow.prev {
+	left: 5px;
+	background-image: url("../Images/Icons/arrow-prev.png");
+}
+#main .arrow.next {
+	right: 5px;
+	background-image: url("../Images/Icons/arrow-next.png");
+}
+
+.step-wrapper {
+	display: block;
+	width: calc(100% - 90px);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	transition: left 0.35s ease;
+}
+
+/* ================================================================================================ */
+/* Step 1 */
+/* ================================================================================================ */
+#step-1 form#budget-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+#step-1 form#budget-form label {
+	display: inline-block;
+	margin-right: 2%;
+	font-size: 1.7rem;
+}
+#step-1 form#budget-form input {
+	height: 30px;
+	width: 50%;
+	padding: 2px;
+	font-family: inherit;
+}

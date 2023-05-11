@@ -44,17 +44,13 @@ function loadScripts(){
  */
 function populate_budget_page(){
     ?>
-    <div class="block">
-            <a href="#"><div class="back">Back</a>
-        </div>
         <div class="container">
-            <h1>Enter your budget</h1>
             <form id="budget-form">
-                <input type="text" name="budget" id="budget" placeholder="e.g: 100$" class="textfield" >
-                <br><br>
-                <button type="submit" class="mbutton">Submit</button>
+                <label for="budget">Enter your budget:</label>
+                <input type="number" name="budget" id="budget" placeholder="e.g: 100$">
+                <button type="submit" class="mbutton hidden">Submit</button>
             </form>
-    </div>
+        </div>
     <?php
 }
 
@@ -263,5 +259,52 @@ if(isset($_POST["function_name"])){
     }
 }
 
+?>
 
+<!-- ======================================= Javascript ======================================= -->
+
+<?php
+    function trackStepsScript() {
+        ?>
+            <script>
+                const steps = document.querySelectorAll(".step-tracker");
+                const n = steps.length;
+                let index = 0;
+                steps[index].classList.add("current");
+                function nextStep() {
+                    steps[index].classList.remove("current");
+                    steps[index].classList.add("complete");
+                    index = Math.min(index+1, n-1);
+                    steps[index].classList.add("current");
+                    moveStep(1);
+                }
+                function prevStep() {
+                    steps[index].classList.remove("current");
+                    if (index == n-1)
+                        steps[index].classList.remove("complete");
+                    index = Math.max(0, index-1);
+                    steps[index].classList.remove("complete");
+                    steps[index].classList.add("current");
+                    moveStep(-1);
+                }
+
+                const wrappers = document.querySelectorAll(".step-wrapper");
+                const m = wrappers.length;
+                function moveStep(direction) {
+                    switch (index) {
+                        case 1:
+                            if (direction > 0)
+                                document.querySelector("#budget-form button[type='submit'").click();
+                            else
+                                console.log(document.querySelector("#back-button-step-2"));
+                            break;
+                    }
+                    for (let i = 0; i < m; i++) {
+                        const offset = i-index;
+                        wrappers[i].style.left = `${offset*100 + 50}%`;
+                    }
+                }
+            </script>
+        <?php
+    }
 ?>

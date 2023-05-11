@@ -16,6 +16,7 @@ require_once "Views/browse-recipes-views.php";
 			<link href="../Styles/Shared/reset.css" rel="stylesheet" type="text/css">
 			<link href="../Styles/Shared/header.css" rel="stylesheet" type="text/css">
 			<link href="../Styles/Shared/footer.css" rel="stylesheet" type="text/css">
+			<link href="../Styles/browse-recipes.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
@@ -25,12 +26,21 @@ require_once "Views/browse-recipes-views.php";
 		<?php populateHeaderView(); ?>
 			<!-- Main -->
 			<div id="main">
-				<div id="step-1"> </div>
-				<div id="step-2"> </div>
-				<div id="step-3"> </div>
-				<div id="step-4"> </div>
-				<div id="step-4-half"></div>
-				<div id="step-5"> </div>
+				<div id="step-tracker-wrapper">
+					<h3 class="step-tracker">Step 1</h3>
+					<h3 class="step-tracker">Step 2</h3>
+					<h3 class="step-tracker">Step 3</h3>
+					<h3 class="step-tracker">Step 4</h3>
+					<h3 class="step-tracker">Step 5</h3>
+				</div>
+				<div id="step-1" class="step-wrapper"></div>
+				<div id="step-2" class="step-wrapper"></div>
+				<div id="step-3" class="step-wrapper"></div>
+				<div id="step-4" class="step-wrapper"></div>
+				<div id="step-4-half" class="step-wrapper"></div>
+				<div id="step-5" class="step-wrapper"></div>
+				<div class="arrow prev" onclick="prevStep()"></div>
+				<div class="arrow next" onclick="nextStep()"></div>
 			</div>
 			<!-- Footer -->
 			<?php populateFooterView(); ?>
@@ -41,6 +51,7 @@ require_once "Views/browse-recipes-views.php";
 	<?php
 		animateLoaderScript();
 		toggleHeaderScript();
+		trackStepsScript();
 		echo loadScripts();
 	?>
 
