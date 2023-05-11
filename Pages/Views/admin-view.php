@@ -1,6 +1,8 @@
 <?php 
 
-
+/**
+ * Populate the update user interface
+ */
 function populate_update_user(){
     ?>
     <h1>User Update Form</h1>
@@ -50,7 +52,9 @@ function populate_update_user(){
     <?php
 }
 
-
+/**
+ * Populate the add user interface
+ */
 function populate_add_user(){
     ?>
     <h2>Add User</h2>

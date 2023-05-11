@@ -57,6 +57,7 @@ function populate_budget_page(){
 
 /**
  * Loads step-2 or the recipe view page
+ * @param array of recipes
  */
 function populate_Recipes($recipes){
     
@@ -93,6 +94,7 @@ function populate_Recipes($recipes){
 
 /**
  * Loads step-3 or the ingredients page
+ * @param array of ingredients
  */
 function populate_Ingredients($ingredients){
     $ingredients = json_decode($ingredients);
@@ -120,8 +122,8 @@ function populate_Ingredients($ingredients){
 }
 
 /**
- * 
  * Loads the budget insufficient page
+ * @param 2 numbers: the budget and the price
  */
 function populate_budget_insuficient_page($budget, $price){
     $diff = floatval($price) - floatval($budget);

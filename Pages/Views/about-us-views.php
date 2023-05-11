@@ -8,7 +8,10 @@
 		public $image = null;
 		public $social_media = array('facebook' => null, 'instagram' => null, 'twitter' => null, 'linkedin' => null);
 	}
-
+	/**
+	 * Generate an array of all team members
+	 * @return array of objects of type Member
+	 */
 	function populateMembers() {
 		$m1 = new Member();
 		$m2 = new Member();
@@ -53,6 +56,10 @@
 		return $members;
 	}
 
+	/**
+	 * Generate a single section for a team member
+	 * @param Member object
+	 */
 	function populateTeamMemberView(member $m) {
 		?>
 			<div class="team-member">

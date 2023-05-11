@@ -6,6 +6,10 @@
 		public $description;
 	}
 
+	/**
+	 * Populate Partners
+	 * @return array of partners
+	 */
 	function populatePartners() {
 		$p1 = new Partner();
 		$p2 = new Partner();
@@ -27,6 +31,13 @@
 		return $partners;
 	}
 
+	/**
+	 * Populate a section for a partner (i.e. image with text)
+	 * @param int to check if 0 ==> left else ==> right
+	 * @param supermarket name
+	 * @param image (supermarket logo)
+	 * @param description (supermarket intro / info)
+	 */
 	function populatePartnerView($p, $name, $image, $description) {
 		echo '<div class="partner ';
 		if ($p == 0)

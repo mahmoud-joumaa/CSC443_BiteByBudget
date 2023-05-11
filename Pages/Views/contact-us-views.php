@@ -1,5 +1,8 @@
 <?php
 
+	/**
+	 * Populate the contact form
+	 */
 	function populateContactFormView() {
 		?>
 			<div id="form-wrapper">
@@ -49,6 +52,9 @@
 		<?php
 	}
 
+	/**
+	 * Update the cookie rating
+	 */
 	function updateRatingScript() {
 		?>
 			<script>
