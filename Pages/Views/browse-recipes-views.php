@@ -204,7 +204,7 @@ function populate_Markets($markets){
         echo "<input class='hidden select-supermarket-button' type='button' value='Select'>";
         echo "</form>";
         */
-        echo '<form method="POST" action="">';
+        echo '<form id="frm" method="POST" action="">';
         for ($i=0; $i<sizeof($availableSupermarkets); $i++) {
             echo '<input class="hidden" id="radio-'.$availableSupermarkets[$i].'" type="radio" name="supermarket" value="'.$availableSupermarkets[$i].' price='.$availableSupermarketsPrices[$i].'">';
         }
@@ -225,6 +225,7 @@ function populate_Markets($markets){
     }
     ?>
     <button id="back-button-step-4" class="hidden"> Back </button>
+    <button id="next-button-step-4" class="hidden"> Next </button>
     <?php
 
 }
@@ -389,6 +390,10 @@ if(isset($_POST["function_name"])){
                                 document.querySelector("#next-button-step-3").click();
                             if (direction < 0)
                                 document.querySelector("#back-button-step-5").click();
+                            break;
+                        case 4:
+                            if (direction > 0)
+                                document.querySelector("#next-button-step-4").click();
                             break;
                         case 5:
                             if (direction > 0)
