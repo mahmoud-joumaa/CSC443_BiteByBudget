@@ -40,9 +40,8 @@ function load_step_5_scripts(){
                 url: "Views/browse-recipes-views.php",
                 data: {function_name : "populate_step_5_page", "supermarket": supermar, "ingredients" : ings, "ingredients_of_supermarket": ingredients_of_supermar, "totalPrice": totalPrice},
                 success: function(data){
-                    $("#step-4-half").html("");
                     $("#step-4").html("");
-                    $("#step-5").html(data);
+                    $("#step-4-half").html(data);
                 }
             });
         }
