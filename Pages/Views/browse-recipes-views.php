@@ -129,7 +129,7 @@ function populate_budget_insuficient_page($budget, $price){
     $diff = floatval($price) - floatval($budget);
    ?>
     <div>
-        <span> Unfortunately, your budget is not enough for this recipe. <br>
+        <span id="step-4-half-msg"> Unfortunately, your budget is not enough for this recipe. <br>
                Your buget was <?php echo $budget ?>$, the price is <?php echo $price ?>$ <br>
                 You are <?php echo $diff ?> $ short. <br>
                 Do you wish to continue or go back to step-1?

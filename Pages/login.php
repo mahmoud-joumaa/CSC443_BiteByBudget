@@ -14,6 +14,7 @@ require_once "Views/login-views.php";
 	<head>
 		<!-- Title Bar -->
 		<title>BBB | Login</title>
+		<link href="../Images/Icons/favicon-enhanced-no-bg.ico" rel="icon" type="image/ico">
 			<!-- Linked Styles -->
 			<link href="../Styles/Shared/reset.css" rel="stylesheet" type="text/css">
 			<link href="../Styles/Shared/header.css" rel="stylesheet" type="text/css">

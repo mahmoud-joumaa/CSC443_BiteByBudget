@@ -41,6 +41,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="utf-8">
   <title>Supermarket page</title>
+  <link href="../Images/Icons/favicon-enhanced-no-bg.ico" rel="icon" type="image/ico">
   <meta name="description" content="Table design. Made in Webflow, by Mirela Prifti.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
