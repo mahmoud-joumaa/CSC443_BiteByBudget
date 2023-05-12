@@ -179,5 +179,5 @@ In our future versions, we plan to incorporate several new features into our web
 
 - Account for supermarket locations when sorting (in addition to percentage of available ingredients and total price)
 
-- Implement admin access to manage users. Given the limited resources amid which we were working, we couldn’t finalize the admin manage users interface. That is why, even though the functionality is complete, admins do not have access to a user-friendly interface yet.
-This is one of the most important features that we will be working on in the near future to secure its timely delivery. As our website grows, we expect the need for a simpler interface to do so as well. However, users will have to contact our IT support team via the contact us page to manage users.
+- Implement a more user friendly interface for the managing users .
+-
