@@ -1,0 +1,4 @@
+$dbhost="localhost";
+$dbname="id20739541_bitebybudget";
+$dbuser="id20739541_user";
+$dbpass="User.123";
