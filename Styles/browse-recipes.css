@@ -220,7 +220,7 @@
 }
 
 /* ================================================================================================ */
-/* Step 3 */
+/* Step 4 */
 /* ================================================================================================ */
 #step-4 {
 	display: flex;
@@ -277,4 +277,80 @@
 #step-4 .supermarket-preview .supermarket-info h3,
 #step-4 .supermarket-preview .supermarket-info h4 {
 	width: 40%;
+}
+
+/* ================================================================================================ */
+/* Step 4.5 */
+/* ================================================================================================ */
+
+/* ================================================================================================ */
+/* Step 5 */
+/* ================================================================================================ */
+#step-4-half {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 450px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: auto;
+}
+
+#step-4-half .item-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	height: 300px;
+	width: 350px;
+	padding: 5px;
+	margin: 10px;
+	border-radius: 3px;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+}
+
+#step-4-half .item-wrapper img {
+	height: 100px;
+	width: 100px;
+}
+
+#step-4-half .item-wrapper .right-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	height: 100px;
+	width: 200px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#step-4-half .item-wrapper .right-wrapper .item-cost {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+}
+
+#step-4-half .item-wrapper .right-wrapper .item-cost button,
+#step-4-half .item-wrapper .right-wrapper .item-cost input {
+	height: 25px;
+	margin: 0px 2px;
+	background-color: #181a1b;
+	color: #ffffff;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost input {
+	width: 35% !important;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost button {
+	width: 30% !important;
+	cursor: pointer;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost p {
+	margin-left: 10px;
 }
