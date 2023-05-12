@@ -233,8 +233,8 @@ function populate_Markets($markets){
 function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredients_of_supermarket){
     $ingredients = json_decode($ingredients);
     $ingredients_of_supermarket = json_decode($ingredients_of_supermarket);
-    echo "<h1> SuperMarket: $supermarket </h1>";
-    echo "<span>TOTAL PRICE: $totalPrice</span>";
+    echo "<h2>SuperMarket: $supermarket </h2>";
+    echo "<h3>TOTAL PRICE: $totalPrice</h3>";
 
     for($i = 0; $i < sizeof($ingredients); $i++){
         $is_in_supermarket = false;
@@ -248,6 +248,7 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
         ?>
         <div class='item-wrapper'>
             <img width=100 class='item-img' src= <?php echo "../" . $ingredients[$i]->Image ?> >
+            <div class="right-wrapper">
             <div class='item-name'> <?php echo $ingredients[$i]->Ingredient_Name ?></div>
             <div class='item-cost'>
                 <button class='item-sell-step-5'>-</button>
@@ -264,7 +265,7 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
                 <?php 
                 if($is_in_supermarket){
                     echo $ingredients[$i]->Unit;
-                    echo "<span> $price </span>" ;
+                    echo "<p> $price </p>" ;
                 }
                 else{
                     echo "<span> </span>"; 
@@ -272,11 +273,12 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
                 ?>
             </div>
             </div>
+            </div>
         <?php
     } 
 
     ?>
-    <button id="back-button-step-5"> Back </button>
+    <button id="back-button-step-5" class="hidden"> Back </button>
     <?php
 }
 
