@@ -366,7 +366,25 @@ if(isset($_POST["function_name"])){
                     moveStep(-1);
                 }
 
+                
+
                 const wrappers = document.querySelectorAll(".step-wrapper");
+
+                function returnStep1() {
+                    arrowprev.classList.add("hide");
+                    arrownext.classList.remove("hide");
+                    steps[0].classList.remove("complete");
+                    steps[0].classList.add("current");
+                    steps[4].classList.remove("current");
+                    steps[3].classList.remove("complete");
+                    steps[2].classList.remove("complete");
+                    steps[1].classList.remove("complete");
+                    index = 0;
+                    for (let i = 0; i < m; i++) {
+                        const offset = i-index;
+                        wrappers[i].style.left = `${offset*100 + 50}%`;
+                    }
+                }
                 const m = wrappers.length;
                 function moveStep(direction) {
                     wrappers[index].style.pointerEvents = "auto";
