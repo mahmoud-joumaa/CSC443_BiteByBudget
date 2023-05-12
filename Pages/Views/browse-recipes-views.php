@@ -373,7 +373,7 @@ if(isset($_POST["function_name"])){
                 function returnStep1() {
                     arrowprev.classList.add("hide");
                     arrownext.classList.remove("hide");
-
+                    steps[0].classList.remove("complete");
                     steps[0].classList.add("current");
                     steps[4].classList.remove("current");
                     steps[3].classList.remove("complete");
