@@ -55,7 +55,7 @@ function populate_login_page(){
                             window.location = "Supermarket.php";
                             break;
                         case "2":
-                            window.location="admin-page.php";
+                            window.location="admin.php";
                             break
                         case "4":
                             msg.addClass("error");

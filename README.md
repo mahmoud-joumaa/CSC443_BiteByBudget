@@ -179,5 +179,4 @@ In our future versions, we plan to incorporate several new features into our web
 
 - Account for supermarket locations when sorting (in addition to percentage of available ingredients and total price)
 
-- Implement a more user friendly interface for the managing users .
--
+- Implement a more user friendly interface for the managing users.

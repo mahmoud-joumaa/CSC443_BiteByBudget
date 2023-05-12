@@ -79,7 +79,7 @@
 
 				$(document).on("click", ".slide-show-image-name", function(e){
 					let img_id = $(this).parent().attr("recipe_id");
-					window.location.href = "Pages/browse-recipes?recipe_id=" + img_id;
+					window.location.href = "Pages/browse-recipes.php?recipe_id=" + img_id;
 				});
 				
 				

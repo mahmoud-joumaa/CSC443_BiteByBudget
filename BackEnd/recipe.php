@@ -4,10 +4,10 @@
 // $dbuser = "root";
 // $dbpass = "";
 // $db = null;
-$dbhost="localhost";
-$dbname="id20739541_bitebybudget";
-$dbuser="id20739541_user";
-$dbpass="User.123";
+$dbhost="127.0.0.1";
+$dbname="bitebybudget";
+$dbuser="root";
+$dbpass="";
 try {
     $db = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -77,4 +77,3 @@ if (isset($_POST['recipeName']) && isset($_POST['ingredientName']) && isset($_PO
 }
 ?>
 ?>
-

@@ -1,6 +1,6 @@
 <?php
-session_start();
 
+session_start();
 if(!isset($_SESSION["username"])) header("Location: ../index.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -25,7 +25,7 @@ try {
 // Get the Recipe_ID from the URL parameter
 // if (isset($_GET['Supermarket_Name'])) {
 //     $Supermarket_Name = $_GET['Supermarket_Name'];
-$Admin_Name = "Admin"; 
+$Admin_Name = $_SESSION['username']; 
 
 // Fetch data from the "sells" table
 $query = "SELECT r.Recipe_Name, i.ingredient_name, i.Ingredient_ID, r.Recipe_ID, c.Quantity
@@ -62,7 +62,6 @@ $ingredients = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="wrapper-section">
-        <a href=".."><button style="color:black"> Logout </button></a>
         <div class="div-1">
             <h1 class="heading-3">Editing the Recipes</h1>
             <div class="div-block-414">
