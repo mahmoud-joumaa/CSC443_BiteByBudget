@@ -132,6 +132,9 @@
 #step-2 .recipe.select {
 	box-shadow: 0px 0px 2px 5px #fead42;
 }
+#step-2 .recipe-img {
+	width: 100%;
+}
 
 #step-2 .recipe > h4 {
 	display: inline-block;
