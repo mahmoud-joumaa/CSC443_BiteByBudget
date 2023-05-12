@@ -7,6 +7,7 @@ require_once "Views/Shared/scripts.php";
 	<head>
 		<!-- Title Bar -->
 		<title>BBB | Budget</title>
+		<link href="../Images/Icons/favicon-enhanced-no-bg.ico" rel="icon" type="image/ico">
 		<!-- Linked Styles -->
 		<link href="Styles/Shared/reset.css" rel="stylesheet" type="text/css">
 		<link href="Styles/Shared/icons.css" rel="stylesheet" type="text/css">

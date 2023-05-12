@@ -282,6 +282,31 @@
 /* ================================================================================================ */
 /* Step 4.5 */
 /* ================================================================================================ */
+#step-4-half-msg {
+	display: block;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 3px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+}
+#continue-step-4-half,
+#return-step-4-half {
+	position: relative;
+	bottom: 0;
+	padding: 10px;
+	min-height: 25px;
+	margin: 0px 2px;
+	background-color: #dee1ec;
+	color: #181a1b;
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 1rem;
+}
 
 /* ================================================================================================ */
 /* Step 5 */
@@ -297,6 +322,12 @@
 	top: 50%;
 	left: 50%;
 	overflow: auto;
+}
+
+#step-4-half h2,
+#step-4-half h3 {
+	display: block;
+	width: 100%;
 }
 
 #step-4-half .item-wrapper {

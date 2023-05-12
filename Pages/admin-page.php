@@ -11,6 +11,7 @@ require_once("Views/admin-view.php");
 <html>
 <head>
     <title>Admin Page</title>
+    <link href="../Images/Icons/favicon-enhanced-no-bg.ico" rel="icon" type="image/ico">
     <script src="../Libraries/jquery.min.js"> </script>
 </head>
 <body>
