@@ -24,6 +24,8 @@ function load_step_4_half_scripts(){
         // Loads step-5 after continue button is pressed
         $(document).on("click", "#continue-step-4-half", function(){
             let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
+            ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket_param);
+            
             ingredients_of_supermarket_param =ingredients_of_supermarket_param["supermarketIngredients"];
             ingredients_of_supermarket_param = JSON.stringify(ingredients_of_supermarket_param);
             load_step_5_ajx(chosen_price, supermarket, ingredients, ingredients_of_supermarket_param);

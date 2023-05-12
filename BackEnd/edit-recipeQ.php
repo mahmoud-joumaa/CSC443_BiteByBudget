@@ -14,22 +14,26 @@ try {
 }
 
 $ingredientId = $_POST["ingredientId"];
-$price = $_POST["price"];
-$supermarketId = $_POST["supermarketId"];
+$quantity = $_POST["value"];
+$recipeId = $_POST["recipeId"];
 
-$query = "UPDATE sells 
-          SET `Price` = :price 
+$query = "UPDATE consistsof 
+          SET `Quantity` = :quantity 
           WHERE Ingredient_ID = :ingredientId
-          AND Supermarket_ID = :supermarketId";
+          AND Recipe_ID = :recipeId";
 $stmt = $db->prepare($query);
-$stmt->bindParam(":price", $price, PDO::PARAM_INT);
+$stmt->bindParam(":quantity", $quantity, PDO::PARAM_INT);
 $stmt->bindParam(":ingredientId", $ingredientId, PDO::PARAM_INT);
-$stmt->bindParam(":supermarketId", $supermarketId, PDO::PARAM_INT);
+$stmt->bindParam(":recipeId", $recipeId, PDO::PARAM_INT);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
-    echo $price;
+    echo $quantity;
 } else {
     echo -1;
+    echo "ingredientId: " . $ingredientId . "<br/>";
+echo "quantity: " . $quantity . "<br/>";
+echo "recipeId: " . $recipeId . "<br/>";
+
 }
 ?>

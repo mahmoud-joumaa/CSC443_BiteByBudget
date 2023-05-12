@@ -1,5 +1,7 @@
 <?php
-
+session_start();
+unset($_SESSION['username']);
+session_destroy();
 require_once "Views/Shared/populate-page.php";
 
 require_once "Views/contact-us-views.php";
@@ -14,10 +16,10 @@ require_once "Views/contact-us-views.php";
 		<link href="../Images/Icons/favicon-enhanced.png" rel="favicon" type="image/png">
 		<!-- Linked Styles -->
 		<link href="../Styles/Shared/reset.css" rel="stylesheet" type="text/css">
-		<link href="../Styles/Shared/icons.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/Shared/header.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/Shared/footer.css" rel="stylesheet" type="text/css">
 		<link href="../Styles/contact-us.css" rel="stylesheet" type="text/css">
+		<script src="../Libraries/jquery.min.js"> </script>
 	</head>
 
 	<body>

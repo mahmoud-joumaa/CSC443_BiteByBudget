@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2023 at 11:43 PM
+-- Generation Time: May 11, 2023 at 10:39 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -438,9 +438,9 @@ CREATE TABLE IF NOT EXISTS `supermarket` (
 --
 
 INSERT INTO `supermarket` (`Supermarket_ID`, `Supermarket_Name`, `Location`, `Image`) VALUES
-(1, 'Siyarafour', 'Lebanon,Beirut,Hazmieh Street', 'Images/Logos/Siyarafourlogo.jpg'),
-(2, 'Winneys', 'Lebanon,Beirut,Ashrafieh', 'Images/Logos/Winneyslogo.jpg'),
-(3, 'Foodies', 'Lebanon,Beirut,Mar Elias', 'Images/Logos/Foodieslogo.jpg');
+(1, 'Siyarafour', 'Lebanon,Beirut,Hazmieh Street', 'Images/Partners/siyarafour.png'),
+(2, 'Winneys', 'Lebanon,Beirut,Ashrafieh', 'Images/Partners/winneys.jpg'),
+(3, 'Foodies', 'Lebanon,Beirut,Mar Elias', 'Images/Partners/foodies.jpg');
 
 -- --------------------------------------------------------
 
@@ -455,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Pass` varchar(255) NOT NULL,
   `IsAdmin` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -464,8 +464,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`ID`, `USERNAME`, `Pass`, `IsAdmin`) VALUES
 (11, 'admin', 'admin', 1),
 (8, 'siyarfour', 'siyarafour', 0),
-(9, 'winneys', 'winneys', 0),
-(10, 'foodies', 'foodies', 0);
+(9, 'winneys', 'winneys', -1),
+(10, 'foodies', 'foodies', 0),
+(17, 'test2', 'ttt', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

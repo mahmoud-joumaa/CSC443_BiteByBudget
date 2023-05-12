@@ -45,6 +45,7 @@ function load_step_4_scripts(){
                 success: function(data) {
                     $("#step-3").html("");
                     $("#step-4").html(data);
+                    selectSupermarket(0);
                     resolve(response);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -80,15 +81,18 @@ function load_step_4_scripts(){
     
     
         // Loads step 5 if the buget is sufficient else goes to step 4 and a half
-        $(document).on("click", ".select-supermarket-button", function(e){
+        $(document).on("click", "#next-button-step-4", function(e){
             e.preventDefault();
-            supermarket = $(this).prev().prev().html();
-            supermarket = $("#supermarket-select").val();
-            chosen_price = $("#supermarket-select option:selected").attr("price");
-            ingredients_of_supermarket = JSON.parse(ingredients_of_supermarket);
+            let label = $(".select");
+            
+            let supermarket = $(label).find("h2").text();
+            let chosen_price = $(label).find("h3").text();
+            
+            console.log(chosen_price);
+            let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
             
             if(budget >= parseInt(chosen_price)){
-                let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
+                ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket_param);
                 ingredients_of_supermarket_param =ingredients_of_supermarket_param["supermarketIngredients"];
                 ingredients_of_supermarket_param = JSON.stringify(ingredients_of_supermarket_param);
                 load_step_5_ajx(chosen_price, supermarket, ingredients, ingredients_of_supermarket_param);
