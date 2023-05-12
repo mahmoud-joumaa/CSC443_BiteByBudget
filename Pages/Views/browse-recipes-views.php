@@ -257,7 +257,7 @@ function populate_step_5_page($totalPrice, $supermarket, $ingredients, $ingredie
                     echo "<input price='$ing_price' class='item-input-step-5' type='number' pattern='\d*' value=" . $ingredients[$i]->Quantity ." >";
                 }
                 else{
-                    echo "<input price='N-A' class='item-input-step-5-NA' type='text' pattern='\d*' value='Item not available'>";
+                    echo "<input price='N-A' class='item-input-step-5-NA' type='text' pattern='\d*' value='N/A'>";
                 }
                 ?>
                 <button class='item-buy-step-5'>+</button>
