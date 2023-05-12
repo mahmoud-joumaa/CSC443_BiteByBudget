@@ -299,7 +299,7 @@
 	position: relative;
 	bottom: 0;
 	padding: 10px;
-	height: 25px;
+	min-height: 25px;
 	margin: 0px 2px;
 	background-color: #dee1ec;
 	color: #181a1b;
@@ -322,6 +322,12 @@
 	top: 50%;
 	left: 50%;
 	overflow: auto;
+}
+
+#step-4-half h2,
+#step-4-half h3 {
+	display: block;
+	width: 100%;
 }
 
 #step-4-half .item-wrapper {
