@@ -25,9 +25,9 @@ function Fetch_Recepies(){
  * @return array {Recipe_Name: ..., Image}
  */
 function Fetch_Slideshow_Recepies(){
-    $NUM_OF_RECIPES = 5;
+    $NUM_OF_RECIPES = 10;
     $db = DBConnect();
-    $query = "SELECT Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
+    $query = "SELECT Recipe_ID, Recipe_Name, Image FROM recipe ORDER BY Recipe_Name ASC";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,6 +37,7 @@ function Fetch_Slideshow_Recepies(){
     foreach ($random_keys as $key) {
         $random_recipes[] = $recipes[$key];
     }
+    shuffle($random_recipes);
 
     return $random_recipes;
 }

@@ -1,41 +1,124 @@
-#main .team-member {
-	width: 150px;
+#main h2 {
+	display: block;
+	width: 100%;
+	padding-top: 5%;
+	text-align: center;
 }
 
-#main .image {
-	height: 150px;
-	width: 150px;
+#main #team-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
 	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+#main #team-wrapper .team-member {
+	display: block;
+	width: 250px;
+	padding: 15px;
+	margin: 20px;
+	background-color: #dee1ec;
+	color: #181a1b;
+	cursor: default;
+	transition: box-shadow 0.2s ease-in-out;
+}
+#main #team-wrapper .team-member:hover {
+	box-shadow: 0px 1px 5px 2px #ffffff;
+}
+
+#main #team-wrapper .team-member .member-intro {
+	width: 250px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+#main #team-wrapper .team-member .member-img {
+	display: block;
+	height: 200px;
+	width: 200px;
+	margin: 5px 0;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 2px solid #181a1b;
 	overflow: hidden;
-	background-image: url('../Images/Team/blob-cat.png');
 	background-size: contain;
-	background-repeat: no-repeat;
+	background-position: center;
 }
-#main .image:hover .quote,
-#main .image:focus .quote {
-	top: calc(100% - 50px);
-}
-#main .image .quote {
-	min-height: 50px;
+#main #team-wrapper .team-member .member-img .member-quote {
+	display: block;
+	height: 40%;
 	width: 100%;
 	position: absolute;
-	top: 100%;
-	cursor: default;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: rgba(255, 255, 255, 0.9);
-	transition: top 0.5s linear;
+	left: 0;
+	bottom: -40%;
+	background-color: rgba(48, 52, 54, 0.7);
+	color: #fff;
+	text-align: center;
+	transition: bottom 0.2s linear;
 }
-#main .image .quote span {
-	display: inline-block;
+#main #team-wrapper .team-member .member-img:hover .member-quote {
+	bottom: 0;
+}
+#main #team-wrapper .team-member .member-img .member-quote > span {
+	display: block;
 	width: 100%;
+	padding: 2px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	font-size: 0.8rem;
 	transform: translate(-50%, -50%);
+}
+#main #team-wrapper .team-member .member-social {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	height: 25px;
+	width: 200px;
+	margin: 2px 0;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 	text-align: center;
 }
-#main .team-member > span {
-	display: inline-block;
+#main #team-wrapper .team-member .member-social .social-media {
+	height: 25px;
+	width: 25px;
+	padding: 2px;
+	border-radius: 50%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: transform 0.65s ease-in-out;
+}
+#main #team-wrapper .team-member .member-social .social-media:hover,
+#main #team-wrapper .team-member .member-social .social-media:focus-within {
+	transform: rotate(360deg);
+}
+#main #team-wrapper .team-member .member-social .social-media.facebook {
+	background-image: url("../Images/Icons/SocialMedia/facebook.png");
+}
+#main #team-wrapper .team-member .member-social .social-media.instagram {
+	background-image: url("../Images/Icons/SocialMedia/instagram.png");
+}
+#main #team-wrapper .team-member .member-social .social-media.twitter {
+	background-image: url("../Images/Icons/SocialMedia/twitter.png");
+}
+#main #team-wrapper .team-member .member-social .social-media.linkedin {
+	background-image: url("../Images/Icons/SocialMedia/linkedin.png");
+}
+
+#main #team-wrapper .team-member .member-social .social-media > a {
+	display: block;
+	height: 100%;
 	width: 100%;
-	text-align: center;
 }

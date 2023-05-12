@@ -2,18 +2,132 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	min-height: 100px;
+	min-height: 120px;
 	width: 100%;
 	padding: 5px 20px;
 	position: relative;
 	z-index: 2;
 	background-color: #0d0cb5;
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
+/* #footer #back-to-top {
+	height: 30px;
+	width: 30px;
+	position: relative;
+	bottom: 0;
+	background-image: url("../../Images/Icons/arrow-top.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+} */
+
 #footer > div {
-	width: 30%;
+	width: 48%;
 }
+
 #footer > div > span {
 	display: block;
 	width: 100%;
+	margin-bottom: 5px;
+	text-align: center;
+	font-family: 'Lobster', cursive, sans-serif;
+	font-size: 1.2rem;
+}
+#footer > div > span::after {
+	content: "";
+	display: block;
+	height: 2px;
+	width: 100%;
+	margin-top: 2px;
+	background-color: #fff;
+}
+
+#footer #social-media {
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+
+#footer li {
+	position: relative;
+}
+
+#footer a {
+	display: inline-block;
+	padding: 2px;
+	margin: 2px 0;
+	border-radius: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
+	background-size: 200% 100%;
+	transition: background-position 0.25s linear,
+							color 0.25s linear;
+}
+#footer a:hover,
+#footer a:focus {
+	background-position: -100%;
+	color: #0d0cb5;
+}
+
+#footer #social-media .social-media,
+#footer #contact-info .contact {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#footer #social-media .social-media {
+	left: 0;
+}
+#footer #social-media .social-media.facebook {
+	background-image: url("../../Images/Icons/SocialMedia/facebook-footer.png");
+}
+#footer #social-media .social-media.instagram {
+	background-image: url("../../Images/Icons/SocialMedia/instagram-footer.png");
+}
+#footer #social-media .social-media.linkedin {
+	background-image: url("../../Images/Icons/SocialMedia/linkedin-footer.png");
+}
+#footer #social-media a {
+	margin-left: 25px;
+}
+
+#footer #contact-info {
+	display: inline-block;
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+#footer #contact-info .contact {
+	right: 0;
+}
+#footer #contact-info .contact.phone {
+	background-image: url("../../Images/Icons/SocialMedia/phone.png");
+}
+#footer #contact-info .contact.email {
+	background-image: url("../../Images/Icons/SocialMedia/email.png");
+}
+#footer #contact-info .contact.rating {
+	background-image: url("../../Images/Icons/SocialMedia/rating.png");
+}
+#footer #contact-info a {
+	margin-right: 25px;
+}
+
+@media screen and (max-width: 750px) {
+	#footer {
+		flex-direction: column;
+	}
+	#footer > div {
+		width: 100%;
+	}
+	#footer > div > span {
+		margin-top: 15px;
+	}
 }

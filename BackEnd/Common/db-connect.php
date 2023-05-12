@@ -2,7 +2,7 @@
 
 function DBConnect(){
     $dbhost="127.0.0.1";
-    $dbname="BiteByBuget";
+    $dbname="BiteByBudget";
     $dbuser="root";
     $dbpass="";
     $db=null;

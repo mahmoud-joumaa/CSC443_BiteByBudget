@@ -15,11 +15,16 @@ try {
 
 $ingredientId = $_POST["ingredientId"];
 $quantity = $_POST["quantity"];
+$supermarketId = $_POST["supermarketId"];
 
-$query = "UPDATE sells SET `Quantity` = :quantity WHERE Ingredient_ID = :ingredientId";
+$query = "UPDATE sells 
+          SET `Quantity` = :quantity 
+          WHERE Ingredient_ID = :ingredientId
+          AND Supermarket_ID = :supermarketId";
 $stmt = $db->prepare($query);
 $stmt->bindParam(":quantity", $quantity, PDO::PARAM_INT);
 $stmt->bindParam(":ingredientId", $ingredientId, PDO::PARAM_INT);
+$stmt->bindParam(":supermarketId", $supermarketId, PDO::PARAM_INT);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {

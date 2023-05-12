@@ -1,0 +1,387 @@
+/* ================================================================================================ */
+/* Consistent UI */
+/* ================================================================================================ */
+
+.hidden {
+	display: none;
+}
+
+#main #step-tracker-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	position: fixed;
+	top: 80px;
+}
+
+#main #step-tracker-wrapper .step-tracker {
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	background-color: #c82121;
+	text-align: center;
+	line-height: 70px;
+	vertical-align: middle;
+	pointer-events: none;
+	cursor: default;
+	transition: background-color 0.25s ease;
+}
+
+#main #step-tracker-wrapper .step-tracker.current {
+	background-color: #fead42;
+}
+#main #step-tracker-wrapper .step-tracker.complete {
+	background-color: #39da8a;
+}
+
+#main .arrow {
+	display: block;
+	height: 35px;
+	width: 35px;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	transition: opacity 0.2s linear;
+}
+#main .arrow.prev {
+	left: 5px;
+	background-image: url("../Images/Icons/arrow-prev.png");
+}
+#main .arrow.next {
+	right: 5px;
+	background-image: url("../Images/Icons/arrow-next.png");
+}
+
+#main .arrow.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.step-wrapper {
+	display: block;
+	width: calc(100% - 90px);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	transition: left 0.5s ease;
+}
+
+/* ================================================================================================ */
+/* Step 1 */
+/* ================================================================================================ */
+#step-1 form#budget-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+#step-1 form#budget-form label {
+	display: inline-block;
+	margin-right: 2%;
+	font-size: 1.7rem;
+}
+#step-1 form#budget-form input {
+	height: 30px;
+	width: 50%;
+	padding: 2px;
+	font-family: inherit;
+	font-size: 1rem;
+}
+
+/* ================================================================================================ */
+/* Step 2 */
+/* ================================================================================================ */
+#step-2 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 450px;
+	padding-top: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: auto;
+}
+#step-2 .recipe {
+	display: block;
+	height: 300px;
+	width: 250px;
+	padding: 10px;
+	margin: 10px;
+	position: relative;
+	border-radius: 3px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+	text-align: center;
+	transition: box-shadow 0.35s linear;
+}
+#step-2 .recipe.select {
+	box-shadow: 0px 0px 2px 5px #fead42;
+}
+
+#step-2 .recipe > h4 {
+	display: inline-block;
+	width: 100%;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+#step-2 #search-bar {
+	display: block;
+	width: 98%;
+	padding: 10px 5px;
+	position: fixed;
+	top: 0;
+	border-radius: 3px;
+	font-size: 1.1rem;
+}
+
+/* ================================================================================================ */
+/* Step 3 */
+/* ================================================================================================ */
+#step-3 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 450px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: auto;
+}
+
+#step-3 .item-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	height: 300px;
+	width: 350px;
+	padding: 5px;
+	margin: 10px;
+	border-radius: 3px;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+}
+
+#step-3 .item-wrapper img {
+	height: 100px;
+	width: 100px;
+}
+
+#step-3 .item-wrapper .right-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	height: 100px;
+	width: 200px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#step-3 .item-wrapper .right-wrapper .item-cost {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+}
+
+#step-3 .item-wrapper .right-wrapper .item-cost * {
+	height: 25px;
+	margin: 0px 2px;
+	background-color: #181a1b;
+	color: #ffffff;
+}
+#step-3 .item-wrapper .right-wrapper .item-cost input {
+	width: 35% !important;
+}
+#step-3 .item-wrapper .right-wrapper .item-cost button {
+	width: 30% !important;
+	cursor: pointer;
+}
+
+/* ================================================================================================ */
+/* Step 4 */
+/* ================================================================================================ */
+#step-4 {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 450px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+#step-4 label .supermarket-preview {
+	transition: box-shadow 0.35s linear;
+}
+#step-4 label.select .supermarket-preview {
+	box-shadow: 0px 0px 2px 5px #fead42;
+}
+#step-4 .supermarket-preview {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+	text-align: center;
+	cursor: pointer;
+}
+#step-4 .supermarket-preview .supermarket-img {
+	height: 100px;
+	width: 100px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#step-4 .supermarket-preview .supermarket-info {
+	width: 300px;
+}
+#step-4 .supermarket-preview .supermarket-info h2 {
+	display: inline-block;
+	width: 100%;
+}
+#step-4 .supermarket-preview .supermarket-info .supermarket-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+#step-4 .supermarket-preview .supermarket-info h3,
+#step-4 .supermarket-preview .supermarket-info h4 {
+	width: 40%;
+}
+
+/* ================================================================================================ */
+/* Step 4.5 */
+/* ================================================================================================ */
+#step-4-half-msg {
+	display: block;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 3px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+}
+#continue-step-4-half,
+#return-step-4-half {
+	position: relative;
+	bottom: 0;
+	padding: 10px;
+	min-height: 25px;
+	margin: 0px 2px;
+	background-color: #dee1ec;
+	color: #181a1b;
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+/* ================================================================================================ */
+/* Step 5 */
+/* ================================================================================================ */
+#step-4-half {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	height: 450px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: auto;
+}
+
+#step-4-half h2,
+#step-4-half h3 {
+	display: block;
+	width: 100%;
+}
+
+#step-4-half .item-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	height: 300px;
+	width: 350px;
+	padding: 5px;
+	margin: 10px;
+	border-radius: 3px;
+	background-color: rgba(222, 225, 236, 0.8);
+	color: #181a1b;
+}
+
+#step-4-half .item-wrapper img {
+	height: 100px;
+	width: 100px;
+}
+
+#step-4-half .item-wrapper .right-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	height: 100px;
+	width: 200px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#step-4-half .item-wrapper .right-wrapper .item-cost {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+}
+
+#step-4-half .item-wrapper .right-wrapper .item-cost button,
+#step-4-half .item-wrapper .right-wrapper .item-cost input {
+	height: 25px;
+	margin: 0px 2px;
+	background-color: #181a1b;
+	color: #ffffff;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost input {
+	width: 35% !important;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost button {
+	width: 30% !important;
+	cursor: pointer;
+}
+#step-4-half .item-wrapper .right-wrapper .item-cost p {
+	margin-left: 10px;
+}

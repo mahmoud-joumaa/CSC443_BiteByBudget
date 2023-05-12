@@ -5,26 +5,64 @@
 	position: fixed;
 	z-index: 1;
 	background-color: #0d0cb5;
+	font-family: 'Lora',"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-size: 1.25rem;
+}
+
+#header .logo {
+	display: inline-block;
+	height: 35px;
+	width: 35px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: cover !important;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("../../Images/Icons/favicon-enhanced-no-bg.png");
+}
+#header .logo ~ span {
+	padding-left: 40px;
 }
 
 #header a {
 	padding: 5px;
-	border-radius: 1px;
+	border-radius: 2px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 0) 50%, #ffffff 50%, #ffffff 100%);
+	background-size: 200% 100%;
+	transition: background-position 0.25s linear,
+							color 0.25s linear;
 }
 #header a:hover,
 #header a:focus {
-	background-color: #fff;
+	background-position: -100%;
 	color: #0d0cb5;
 }
 
 #header > a {
 	display: inline-block;
-	padding: 5px 0px;
 	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-family: 'Lobster', cursive, sans-serif;
 }
-#header > a:hover,
-#header > a:focus {
-	
+
+#header button {
+	padding: 5px;
+	border: 1px solid #181a1b;
+	border-radius: 2px;
+	background-image: linear-gradient(to right, #181a1b 0%,#181a1b 50%, #ffffff 50%, #ffffff 100%);
+	background-size: 200% 100%;
+	transition: background-position 0.25s linear,
+							color 0.25s linear;
+	color: #fff;
+	font-family: inherit;
+	font-size: inherit;
+}
+#header button:hover,
+#header button:focus {
+	background-position: -100%;
+	color: #181a1b;
 }
 
 #header ul li {
@@ -34,7 +72,7 @@
 	cursor: pointer;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1200px) {
 	#header #burger-menu {
 		height: 100%;
 		width: 20px;
@@ -67,11 +105,11 @@
 		height: 100vh;
 		width: 100vw;
 		padding: 10px 5px;
-		padding-bottom: 100px; /* footer */
+		padding-bottom: 200px; /* footer */
 		position: absolute;
 		top: 100%;
 		left: 100%;
-		background-color: rgba(57, 218, 138, 0.8);
+		background-color: rgba(13, 12, 181, 0.6);
 		text-align: center;
 		transition: left 1s ease-in-out 0s;
 	}
@@ -105,7 +143,7 @@
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 1200px) {
 	#header #burger-menu { display: none; }
 
 	#header ul {

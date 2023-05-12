@@ -12,7 +12,7 @@ require_once("../Common/db-connect.php");
  */
 function Fetch_Ingerdients($recipe_id){
     $db = DBConnect();
-    $sql = "SELECT i.Image, c.Quantity, c.Unit, i.Ingredient_Name
+    $sql = "SELECT i.Image, c.Quantity, c.Unit, i.Ingredient_Name, i.Ingredient_ID
             FROM consistsof c
             INNER JOIN ingredient i ON c.Ingredient_ID = i.Ingredient_ID
             WHERE c.Recipe_ID = $recipe_id";
@@ -28,14 +28,31 @@ function Fetch_Ingerdients($recipe_id){
 function Fetch_Ingerdient_Offers(){
     $NUM_OF_INGREDIENTS = 3;
     $db = DBConnect();
-    $sql = "SELECT s.Ingredient_ID, Ingredient_Name,  Image, Status FROM sells s, ingredient i WHERE Status != '' AND s.Ingredient_ID=i.Ingredient_ID";
+    $sql = "SELECT s.Ingredient_ID, Ingredient_Name,  Image, Status FROM sells s, ingredient i WHERE Status != 1 AND s.Ingredient_ID=i.Ingredient_ID";
     $ingredients = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    $random_keys = array_rand($ingredients, $NUM_OF_INGREDIENTS);
+    
+    $unique_ingredients = array_reduce(
+        $ingredients,
+        function($acc, $curr) {
+            if (!isset($acc[$curr['Ingredient_ID']])) {
+                $acc[$curr['Ingredient_ID']] = $curr;
+            }
+            return $acc;
+        },
+        []
+    );
+    
+    $unique_ingredients = array_values($unique_ingredients); // reset keys
+    
+    $random_keys = array_rand($unique_ingredients, $NUM_OF_INGREDIENTS);
     $random_ingrdients = array();
+
     foreach ($random_keys as $key) {
-        $random_ingrdients[] = $ingredients[$key];
+        $random_ingrdients[] = $unique_ingredients[$key];
     }
+    
+    
     
     return $random_ingrdients;
 }
