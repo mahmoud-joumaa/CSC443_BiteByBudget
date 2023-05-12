@@ -56,7 +56,7 @@ function load_step_5_scripts(){
             
             ingredients =JSON.stringify(ingredients);
             supermarket = null;
-            document.getElementById("step-5").innerHTML = "";
+            document.getElementById("step-4-half").innerHTML = "";
             load_supermarkets_ajx(ingredient_ids, ingredient_quantity);
         });
 
