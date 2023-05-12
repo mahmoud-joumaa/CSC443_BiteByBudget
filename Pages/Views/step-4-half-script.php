@@ -40,7 +40,13 @@ function load_step_4_half_scripts(){
             supermarket = null;
             recipe_id = -1;
             chosen_price = -1;
+            for(let i=0; i<3; i++){
+                prevStep();
+            }
             $("#step-4-half").html("");
+            $("#step-4").html("");
+            $("#step-3").html("");
+            $("#step-2").html("");
             load_budget_ajx();
         });
     </script>

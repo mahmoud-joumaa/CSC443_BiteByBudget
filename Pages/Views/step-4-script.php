@@ -85,8 +85,8 @@ function load_step_4_scripts(){
             e.preventDefault();
             let label = $(".select");
             
-            let supermarket = $(label).find("h2").text();
-            let chosen_price = $(label).find("h3").text();
+            supermarket = $(label).find("h2").text();
+            chosen_price = $(label).find("h3").text();
             
             console.log(chosen_price);
             let ingredients_of_supermarket_param = JSON.parse(ingredients_of_supermarket);
