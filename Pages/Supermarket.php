@@ -64,6 +64,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="wrapper-section">
+      <a href=".."><button style="color:black"> Logout </button></a>
         <div class="div-1">
             <h1 class="heading-3">Ingredients in <?php echo $Supermarket_Name ?></h1>
             <div class="div-block-414">
